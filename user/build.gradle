@@ -1,5 +1,8 @@
-apply plugin: 'com.android.library'
-
+if (isUserModule.toBoolean()) {
+    apply plugin: 'com.android.library'
+} else {
+    apply plugin: 'com.android.application'
+}
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
@@ -25,9 +28,21 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            if (isUserModule.toBoolean()) {
+                manifest.srcFile 'src/main/release/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            }
+        }
+    }
+
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     api project(':provider')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }
