@@ -6,24 +6,26 @@ import com.sukaidev.common.rx.BaseSubscriber
 import com.sukaidev.user.presenter.view.RegisterView
 import com.sukaidev.user.service.UserService
 import com.sukaidev.user.service.impl.UserServiceImpl
-import rx.android.schedulers.AndroidSchedulers
-import rx.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * Created by sukai on 2019/08/10.
  *
  */
-class RegisterPresenter : BasePresenter<RegisterView>() {
+class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
-    fun register(mobile: String, verifyCode: String, pwd: String) {
+    @Inject
+    lateinit var userService: UserService
+
+    fun register(mobile: String, pwd: String, verifyCode: String) {
         // 业务逻辑
 
-        val userService = UserServiceImpl()
-        userService.register(mobile, verifyCode, pwd)
+        userService.register(mobile, pwd, verifyCode)
             .execute(object : BaseSubscriber<Boolean>() {
                 override fun onNext(t: Boolean) {
-                    mView.onRegisterResult(t)
+                    if (t)
+                        mView.onRegisterResult("注册成功")
                 }
-            })
+            }, lifecycleProvider)
     }
 }

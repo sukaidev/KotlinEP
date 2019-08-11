@@ -1,14 +1,14 @@
 package com.sukaidev.user.ui.activity
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
 import com.sukaidev.user.R
+import com.sukaidev.user.injection.component.DaggerUserComponent
+import com.sukaidev.user.injection.module.UserModule
 import com.sukaidev.user.presenter.RegisterPresenter
 import com.sukaidev.user.presenter.view.RegisterView
 import kotlinx.android.synthetic.main.activity_register.*
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 /**
@@ -16,7 +16,8 @@ import org.jetbrains.anko.toast
  *
  */
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
-    override fun onRegisterResult(result: Boolean) {
+
+    override fun onRegisterResult(result: String) {
         toast("注册成功")
     }
 
@@ -24,12 +25,19 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        mPresenter = RegisterPresenter()
-        mPresenter.mView = this
-
-        btn_register.setOnClickListener {
-            mPresenter.register("", "", "")
+        btn_register.onClick {
+            mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyEt.text.toString())
         }
-
     }
+
+    override fun injectComponent() {
+        DaggerUserComponent
+            .builder()
+            .activityComponent(activityComponent)
+            .userModule(UserModule())
+            .build()
+            .inject(this)
+        mPresenter.mView = this
+    }
+
 }

@@ -8,7 +8,7 @@ import com.sukaidev.common.presenter.view.BaseView
  */
 interface RegisterView : BaseView {
 
-    fun onRegisterResult(result: Boolean)
+    fun onRegisterResult(result: String)
 
 
 }

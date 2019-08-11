@@ -1,10 +1,10 @@
 package com.sukaidev.common.ui.activity
 
-import androidx.appcompat.app.AppCompatActivity
+import com.trello.rxlifecycle.components.support.RxAppCompatActivity
 
 /**
  * Created by sukai on 2019/08/10.
  *
  */
-open class BaseActivity : AppCompatActivity() {
+open class BaseActivity : RxAppCompatActivity() {
 }

@@ -9,6 +9,14 @@ buildscript {
     ext.rx_kotlin_version = '1.0.0'
     // rxandroid版本号
     ext.rx_android_version = '1.2.1'
+    // retrofit版本号
+    ext.retrofit_version = '2.6.1'
+    // okttp版本号
+    ext.ok_http_version = '4.0.1'
+    // dagger
+    ext.dagger_version = '2.11'
+    // RxLifecycle
+    ext.rx_lifecycle_version = '1.0'
     repositories {
         google()
         jcenter()
