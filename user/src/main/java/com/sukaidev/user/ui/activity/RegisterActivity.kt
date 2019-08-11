@@ -1,6 +1,7 @@
 package com.sukaidev.user.ui.activity
 
 import android.os.Bundle
+import com.sukaidev.common.common.AppManager
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
 import com.sukaidev.user.R
@@ -16,6 +17,8 @@ import org.jetbrains.anko.toast
  *
  */
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
+
+    private var pressTime: Long = 0
 
     override fun onRegisterResult(result: String) {
         toast("注册成功")
@@ -40,4 +43,13 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         mPresenter.mView = this
     }
 
+    override fun onBackPressed() {
+        val time = System.currentTimeMillis()
+        if (time - pressTime > 2000) {
+            toast("再按一次退出程序")
+            pressTime = time
+        } else {
+            AppManager.INSTANCE.exitApp(this)
+        }
+    }
 }

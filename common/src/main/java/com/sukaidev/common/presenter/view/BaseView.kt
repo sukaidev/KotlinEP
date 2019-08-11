@@ -5,12 +5,10 @@ package com.sukaidev.common.presenter.view
  *
  */
 interface BaseView {
-
     /**
      * 显示加载框
      */
     fun showLoading()
-
     /**
      * 隐藏加载框
      */

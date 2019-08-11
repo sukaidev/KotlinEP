@@ -1,6 +1,7 @@
-package com.sukaidev.common.ui.activity
+package com.sukaidev.common.ui.fragment
 
 import android.os.Bundle
+import androidx.fragment.app.FragmentActivity
 import com.sukaidev.common.common.BaseApplication
 import com.sukaidev.common.injection.component.ActivityComponent
 import com.sukaidev.common.injection.component.DaggerActivityComponent
@@ -8,28 +9,25 @@ import com.sukaidev.common.injection.module.ActivityModule
 import com.sukaidev.common.injection.module.LifecycleProviderModule
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.presenter.view.BaseView
-import com.sukaidev.common.widget.ProgressLoading
 import javax.inject.Inject
 
 /**
  * Created by sukai on 2019/08/10.
  *
  */
-abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {
+abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
 
     @Inject
     lateinit var mPresenter: T
 
     lateinit var activityComponent: ActivityComponent
 
-    private lateinit var mLoadingDialog: ProgressLoading
-
     override fun showLoading() {
-        mLoadingDialog.showLoading()
+
     }
 
     override fun hideLoading() {
-        mLoadingDialog.hideLoading()
+
     }
 
     override fun onError() {
@@ -40,17 +38,15 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
         initActivityInjection()
         injectComponent()
-
-        mLoadingDialog = ProgressLoading.create(this)
     }
 
     abstract fun injectComponent()
 
     private fun initActivityInjection() {
         activityComponent =
-                DaggerActivityComponent.builder().appComponent((application as BaseApplication).appComponent)
-                        .activityModule(
-                                ActivityModule(this)
-                        ).lifecycleProviderModule(LifecycleProviderModule(this)).build()
+            DaggerActivityComponent.builder().appComponent((activity?.application as BaseApplication).appComponent)
+                .activityModule(
+                    ActivityModule(activity as FragmentActivity)
+                ).lifecycleProviderModule(LifecycleProviderModule(this)).build()
     }
 }
