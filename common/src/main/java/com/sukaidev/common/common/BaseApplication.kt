@@ -1,6 +1,8 @@
 package com.sukaidev.common.common
 
+import android.annotation.SuppressLint
 import android.app.Application
+import android.content.Context
 import com.sukaidev.common.injection.component.AppComponent
 import com.sukaidev.common.injection.component.DaggerAppComponent
 import com.sukaidev.common.injection.module.AppModule
@@ -11,12 +13,18 @@ import com.sukaidev.common.injection.module.AppModule
  */
 class BaseApplication : Application() {
 
-     lateinit var appComponent: AppComponent
+    lateinit var appComponent: AppComponent
+
+    companion object {
+        @SuppressLint("StaticFieldLeak")
+        lateinit var context: Context
+    }
 
     override fun onCreate() {
         super.onCreate()
 
         initAppInjection()
+        context = this
     }
 
     private fun initAppInjection() {

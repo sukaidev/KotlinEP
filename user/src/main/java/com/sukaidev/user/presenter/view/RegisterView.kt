@@ -9,6 +9,4 @@ import com.sukaidev.common.presenter.view.BaseView
 interface RegisterView : BaseView {
 
     fun onRegisterResult(result: String)
-
-
 }

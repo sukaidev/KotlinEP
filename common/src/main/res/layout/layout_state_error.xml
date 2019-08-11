@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch.Vertical"
+    android:gravity="center">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        style="@style/WrapWrap"
+        android:scaleType="centerCrop"
+        android:src="@drawable/icon_state_error" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        style="@style/WrapWrap"
+        android:gravity="center"
+        android:text="加载错误"
+        android:textSize="@dimen/text_large_size" />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -7,5 +7,7 @@ package com.sukaidev.common.common
 class BaseConstant {
     companion object {
         const val SERVER_ADDRESS = "http://sukaidev.top:8080/KotlinMall/"
+
+        const val TABLE_PREFS = "kotlin_mall"
     }
 }

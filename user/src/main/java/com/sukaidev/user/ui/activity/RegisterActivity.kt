@@ -4,6 +4,7 @@ import android.os.Bundle
 import com.sukaidev.common.common.AppManager
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
+import com.sukaidev.common.widget.VerifyButton
 import com.sukaidev.user.R
 import com.sukaidev.user.injection.component.DaggerUserComponent
 import com.sukaidev.user.injection.module.UserModule
@@ -31,15 +32,26 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         btn_register.onClick {
             mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyEt.text.toString())
         }
+
+        mGetVerifyCodeBtn.setOnVerifyBtnClick(object : VerifyButton.OnVerifyBtnClick {
+            override fun onClick() {
+                toast("获取验证码")
+            }
+        })
+        mGetVerifyCodeBtn.onClick {
+            mGetVerifyCodeBtn.requestSendVerifyNumber()
+        }
+
+
     }
 
     override fun injectComponent() {
         DaggerUserComponent
-            .builder()
-            .activityComponent(activityComponent)
-            .userModule(UserModule())
-            .build()
-            .inject(this)
+                .builder()
+                .activityComponent(activityComponent)
+                .userModule(UserModule())
+                .build()
+                .inject(this)
         mPresenter.mView = this
     }
 

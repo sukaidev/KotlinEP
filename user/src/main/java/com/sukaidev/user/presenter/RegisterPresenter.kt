@@ -21,7 +21,6 @@ class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
 
     fun register(mobile: String, pwd: String, verifyCode: String) {
         // 业务逻辑
-
         if (!checkNetWork()) {
             return
         } else {

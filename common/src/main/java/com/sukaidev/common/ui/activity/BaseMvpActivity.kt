@@ -9,6 +9,7 @@ import com.sukaidev.common.injection.module.LifecycleProviderModule
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.presenter.view.BaseView
 import com.sukaidev.common.widget.ProgressLoading
+import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
@@ -32,7 +33,8 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         mLoadingDialog.hideLoading()
     }
 
-    override fun onError() {
+    override fun onError(msg: String) {
+        toast(msg)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

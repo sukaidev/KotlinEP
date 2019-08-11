@@ -9,10 +9,11 @@ interface BaseView {
      * 显示加载框
      */
     fun showLoading()
+
     /**
      * 隐藏加载框
      */
     fun hideLoading()
 
-    fun onError()
+    fun onError(msg: String)
 }

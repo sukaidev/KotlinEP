@@ -30,7 +30,7 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     }
 
-    override fun onError() {
+    override fun onError(msg: String) {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,9 +44,9 @@ abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView 
 
     private fun initActivityInjection() {
         activityComponent =
-            DaggerActivityComponent.builder().appComponent((activity?.application as BaseApplication).appComponent)
-                .activityModule(
-                    ActivityModule(activity as FragmentActivity)
-                ).lifecycleProviderModule(LifecycleProviderModule(this)).build()
+                DaggerActivityComponent.builder().appComponent((activity?.application as BaseApplication).appComponent)
+                        .activityModule(
+                                ActivityModule(activity as FragmentActivity)
+                        ).lifecycleProviderModule(LifecycleProviderModule(this)).build()
     }
 }

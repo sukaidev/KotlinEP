@@ -17,6 +17,8 @@ buildscript {
     ext.dagger_version = '2.11'
     // RxLifecycle
     ext.rx_lifecycle_version = '1.0'
+    // Glide
+    ext.glide_version = '4.9.0'
     repositories {
         google()
         jcenter()
