@@ -1,7 +1,7 @@
 package com.sukaidev.common.presenter.view
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 interface BaseView {

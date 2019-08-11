@@ -7,7 +7,7 @@ import rx.Subscriber
  * Created by sukai on 2019/08/10.
  *
  */
-open class BaseSubscriber<T>(val baseView: BaseView) : Subscriber<T>() {
+open class BaseSubscriber<T>(private val baseView: BaseView) : Subscriber<T>() {
     override fun onNext(t: T) {
     }
 
@@ -17,7 +17,9 @@ open class BaseSubscriber<T>(val baseView: BaseView) : Subscriber<T>() {
 
     override fun onError(e: Throwable) {
         baseView.hideLoading()
-        e.printStackTrace()
+        if (e is BaseException) {
+            baseView.onError(e.msg)
+        }
     }
 
 }

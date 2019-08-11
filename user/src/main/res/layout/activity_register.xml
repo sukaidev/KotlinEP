@@ -1,59 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    style="@style/MatchMatch.Vertical.Common">
 
     <com.sukaidev.common.widget.HeaderBar
+        android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
-        app:isShowBack="false"
-        app:rightText="登录"
         app:titleText="注册" />
 
-
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/MatchWrap.Vertical"
+        android:layout_margin="@dimen/common_margin"
+        android:background="@drawable/border_corner_all">
+
+        <androidx.appcompat.widget.LinearLayoutCompat style="@style/MatchWrap.Horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/mMobileEt"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/common_line_height"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:drawableStart="@drawable/icon_phone"
+                android:drawableLeft="@drawable/icon_phone"
+                android:drawablePadding="@dimen/common_padding_small"
+                android:hint="请输入手机号码"
+                android:inputType="phone"
+                android:paddingStart="@dimen/common_padding_small"
+                android:paddingLeft="@dimen/common_padding_small" />
+
+            <View style="@style/DividerFixedWidth.MarginTopBottom" />
+
+            <com.sukaidev.common.widget.VerifyButton
+                android:id="@+id/mVerifyCodeBtn"
+                style="@style/WrapMatch"
+                android:background="@null"
+                android:text="获取验证码"
+                android:textColor="@color/common_blue" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View style="@style/DividerFixedHeight" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/mMobileEt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="请输入手机号码" />
+            android:id="@+id/mVerifyCodeEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableStart="@drawable/icon_verify_code"
+            android:drawableLeft="@drawable/icon_verify_code"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请输入短信验证码"
+            android:inputType="number"
+            android:paddingStart="@dimen/common_padding_small"
+            android:paddingLeft="@dimen/common_padding_small" />
 
-        <com.sukaidev.common.widget.VerifyButton
-            android:id="@+id/mGetVerifyCodeBtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="获取验证码" />
+        <View style="@style/DividerFixedHeight" />
 
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/mPwdEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableStart="@drawable/icon_pwd"
+            android:drawableLeft="@drawable/icon_pwd"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请输入密码（6-20位字母或数字）"
+            android:inputType="textPassword"
+            android:paddingLeft="@dimen/common_padding_small" />
+
+        <View style="@style/DividerFixedHeight" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/mPwdConfirmEt"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_line_height"
+            android:background="@null"
+            android:drawableStart="@drawable/icon_pwd"
+            android:drawableLeft="@drawable/icon_pwd"
+            android:drawablePadding="@dimen/common_padding_small"
+            android:hint="请再次输入密码"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/common_padding_small"
+            android:paddingLeft="@dimen/common_padding_small" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/mVerifyEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入验证码" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/mPwdEt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请输入密码" />
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="请确认密码" />
-
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:id="@+id/mRegisterBtn"
+        style="@style/FullBtnStyle"
         android:text="注册" />
-
-
 </androidx.appcompat.widget.LinearLayoutCompat>

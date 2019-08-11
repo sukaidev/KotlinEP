@@ -6,7 +6,7 @@ import android.content.Context
 import java.util.*
 
 /**
- * Created by sukai on 2019/08/11.
+ * Created by sukaidev on 2019/08/11.
  * 自定义Activity管理栈.
  */
 class AppManager private constructor() {
