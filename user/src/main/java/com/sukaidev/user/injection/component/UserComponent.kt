@@ -18,5 +18,4 @@ interface UserComponent {
     fun inject(activity: ForgetPwdActivity)
     fun inject(activity: ResetPwdActivity)
     fun inject(activity: UserInfoActivity)
-
 }
