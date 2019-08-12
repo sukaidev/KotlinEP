@@ -16,28 +16,18 @@ import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  * 注册Activity.
  */
 class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
 
     private var pressTime: Long = 0
 
-    /**
-     * 注册回调
-     */
-    override fun onRegisterResult(result: String) {
-        toast("注册成功")
+    override fun setLayout(): Int {
+        return R.layout.activity_register
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
-
-        initView()
-    }
-
-    private fun initView() {
+    override fun onBindView(savedInstanceState: Bundle?) {
         mRegisterBtn.enable(mMobileEt) { isBtnEnable() }
         mRegisterBtn.enable(mVerifyCodeEt) { isBtnEnable() }
         mRegisterBtn.enable(mPwdEt) { isBtnEnable() }
@@ -46,13 +36,20 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
         mVerifyCodeBtn.onClick(this)
     }
 
+    /**
+     * 注册回调
+     */
+    override fun onRegisterResult(result: String) {
+        toast(result)
+    }
+
     override fun injectComponent() {
         DaggerUserComponent
-                .builder()
-                .activityComponent(activityComponent)
-                .userModule(UserModule())
-                .build()
-                .inject(this)
+            .builder()
+            .activityComponent(activityComponent)
+            .userModule(UserModule())
+            .build()
+            .inject(this)
         mPresenter.mView = this
     }
 
@@ -63,7 +60,11 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
                 toast("发送验证码成功")
             }
             mRegisterBtn ->
-                mPresenter.register(mMobileEt.text.toString(), mPwdEt.text.toString(), mVerifyCodeEt.text.toString())
+                mPresenter.register(
+                    mMobileEt.text.toString(),
+                    mPwdEt.text.toString(),
+                    mVerifyCodeEt.text.toString()
+                )
         }
     }
 
@@ -77,7 +78,7 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
                 && mPwdConfirmEt.text.isNullOrEmpty().not()
     }
 
-    override fun onBackPressed() {
+/*    override fun onBackPressed() {
         val time = System.currentTimeMillis()
         if (time - pressTime > 2000) {
             toast("再按一次退出程序")
@@ -85,5 +86,5 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, Vie
         } else {
             AppManager.INSTANCE.exitApp(this)
         }
-    }
+    }*/
 }

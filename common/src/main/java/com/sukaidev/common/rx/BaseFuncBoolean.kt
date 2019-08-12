@@ -5,7 +5,7 @@ import rx.Observable
 import rx.functions.Func1
 
 /**
- * Created by sukai on 2019/08/11.
+ * Created by sukaidev on 2019/08/11.
  *
  */
 class BaseFuncBoolean<T> : Func1<BaseResp<T>, Observable<Boolean>> {

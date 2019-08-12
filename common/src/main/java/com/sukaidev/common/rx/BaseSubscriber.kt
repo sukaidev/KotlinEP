@@ -4,7 +4,7 @@ import com.sukaidev.common.presenter.view.BaseView
 import rx.Subscriber
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 open class BaseSubscriber<T>(private val baseView: BaseView) : Subscriber<T>() {

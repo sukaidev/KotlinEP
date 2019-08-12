@@ -3,6 +3,7 @@ package com.sukaidev.common.ext
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.widget.AppCompatEditText
 import com.sukaidev.common.data.protocol.BaseResp
 import com.sukaidev.common.rx.BaseFunc
 import com.sukaidev.common.rx.BaseFuncBoolean
@@ -16,14 +17,17 @@ import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  * 扩展方法.
  */
-fun <T> Observable<T>.execute(subscriber: BaseSubscriber<T>, lifecycleProvider: LifecycleProvider<*>) {
+fun <T> Observable<T>.execute(
+    subscriber: BaseSubscriber<T>,
+    lifecycleProvider: LifecycleProvider<*>
+) {
     this.observeOn(AndroidSchedulers.mainThread())
-            .compose(lifecycleProvider.bindToLifecycle())
-            .subscribeOn(Schedulers.io())
-            .subscribe(subscriber)
+        .compose(lifecycleProvider.bindToLifecycle())
+        .subscribeOn(Schedulers.io())
+        .subscribe(subscriber)
 }
 
 fun <T> Observable<BaseResp<T>>.convert(): Observable<T> {
@@ -47,7 +51,7 @@ fun View.onClick(method: () -> Unit) {
 /**
  * 通过EditText状态修改Button状态
  */
-fun Button.enable(et: EditText, method: () -> Boolean) {
+fun Button.enable(et: AppCompatEditText, method: () -> Boolean) {
     val btn = this
     et.addTextChangedListener(object : DefaultTextWatcher() {
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {

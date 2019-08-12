@@ -28,8 +28,7 @@ class RetrofitFactory private constructor() {
         interceptor = Interceptor { chain ->
             val request = chain.request()
                 .newBuilder()
-                .addHeader("Content-Type", "application/json")
-                .addHeader("charset", "utf-8")
+                .addHeader("Content-Type", "application/json;charset=utf-8")
                 .build()
             chain.proceed(request)
         }

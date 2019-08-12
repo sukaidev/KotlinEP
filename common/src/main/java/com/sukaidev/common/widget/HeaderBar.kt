@@ -1,10 +1,14 @@
 package com.sukaidev.common.widget
 
+import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatTextView
 import com.sukaidev.common.R
+import com.sukaidev.common.ext.onClick
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 
 /**
@@ -12,7 +16,7 @@ import kotlinx.android.synthetic.main.layout_header_bar.view.*
  *
  */
 class HeaderBar @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var isShowBack = true
@@ -43,5 +47,15 @@ class HeaderBar @JvmOverloads constructor(
             mRightTv.text = it
             mRightTv.visibility = View.VISIBLE
         }
+
+        mLeftIv.onClick {
+            if (context is Activity) {
+                (context as Activity).finish()
+            }
+        }
+    }
+
+    fun getRightTv(): AppCompatTextView {
+        return mRightTv
     }
 }

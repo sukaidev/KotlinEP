@@ -45,25 +45,27 @@ dependencies {
     api "io.reactivex:rxkotlin:$rx_kotlin_version"
     // rxandroid
     api "io.reactivex:rxandroid:$rx_android_version"
-
     // Retrofit
     api "com.squareup.retrofit2:retrofit:$retrofit_version"
     api "com.squareup.okhttp3:okhttp:$ok_http_version"
     api "com.squareup.okhttp3:logging-interceptor:$ok_http_version"
     api "com.squareup.retrofit2:converter-gson:$retrofit_version"
     api "com.squareup.retrofit2:adapter-rxjava:$retrofit_version"
-
     // dagger
     api "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-
     // RxLifecycle
     api "com.trello:rxlifecycle-kotlin:$rx_lifecycle_version"
     api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
-
     // Glide
     api "com.github.bumptech.glide:glide:$glide_version"
     annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    // CircleImageView
+    api "de.hdodenhof:circleimageview:$circle_image_view_version"
+    //takephoto
+    api "com.jph.takephoto:takephoto_library:$take_photo_version"
+    // alertview
+    api "com.bigkoo:alertview:$alert_view_version"
 
     api 'androidx.appcompat:appcompat:1.0.2'
     testImplementation 'junit:junit:4.12'

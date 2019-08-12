@@ -19,6 +19,13 @@ buildscript {
     ext.rx_lifecycle_version = '1.0'
     // Glide
     ext.glide_version = '4.9.0'
+    // CircleImageView
+    ext.circle_image_view_version = '3.0.0'
+    // takephoto
+    ext.take_photo_version = '4.0.3'
+    // alerview
+    ext.alert_view_version = '1.0.3'
+
     repositories {
         google()
         jcenter()
