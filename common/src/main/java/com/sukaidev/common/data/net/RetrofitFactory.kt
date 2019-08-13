@@ -1,6 +1,7 @@
 package com.sukaidev.common.data.net
 
 import com.sukaidev.common.common.BaseConstant
+import com.sukaidev.common.utils.AppPrefsUtils
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -29,6 +30,7 @@ class RetrofitFactory private constructor() {
             val request = chain.request()
                 .newBuilder()
                 .addHeader("Content-Type", "application/json;charset=utf-8")
+                .addHeader("token", AppPrefsUtils.getString(BaseConstant.KEY_SP_TOKEN)!!)
                 .build()
             chain.proceed(request)
         }

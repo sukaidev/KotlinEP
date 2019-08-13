@@ -2,6 +2,7 @@ package com.sukaidev.user.injection.component
 
 import com.sukaidev.common.injection.PerComponentScope
 import com.sukaidev.common.injection.component.ActivityComponent
+import com.sukaidev.user.injection.module.UploadModule
 import com.sukaidev.user.injection.module.UserModule
 import com.sukaidev.user.ui.activity.*
 import dagger.Component
@@ -11,7 +12,10 @@ import dagger.Component
  *
  */
 @PerComponentScope
-@Component(dependencies = [ActivityComponent::class], modules = [UserModule::class])
+@Component(
+    dependencies = [ActivityComponent::class],
+    modules = [UserModule::class, UploadModule::class]
+)
 interface UserComponent {
     fun inject(activity: LoginActivity)
     fun inject(activity: RegisterActivity)

@@ -27,8 +27,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
@@ -37,7 +37,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     // Anko Commons
     api "org.jetbrains.anko:anko-commons:$anko_version"
@@ -59,7 +59,7 @@ dependencies {
     api "com.trello:rxlifecycle-components:$rx_lifecycle_version"
     // Glide
     api "com.github.bumptech.glide:glide:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
     // CircleImageView
     api "de.hdodenhof:circleimageview:$circle_image_view_version"
     //takephoto
@@ -67,9 +67,12 @@ dependencies {
     // alertview
     api "com.bigkoo:alertview:$alert_view_version"
 
+    // 七牛云SDK
+    api 'com.qiniu:qiniu-android-sdk:7.3.15'
+
     api 'androidx.appcompat:appcompat:1.0.2'
+    api 'androidx.recyclerview:recyclerview:1.1.0-beta02'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-    implementation 'androidx.recyclerview:recyclerview:1.1.0-beta02'
 }

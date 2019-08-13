@@ -9,7 +9,7 @@ import android.preference.PreferenceManager
 
 
 /**
- * Created by sukai on 2019/08/11.
+ * Created by sukaidev on 2019/08/11.
  * SharedPreferences工具类.
  */
 object AppPrefsUtils {

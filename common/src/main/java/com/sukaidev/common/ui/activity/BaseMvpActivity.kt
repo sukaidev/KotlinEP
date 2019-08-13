@@ -25,6 +25,16 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
     private lateinit var mLoadingDialog: ProgressLoading
 
+    /**
+     * 设置布局ID
+     */
+    abstract fun setLayout(): Int
+
+    /**
+     * 布局填充后的逻辑
+     */
+    abstract fun onBindView(savedInstanceState: Bundle?)
+
     override fun showLoading() {
         mLoadingDialog.showLoading()
     }
@@ -39,10 +49,12 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(setLayout())
         initActivityInjection()
         injectComponent()
-
         mLoadingDialog = ProgressLoading.create(this)
+
+        onBindView(savedInstanceState)
     }
 
     abstract fun injectComponent()

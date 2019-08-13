@@ -12,7 +12,7 @@ buildscript {
     // retrofit版本号
     ext.retrofit_version = '2.6.1'
     // okttp版本号
-    ext.ok_http_version = '4.0.1'
+    ext.ok_http_version = '3.12.1'
     // dagger
     ext.dagger_version = '2.11'
     // RxLifecycle
