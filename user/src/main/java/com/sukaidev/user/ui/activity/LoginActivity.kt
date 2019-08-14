@@ -1,7 +1,6 @@
 package com.sukaidev.user.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import com.sukaidev.common.ext.enable
 import com.sukaidev.common.ext.onClick
@@ -26,7 +25,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClick
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
         UserPrefsUtils.putUserInfo(result)
-        startActivity<UserInfoActivity>()
+        finish()
     }
 
     override fun setLayout(): Int {

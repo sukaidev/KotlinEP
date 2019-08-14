@@ -27,7 +27,7 @@ abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(var mCon
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.itemView.setOnClickListener {
             mItemClickListener.let {
-                mItemClickListener!!.onItemClick(dataList[position], position)
+                mItemClickListener?.onItemClick(dataList[position], position)
             }
         }
     }

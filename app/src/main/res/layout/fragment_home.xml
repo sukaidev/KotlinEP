@@ -5,6 +5,8 @@
 
     <androidx.appcompat.widget.LinearLayoutCompat
         style="@style/SearchHeaderStyle"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
         android:paddingStart="@dimen/common_padding"
         android:paddingLeft="@dimen/common_padding"
         tools:ignore="RtlSymmetry">
