@@ -66,12 +66,21 @@ dependencies {
     api "com.jph.takephoto:takephoto_library:$take_photo_version"
     // alertview
     api "com.bigkoo:alertview:$alert_view_version"
-
     // 七牛云SDK
     api 'com.qiniu:qiniu-android-sdk:7.3.15'
 
+    // BottomNavigation底部导航栏
+    api 'com.ashokvarma.android:bottom-navigation-bar:2.1.0'
+    // Banner
+    api 'com.youth.banner:banner:1.4.10'
+    // 视图控件标签
+    api 'com.github.shts:TriangleLabelView:1.1.2'
+    //
+    api 'com.github.crosswall:Android-Coverflow:release-v1.0.5'
+
     api 'androidx.appcompat:appcompat:1.0.2'
     api 'androidx.recyclerview:recyclerview:1.1.0-beta02'
+    api 'androidx.cardview:cardview:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

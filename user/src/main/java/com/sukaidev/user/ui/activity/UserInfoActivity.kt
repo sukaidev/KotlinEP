@@ -119,7 +119,6 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView,
     }
 
     private fun showAlertView() {
-
         AlertView(
             "设置头像",
             "从下列途径中选择一张照片",

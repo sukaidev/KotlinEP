@@ -7,7 +7,7 @@ package com.sukaidev.common.common
 class BaseConstant {
     companion object {
 
-        const val IMAGE_SERVER_ADDRESS = "http://osea2fxp7.bkt.clouddn.com/"
+        const val IMAGE_SERVER_ADDRESS = "http://qiniu.sukaidev.top/"
 
         const val SERVER_ADDRESS = "http://sukaidev.top:8080/Kotlin_Server/"
 
