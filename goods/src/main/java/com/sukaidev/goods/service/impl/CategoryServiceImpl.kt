@@ -1,7 +1,7 @@
 package com.sukaidev.goods.service.impl
 
 import com.sukaidev.common.ext.convert
-import com.sukaidev.goods.common.repository.CategoryRepository
+import com.sukaidev.goods.data.repository.CategoryRepository
 import com.sukaidev.goods.data.protocol.Category
 import com.sukaidev.goods.service.ICategoryService
 import rx.Observable

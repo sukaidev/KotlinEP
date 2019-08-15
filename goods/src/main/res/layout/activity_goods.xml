@@ -1,9 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.activity.GoodsActivity">
+    style="@style/MatchMatch.Vertical.Common">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.sukaidev.common.widget.HeaderBar
+        style="@style/MatchWrap"
+        app:titleText="商品列表" />
+
+    <com.kennyc.view.MultiStateView
+        android:id="@+id/mMultiStateView"
+        style="@style/MultiStateStyle">
+
+        <cn.bingoogolapple.refreshlayout.BGARefreshLayout
+            android:id="@+id/mRefreshLayout"
+            style="@style/MatchMatch">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mGoodsRv"
+                style="@style/commonRecyclerView"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </cn.bingoogolapple.refreshlayout.BGARefreshLayout>
+    </com.kennyc.view.MultiStateView>
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,4 +1,4 @@
-package com.sukaidev.goods.common.protocol
+package com.sukaidev.goods.data.protocol
 
 /**
  * Created by sukaidev on 2019/08/15.
