@@ -4,16 +4,19 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.fragment.BaseFragment
 import com.sukaidev.common.widget.BannerImageLoader
 import com.sukaidev.kotlinmall.R
 import com.sukaidev.kotlinmall.common.*
+import com.sukaidev.kotlinmall.ui.activity.SearchGoodsActivity
 import com.sukaidev.kotlinmall.ui.adapter.HomeDiscountAdapter
 import com.sukaidev.kotlinmall.ui.adapter.TopicAdapter
 import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_home.*
 import me.crosswall.lib.coverflow.CoverFlow
+import org.jetbrains.anko.startActivity
 
 
 /**
@@ -31,6 +34,9 @@ class HomeFragment : BaseFragment() {
         initNews()
         initDiscount()
         initTopic()
+        mSearchTv.onClick {
+            context?.startActivity<SearchGoodsActivity>()
+        }
     }
 
     private fun initBanner() {

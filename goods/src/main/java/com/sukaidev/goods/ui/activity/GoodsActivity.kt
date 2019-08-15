@@ -2,6 +2,7 @@ package com.sukaidev.goods.ui.activity
 
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout
 import com.kennyc.view.MultiStateView
@@ -26,7 +27,6 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), IGoodsListView,
     BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private lateinit var mGoodsAdapter: GoodsAdapter
-    private var mCategoryId: Int = 0
     private var mCurrentPage: Int = 1
     private var mMaxPage: Int = 1
 
@@ -45,7 +45,6 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), IGoodsListView,
     }
 
     override fun onBindView(savedInstanceState: Bundle?) {
-        mCategoryId = intent.getIntExtra(GoodsConstant.KEY_CATEGORY_ID, 1)
         initView()
         initRefreshLayout()
         loadData()
@@ -82,8 +81,19 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), IGoodsListView,
      * 加载数据
      */
     private fun loadData() {
-        mMultiStateView.startLoading()
-        mPresenter.getGoodsList(mCategoryId, mCurrentPage)
+        if (intent.getIntExtra(GoodsConstant.KEY_SEARCH_GOODS_TYPE, 0) != 0) {
+            mMultiStateView.startLoading()
+            mPresenter.getGoodsListByKeyword(
+                intent.getStringExtra(GoodsConstant.KEY_GOODS_KEYWORD),
+                mCurrentPage
+            )
+        } else {
+            mMultiStateView.startLoading()
+            mPresenter.getGoodsList(
+                intent.getIntExtra(GoodsConstant.KEY_CATEGORY_ID, 1),
+                mCurrentPage
+            )
+        }
     }
 
     /**

@@ -17,12 +17,28 @@ class GoodsListPresenter @Inject constructor() : BasePresenter<IGoodsListView>()
     @Inject
     lateinit var goodsService: IGoodsService
 
+    /**
+     * 获取商品列表
+     */
     fun getGoodsList(categoryId: Int, noPage: Int) {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
+//        mView.showLoading()
         goodsService.getGoodsList(categoryId, noPage)
+            .execute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
+                override fun onNext(t: MutableList<Goods>?) {
+                    mView.onGetGoodsListResult(t)
+                }
+            }, lifecycleProvider)
+    }
+
+    fun getGoodsListByKeyword(keyword: String, noPage: Int) {
+        if (!checkNetWork()) {
+            return
+        }
+//        mView.showLoading()
+        goodsService.getGoodsListByKeyword(keyword, noPage)
             .execute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
                 override fun onNext(t: MutableList<Goods>?) {
                     mView.onGetGoodsListResult(t)

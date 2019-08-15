@@ -1,10 +1,7 @@
 package com.sukaidev.goods.data.api
 
 import com.sukaidev.common.data.protocol.BaseResp
-import com.sukaidev.goods.data.protocol.GetCategoryReq
-import com.sukaidev.goods.data.protocol.Category
-import com.sukaidev.goods.data.protocol.GetGoodsListReq
-import com.sukaidev.goods.data.protocol.Goods
+import com.sukaidev.goods.data.protocol.*
 import retrofit2.http.Body
 import retrofit2.http.POST
 import rx.Observable
@@ -20,4 +17,7 @@ interface GoodsApi {
      */
     @POST("goods/getGoodsList")
     fun getGoodsList(@Body req: GetGoodsListReq): Observable<BaseResp<MutableList<Goods>?>>
+
+    @POST("goods/getGoodsListByKeyword")
+    fun getGoodsListByKeyword(@Body req: GetGoodsListByKeywordReq):Observable<BaseResp<MutableList<Goods>?>>
 }

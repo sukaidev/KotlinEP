@@ -89,7 +89,7 @@ object AppPrefsUtils {
     /**
      * 默认空Set
      */
-    fun getStringSet(key: String): Set<String>? {
+    fun getStringSet(key: String): Set<String> {
         val set = setOf<String>()
         return PREFERENCES.getStringSet(key, set)
     }
