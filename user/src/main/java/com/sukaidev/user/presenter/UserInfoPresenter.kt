@@ -4,23 +4,22 @@ import com.sukaidev.common.ext.execute
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.rx.BaseSubscriber
 import com.sukaidev.user.data.protocol.UserInfo
-import com.sukaidev.user.presenter.view.ForgetPwdView
-import com.sukaidev.user.presenter.view.UserInfoView
-import com.sukaidev.user.service.UploadService
-import com.sukaidev.user.service.UserService
+import com.sukaidev.user.presenter.view.IUserInfoView
+import com.sukaidev.user.service.IUploadService
+import com.sukaidev.user.service.IUserService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/12.
  *
  */
-class UserInfoPresenter @Inject constructor() : BasePresenter<UserInfoView>() {
+class UserInfoPresenter @Inject constructor() : BasePresenter<IUserInfoView>() {
 
     @Inject
-    lateinit var userService: UserService
+    lateinit var userService: IUserService
 
     @Inject
-    lateinit var uploadService: UploadService
+    lateinit var uploadService: IUploadService
 
     fun getUploadToken() {
         if (!checkNetWork()) {

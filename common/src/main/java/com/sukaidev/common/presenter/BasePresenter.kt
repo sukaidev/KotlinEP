@@ -7,7 +7,7 @@ import com.trello.rxlifecycle.LifecycleProvider
 import javax.inject.Inject
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 open class BasePresenter<T : BaseView> {

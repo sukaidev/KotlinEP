@@ -6,6 +6,6 @@ import com.sukaidev.common.presenter.view.BaseView
  * Created by sukaidev on 2019/08/12.
  *
  */
-interface ForgetPwdView : BaseView {
+interface IForgetPwdView : BaseView {
     fun onForgetPwdResult(result: String)
 }

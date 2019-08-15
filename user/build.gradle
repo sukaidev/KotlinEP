@@ -46,7 +46,7 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api fileTree(dir: 'libs', include: ['*.jar'])
     api project(':provider')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"

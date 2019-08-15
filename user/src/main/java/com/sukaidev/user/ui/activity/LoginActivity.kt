@@ -10,7 +10,7 @@ import com.sukaidev.user.data.protocol.UserInfo
 import com.sukaidev.user.injection.component.DaggerUserComponent
 import com.sukaidev.user.injection.module.UserModule
 import com.sukaidev.user.presenter.LoginPresenter
-import com.sukaidev.user.presenter.view.LoginView
+import com.sukaidev.user.presenter.view.ILoginView
 import com.sukaidev.user.utils.UserPrefsUtils
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.startActivity
@@ -20,7 +20,7 @@ import org.jetbrains.anko.toast
  * Created by sukaidev on 2019/08/12.
  * 登录.
  */
-class LoginActivity : BaseMvpActivity<LoginPresenter>(), LoginView, View.OnClickListener {
+class LoginActivity : BaseMvpActivity<LoginPresenter>(), ILoginView, View.OnClickListener {
 
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")

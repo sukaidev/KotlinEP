@@ -3,18 +3,18 @@ package com.sukaidev.user.presenter
 import com.sukaidev.common.ext.execute
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.rx.BaseSubscriber
-import com.sukaidev.user.presenter.view.ForgetPwdView
-import com.sukaidev.user.service.UserService
+import com.sukaidev.user.presenter.view.IForgetPwdView
+import com.sukaidev.user.service.IUserService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/12.
  *
  */
-class ForgetPwdPresenter @Inject constructor() : BasePresenter<ForgetPwdView>() {
+class ForgetPwdPresenter @Inject constructor() : BasePresenter<IForgetPwdView>() {
 
     @Inject
-    lateinit var userService: UserService
+    lateinit var userService: IUserService
 
     fun forgetPwd(mobile: String, verifyCode: String) {
         if (!checkNetWork()) {

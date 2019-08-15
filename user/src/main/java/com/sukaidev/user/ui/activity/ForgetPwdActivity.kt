@@ -9,7 +9,7 @@ import com.sukaidev.user.R
 import com.sukaidev.user.injection.component.DaggerUserComponent
 import com.sukaidev.user.injection.module.UserModule
 import com.sukaidev.user.presenter.ForgetPwdPresenter
-import com.sukaidev.user.presenter.view.ForgetPwdView
+import com.sukaidev.user.presenter.view.IForgetPwdView
 import kotlinx.android.synthetic.main.activity_forget_pwd.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -18,7 +18,7 @@ import org.jetbrains.anko.toast
  * Created by sukaidev on 2019/08/12.
  * 忘记密码界面.
  */
-class ForgetPwdActivity : BaseMvpActivity<ForgetPwdPresenter>(), ForgetPwdView,
+class ForgetPwdActivity : BaseMvpActivity<ForgetPwdPresenter>(), IForgetPwdView,
     View.OnClickListener {
 
     override fun injectComponent() {

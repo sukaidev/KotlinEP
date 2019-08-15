@@ -1,4 +1,4 @@
-package com.sukaidev.message.widgets
+package com.sukaidev.message.widget
 
 import android.content.Context
 import android.util.AttributeSet

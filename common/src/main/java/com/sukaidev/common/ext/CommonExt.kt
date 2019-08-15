@@ -1,10 +1,14 @@
 package com.sukaidev.common.ext
 
+import android.graphics.drawable.AnimationDrawable
+import android.util.SparseArray
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatEditText
+import com.kennyc.view.MultiStateView
+import com.sukaidev.common.R
 import com.sukaidev.common.data.protocol.BaseResp
 import com.sukaidev.common.rx.BaseFunc
 import com.sukaidev.common.rx.BaseFuncBoolean
@@ -14,6 +18,7 @@ import com.sukaidev.common.widget.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import com.trello.rxlifecycle.kotlin.bindToLifecycle
 import com.trello.rxlifecycle.RxLifecycle
+import org.jetbrains.anko.find
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -82,5 +87,23 @@ fun Button.enable(et: AppCompatEditText, method: () -> Boolean) {
  * ImageView加载网络图片
  */
 fun ImageView.loadUrl(url: String) {
-    GlideUtils.loadUrlImage(context,url,this)
+    GlideUtils.loadUrlImage(context, url, this)
 }
+
+/*
+    多状态视图开始加载
+ */
+fun MultiStateView.startLoading() {
+    viewState = MultiStateView.ViewState.LOADING
+    val loadingView = getView(MultiStateView.ViewState.LOADING)
+    val animBackground = loadingView!!.find<View>(R.id.loading_anim_view).background
+    (animBackground as AnimationDrawable).start()
+}
+
+/*
+    扩展视图可见性
+ */
+fun View.setVisible(visible: Boolean) {
+    this.visibility = if (visible) View.VISIBLE else View.GONE
+}
+

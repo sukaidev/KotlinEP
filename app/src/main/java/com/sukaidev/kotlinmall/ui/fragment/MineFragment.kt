@@ -18,7 +18,7 @@ import org.jetbrains.anko.startActivity
 
 /**
  * Created by sukaidev on 2019/08/14.
- *
+ * "我的"页面.
  */
 class MineFragment : BaseFragment(), View.OnClickListener {
 

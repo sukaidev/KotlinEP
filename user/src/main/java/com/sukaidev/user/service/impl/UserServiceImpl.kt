@@ -4,7 +4,7 @@ import com.sukaidev.common.ext.convert
 import com.sukaidev.common.ext.convertBoolean
 import com.sukaidev.user.data.protocol.UserInfo
 import com.sukaidev.user.data.repository.UserRepository
-import com.sukaidev.user.service.UserService
+import com.sukaidev.user.service.IUserService
 import rx.Observable
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/10.
  *
  */
-class UserServiceImpl @Inject constructor() : UserService {
+class UserServiceImpl @Inject constructor() : IUserService {
 
     @Inject
     lateinit var repository: UserRepository

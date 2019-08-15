@@ -13,7 +13,7 @@ import org.jetbrains.anko.toast
 import javax.inject.Inject
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView {

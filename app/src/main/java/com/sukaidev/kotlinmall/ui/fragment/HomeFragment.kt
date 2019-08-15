@@ -18,7 +18,7 @@ import me.crosswall.lib.coverflow.CoverFlow
 
 /**
  * Created by sukaidev on 2019/08/13.
- *
+ * 主页.
  */
 class HomeFragment : BaseFragment() {
 
@@ -88,14 +88,14 @@ class HomeFragment : BaseFragment() {
             .build()
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onStart() {
+        super.onStart()
         //开始轮播
         mHomeBanner.startAutoPlay()
     }
 
-    override fun onPause() {
-        super.onPause()
+    override fun onStop() {
+        super.onStop()
         //结束轮播
         mHomeBanner.stopAutoPlay()
     }

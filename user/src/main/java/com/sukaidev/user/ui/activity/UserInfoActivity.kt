@@ -28,7 +28,7 @@ import com.sukaidev.user.data.protocol.UserInfo
 import com.sukaidev.user.injection.component.DaggerUserComponent
 import com.sukaidev.user.injection.module.UserModule
 import com.sukaidev.user.presenter.UserInfoPresenter
-import com.sukaidev.user.presenter.view.UserInfoView
+import com.sukaidev.user.presenter.view.IUserInfoView
 import com.sukaidev.user.utils.UserPrefsUtils
 import kotlinx.android.synthetic.main.activity_user_info.*
 import org.jetbrains.anko.toast
@@ -38,7 +38,7 @@ import java.io.File
  * Created by sukaidev on 2019/08/10.
  * 用户信息.
  */
-class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), UserInfoView,
+class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), IUserInfoView,
     TakePhoto.TakeResultListener {
 
     private lateinit var mTakePhoto: TakePhoto

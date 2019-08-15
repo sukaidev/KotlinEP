@@ -7,9 +7,10 @@ import com.sukaidev.user.data.protocol.UserInfo
  * Created by sukaidev on 2019/08/12.
  *
  */
-interface UserInfoView : BaseView {
+interface ILoginView : BaseView {
 
-    fun onGetUploadTokenResult(result: String)
-    fun onEditUserResult(result: UserInfo)
-
+    /**
+     * 登录回调
+     */
+    fun onLoginResult(result: UserInfo)
 }

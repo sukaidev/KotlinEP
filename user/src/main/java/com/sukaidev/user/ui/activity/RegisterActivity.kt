@@ -2,16 +2,14 @@ package com.sukaidev.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import com.sukaidev.common.common.AppManager
 import com.sukaidev.common.ext.enable
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
-import com.sukaidev.common.widget.VerifyButton
 import com.sukaidev.user.R
 import com.sukaidev.user.injection.component.DaggerUserComponent
 import com.sukaidev.user.injection.module.UserModule
 import com.sukaidev.user.presenter.RegisterPresenter
-import com.sukaidev.user.presenter.view.RegisterView
+import com.sukaidev.user.presenter.view.IRegisterView
 import kotlinx.android.synthetic.main.activity_register.*
 import org.jetbrains.anko.toast
 
@@ -19,7 +17,7 @@ import org.jetbrains.anko.toast
  * Created by sukaidev on 2019/08/10.
  * 注册Activity.
  */
-class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView, View.OnClickListener {
+class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), IRegisterView, View.OnClickListener {
 
     private var pressTime: Long = 0
 

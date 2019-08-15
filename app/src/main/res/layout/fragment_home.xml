@@ -30,7 +30,7 @@
         android:layout_width="match_parent"
         android:layout_height="150dp" />
 
-    <com.sukaidev.message.widgets.NewsFlipperView
+    <com.sukaidev.message.widget.NewsFlipperView
         android:id="@+id/mNewsFlipperView"
         style="@style/MatchWrap"
         android:layout_marginLeft="@dimen/common_margin_middle"

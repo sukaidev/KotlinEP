@@ -11,7 +11,7 @@ import com.sukaidev.user.R
 import com.sukaidev.user.injection.component.DaggerUserComponent
 import com.sukaidev.user.injection.module.UserModule
 import com.sukaidev.user.presenter.ResetPwdPresenter
-import com.sukaidev.user.presenter.view.ResetPwdView
+import com.sukaidev.user.presenter.view.IResetPwdView
 import kotlinx.android.synthetic.main.activity_reset_pwd.*
 import org.jetbrains.anko.clearTop
 import org.jetbrains.anko.intentFor
@@ -22,7 +22,7 @@ import org.jetbrains.anko.toast
  * Created by sukaidev on 2019/08/12.
  * 重设密码界面.
  */
-class ResetPwdActivity : BaseMvpActivity<ResetPwdPresenter>(), ResetPwdView,
+class ResetPwdActivity : BaseMvpActivity<ResetPwdPresenter>(), IResetPwdView,
     View.OnClickListener {
 
     override fun injectComponent() {

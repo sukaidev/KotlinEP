@@ -7,7 +7,7 @@ import rx.Observable
  * Created by sukaidev on 2019/08/10.
  *
  */
-interface UserService {
+interface IUserService {
 
     fun login(mobile: String, pwd: String, pushId: String): Observable<UserInfo>
 

@@ -6,6 +6,6 @@ import com.sukaidev.common.presenter.view.BaseView
  * Created by sukaidev on 2019/08/12.
  *
  */
-interface ResetPwdView : BaseView {
+interface IResetPwdView : BaseView {
     fun onResetPwdResult(result: String)
 }

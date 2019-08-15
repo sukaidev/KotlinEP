@@ -29,6 +29,7 @@ dependencies {
 //    implementation 'androidx.core:core-ktx:1.0.2'
 
     api project(':message')
+    api project(':goods')
     if (isUserModule.toBoolean()) {
         api project(':user')
     }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mTopCategoryNameTv"
+        style="@style/MatchWrap"
+        android:background="@drawable/top_category_bg_selector"
+        android:gravity="center"
+        android:padding="@dimen/common_padding_middle"
+        android:textColor="@drawable/top_category_text_selector" />
+</androidx.appcompat.widget.LinearLayoutCompat>

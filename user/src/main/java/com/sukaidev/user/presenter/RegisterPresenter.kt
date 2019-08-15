@@ -3,18 +3,18 @@ package com.sukaidev.user.presenter
 import com.sukaidev.common.ext.execute
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.rx.BaseSubscriber
-import com.sukaidev.user.presenter.view.RegisterView
-import com.sukaidev.user.service.UserService
+import com.sukaidev.user.presenter.view.IRegisterView
+import com.sukaidev.user.service.IUserService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/10.
  *
  */
-class RegisterPresenter @Inject constructor() : BasePresenter<RegisterView>() {
+class RegisterPresenter @Inject constructor() : BasePresenter<IRegisterView>() {
 
     @Inject
-    lateinit var userService: UserService
+    lateinit var userService: IUserService
 
     fun register(mobile: String, pwd: String, verifyCode: String) {
         // 业务逻辑

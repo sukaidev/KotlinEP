@@ -2,8 +2,7 @@ package com.sukaidev.user.service.impl
 
 import com.sukaidev.common.ext.convert
 import com.sukaidev.user.data.repository.UploadRepository
-import com.sukaidev.user.data.repository.UserRepository
-import com.sukaidev.user.service.UploadService
+import com.sukaidev.user.service.IUploadService
 import rx.Observable
 import javax.inject.Inject
 
@@ -11,7 +10,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/10.
  *
  */
-class UploadServiceImpl @Inject constructor() : UploadService {
+class UploadServiceImpl @Inject constructor() : IUploadService {
 
     @Inject
     lateinit var repository: UploadRepository

@@ -12,7 +12,7 @@ import com.sukaidev.common.presenter.view.BaseView
 import javax.inject.Inject
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 abstract class BaseMvpFragment<T : BasePresenter<*>> : BaseFragment(), BaseView {
