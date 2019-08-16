@@ -57,10 +57,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
         mGoodsDetailBanner.setDelayTime(2000)
         // 设置指示器（当banner模式中有指示器时）
         mGoodsDetailBanner.setIndicatorGravity(BannerConfig.RIGHT)
-    }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
         mSkuView.onClick {
             mSkuPop.showAtLocation(
                 (activity as GoodsDetailActivity).contentView,
@@ -94,5 +91,7 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
         mSkuPop.setGoodsIcon(result.goodsDefaultIcon)
         mSkuPop.setGoodsCode(result.goodsCode)
         mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
+
+        mSkuPop.setSkuData(result.goodsSku)
     }
 }
