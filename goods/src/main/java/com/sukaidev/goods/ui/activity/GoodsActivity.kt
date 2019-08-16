@@ -18,10 +18,11 @@ import com.sukaidev.goods.presenter.GoodsListPresenter
 import com.sukaidev.goods.presenter.view.IGoodsListView
 import com.sukaidev.goods.ui.adapter.GoodsAdapter
 import kotlinx.android.synthetic.main.activity_goods.*
+import org.jetbrains.anko.startActivity
 
 /**
  * Created by sukaidev on 2019/08/15.
- * 商品列表页面.
+ * 商品详细页面.
  */
 class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), IGoodsListView,
     BGARefreshLayout.BGARefreshLayoutDelegate {
@@ -61,7 +62,7 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), IGoodsListView,
         mGoodsAdapter.setOnItemClickListener(object :
             BaseRecyclerViewAdapter.OnItemClickListener<Goods> {
             override fun onItemClick(item: Goods, position: Int) {
-
+                startActivity<GoodsDetailActivity>(GoodsConstant.KEY_GOODS_ID to item.id)
             }
         })
     }

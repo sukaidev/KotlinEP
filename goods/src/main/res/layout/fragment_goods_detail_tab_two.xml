@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchMatch.Vertical">
+
+    <androidx.core.widget.NestedScrollView style="@style/MatchMatch">
+
+        <androidx.appcompat.widget.LinearLayoutCompat style="@style/MatchWrap.Vertical">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mGoodsDetailOneIv"
+                style="@style/MatchWrap"
+                android:scaleType="fitXY" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/mGoodsDetailTwoIv"
+                style="@style/MatchWrap"
+                android:scaleType="fitXY" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>
