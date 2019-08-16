@@ -8,12 +8,17 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
+import com.eightbitlab.rxbus.Bus
+import com.sukaidev.common.ext.getEditText
 import com.sukaidev.common.ext.loadUrl
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.utils.MoneyConverter
+import com.sukaidev.common.widget.DefaultTextWatcher
 import com.sukaidev.goods.R
 import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.GoodsSku
+import com.sukaidev.goods.event.AddCartEvent
+import com.sukaidev.goods.event.SkuChangedEvent
 import kotlinx.android.synthetic.main.layout_sku_pop.view.*
 
 /**
@@ -62,7 +67,7 @@ class GoodsSkuView(context: Activity) : PopupWindow(context), View.OnClickListen
         mRootView.mAddCartBtn.onClick(this)
 
         mRootView.mSkuCountBtn.setCurrentNumber(1)
-/*        mRootView.mSkuCountBtn.getEditText().addTextChangedListener(
+        mRootView.mSkuCountBtn.getEditText().addTextChangedListener(
             object : DefaultTextWatcher() {
                 override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                     Bus.send(SkuChangedEvent())
@@ -73,7 +78,7 @@ class GoodsSkuView(context: Activity) : PopupWindow(context), View.OnClickListen
         mRootView.mAddCartBtn.onClick {
             Bus.send(AddCartEvent())
             dismiss()
-        }*/
+        }
     }
 
     /**

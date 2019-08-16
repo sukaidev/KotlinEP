@@ -19,6 +19,7 @@ import com.trello.rxlifecycle.LifecycleProvider
 import com.trello.rxlifecycle.kotlin.bindToLifecycle
 import com.trello.rxlifecycle.RxLifecycle
 import org.jetbrains.anko.find
+import ren.qinc.numberbutton.NumberButton
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
@@ -105,5 +106,9 @@ fun MultiStateView.startLoading() {
  */
 fun View.setVisible(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.GONE
+}
+
+fun NumberButton.getEditText(): EditText {
+    return find(R.id.text_count)
 }
 

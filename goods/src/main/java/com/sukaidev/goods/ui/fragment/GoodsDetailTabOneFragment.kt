@@ -1,9 +1,13 @@
 package com.sukaidev.goods.ui.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.ScaleAnimation
 import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.kotlin.goods.event.GoodsDetailImageEvent
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.fragment.BaseMvpFragment
@@ -12,6 +16,7 @@ import com.sukaidev.common.widget.BannerImageLoader
 import com.sukaidev.goods.R
 import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.Goods
+import com.sukaidev.goods.event.SkuChangedEvent
 import com.sukaidev.goods.injection.component.DaggerGoodsComponent
 import com.sukaidev.goods.injection.module.GoodsModule
 import com.sukaidev.goods.presenter.GoodsDetailPresenter
@@ -30,6 +35,8 @@ import org.jetbrains.anko.contentView
 class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGoodsDetailView {
 
     private lateinit var mSkuPop: GoodsSkuView
+    private lateinit var mAnimationStart: Animation
+    private lateinit var mAnimationEnd: Animation
 
     override fun injectComponent() {
         DaggerGoodsComponent
@@ -47,8 +54,10 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initView()
+        initAnim()
         initSkuView()
         loadData()
+        initObserver()
     }
 
     private fun initView() {
@@ -61,13 +70,18 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
         mSkuView.onClick {
             mSkuPop.showAtLocation(
                 (activity as GoodsDetailActivity).contentView,
-                Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL,0,0
+                Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL, 0, 0
             )
+            (activity as GoodsDetailActivity).contentView!!.startAnimation(mAnimationStart)
         }
     }
 
     private fun initSkuView() {
         mSkuPop = GoodsSkuView(activity as GoodsDetailActivity)
+        mSkuPop.setOnDismissListener {
+            (activity as GoodsDetailActivity).contentView!!.startAnimation(mAnimationEnd)
+
+        }
     }
 
     private fun loadData() {
@@ -93,5 +107,33 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
         mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
 
         mSkuPop.setSkuData(result.goodsSku)
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initObserver() {
+        Bus.observe<SkuChangedEvent>()
+            .subscribe {
+                mSkuSelectedTv.text =
+                    mSkuPop.getSelectSku() + GoodsConstant.SKU_SEPARATOR + mSkuPop.getSelectCount() + "件"
+            }.registerInBus(this)
+    }
+
+    private fun initAnim() {
+        mAnimationStart = ScaleAnimation(
+            1f, 0.95f, 1f, 0.95f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        )
+        mAnimationStart.duration = 500
+        mAnimationStart.fillAfter = true
+
+        mAnimationEnd = ScaleAnimation(
+            0.95f, 1f, 0.95f, 1f, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f
+        )
+        mAnimationEnd.duration = 500
+        mAnimationEnd.fillAfter = true
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }
