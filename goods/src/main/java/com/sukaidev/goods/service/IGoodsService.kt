@@ -15,7 +15,12 @@ interface IGoodsService {
     fun getGoodsList(categoryId: Int, pageNo: Int): Observable<MutableList<Goods>?>
 
     /**
-     *搜索关键字商品列表
+     * 搜索关键字商品列表
      */
     fun getGoodsListByKeyword(keyword: String, pageNo: Int): Observable<MutableList<Goods>?>
+
+    /**
+     * 获取商品详情
+     */
+    fun getGoodsDetail(goodsId:Int):Observable<Goods>
 }

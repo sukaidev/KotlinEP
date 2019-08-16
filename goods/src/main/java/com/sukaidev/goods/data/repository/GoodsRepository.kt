@@ -32,4 +32,12 @@ class GoodsRepository @Inject constructor() {
         return RetrofitFactory.instance.create(GoodsApi::class.java)
             .getGoodsListByKeyword(GetGoodsListByKeywordReq(keyword, pageNo))
     }
+
+    /**
+     * 获取商品详情
+     */
+    fun getGoodsDetail(goodsId: Int) : Observable<BaseResp<Goods>> {
+        return RetrofitFactory.instance.create(GoodsApi::class.java)
+            .getGoodsDetail(GetGoodsDetailReq(goodsId))
+    }
 }

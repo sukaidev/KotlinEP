@@ -81,6 +81,12 @@ dependencies {
     api  'com.github.Kennyc1012:MultiStateView:2.1'
     // 下拉刷新
     api  'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
+    // FlowLayout
+    api 'com.hyman:flowlayout-lib:1.1.2'
+    // 商品加减控件
+    api 'ren.qinc.numberbutton:numberbutton:0.0.1'
+    // kotlin bus
+    api 'com.eightbitlab:rxbus:1.0.2'
 
     api 'androidx.appcompat:appcompat:1.0.2'
     api 'androidx.recyclerview:recyclerview:1.1.0-beta02'

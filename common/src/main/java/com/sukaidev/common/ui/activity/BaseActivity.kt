@@ -5,7 +5,7 @@ import com.sukaidev.common.common.AppManager
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 open class BaseActivity : RxAppCompatActivity() {
@@ -19,4 +19,6 @@ open class BaseActivity : RxAppCompatActivity() {
         super.onDestroy()
         AppManager.INSTANCE.finishActivity(this)
     }
+
+
 }
