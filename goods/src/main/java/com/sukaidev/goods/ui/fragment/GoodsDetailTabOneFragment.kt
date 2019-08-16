@@ -16,8 +16,10 @@ import com.sukaidev.common.widget.BannerImageLoader
 import com.sukaidev.goods.R
 import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.Goods
+import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.event.SkuChangedEvent
 import com.sukaidev.goods.injection.component.DaggerGoodsComponent
+import com.sukaidev.goods.injection.module.CartModule
 import com.sukaidev.goods.injection.module.GoodsModule
 import com.sukaidev.goods.presenter.GoodsDetailPresenter
 import com.sukaidev.goods.presenter.view.IGoodsDetailView
@@ -27,6 +29,7 @@ import com.youth.banner.BannerConfig
 import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.fragment_goods_detail_tab_one.*
 import org.jetbrains.anko.contentView
+import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/16.
@@ -38,11 +41,14 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
     private lateinit var mAnimationStart: Animation
     private lateinit var mAnimationEnd: Animation
 
+    private var mCurGoods: Goods? = null
+
     override fun injectComponent() {
         DaggerGoodsComponent
             .builder()
             .activityComponent(activityComponent)
             .goodsModule(GoodsModule())
+            .cartModule(CartModule())
             .build()
             .inject(this)
         mPresenter.mView = this
@@ -89,6 +95,9 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
     }
 
     override fun onGetGoodsDetail(result: Goods) {
+
+        mCurGoods = result
+
         mGoodsDetailBanner.setImages(result.goodsBanner.split(","))
         mGoodsDetailBanner.start()
 
@@ -111,10 +120,16 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
 
     @SuppressLint("SetTextI18n")
     private fun initObserver() {
+        // 订阅SkuChangedEvent事件
         Bus.observe<SkuChangedEvent>()
             .subscribe {
                 mSkuSelectedTv.text =
                     mSkuPop.getSelectSku() + GoodsConstant.SKU_SEPARATOR + mSkuPop.getSelectCount() + "件"
+            }.registerInBus(this)
+        // 订阅AddCartEvent事件
+        Bus.observe<AddCartEvent>()
+            .subscribe {
+                addCart()
             }.registerInBus(this)
     }
 
@@ -130,6 +145,23 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
         )
         mAnimationEnd.duration = 500
         mAnimationEnd.fillAfter = true
+    }
+
+    override fun onAddCartResult(result: Int) {
+        context!!.toast("Cart$result")
+    }
+
+    private fun addCart() {
+        mCurGoods?.let {
+            mPresenter.addCart(
+                it.id,
+                it.goodsDesc,
+                it.goodsDefaultIcon,
+                it.goodsDefaultPrice,
+                mSkuPop.getSelectCount(),
+                mSkuPop.getSelectSku()
+            )
+        }
     }
 
     override fun onDestroy() {

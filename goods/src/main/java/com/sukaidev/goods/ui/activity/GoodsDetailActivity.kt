@@ -1,15 +1,19 @@
 package com.sukaidev.goods.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import com.alibaba.android.arouter.launcher.ARouter
+import com.eightbitlab.rxbus.Bus
 import com.google.android.material.tabs.TabLayout
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseActivity
 import com.sukaidev.goods.R
+import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.ui.adapter.GoodsDetailVpAdapter
+import com.sukaidev.provider.common.afterLogin
+import com.sukaidev.provider.common.isLogin
 import com.sukaidev.provider.router.RouterPath
 import kotlinx.android.synthetic.main.activity_goods_detail.*
+import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/16.
@@ -30,8 +34,9 @@ class GoodsDetailActivity : BaseActivity() {
         mGoodsDetailTab.setupWithViewPager(mGoodsDetailVp)
 
         mAddCartBtn.onClick {
-            Log.d("GoodsDetailActivity","Clicked")
-            ARouter.getInstance().build(RouterPath.User.PATH_LOGIN).navigation()
+            afterLogin {
+                Bus.send(AddCartEvent())
+            }
         }
     }
 }

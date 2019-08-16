@@ -10,7 +10,7 @@ import com.sukaidev.kotlinmall.R
 import com.sukaidev.kotlinmall.ui.activity.SettingActivity
 import com.sukaidev.provider.common.ProviderConstant
 import com.sukaidev.provider.common.ProviderConstant.Companion.KEY_SP_USER_ICON
-import com.sukaidev.provider.common.isLogined
+import com.sukaidev.provider.common.isLogin
 import com.sukaidev.user.ui.activity.LoginActivity
 import com.sukaidev.user.ui.activity.UserInfoActivity
 import kotlinx.android.synthetic.main.fragment_mine.*
@@ -42,7 +42,7 @@ class MineFragment : BaseFragment(), View.OnClickListener {
     }
 
     private fun loadData() {
-        if (isLogined()) {
+        if (isLogin()) {
             val userIcon = AppPrefsUtils.getString(KEY_SP_USER_ICON)
             if (userIcon!!.isNotEmpty()) {
                 mUserIconIv.loadUrl(userIcon)
@@ -57,7 +57,7 @@ class MineFragment : BaseFragment(), View.OnClickListener {
     override fun onClick(v: View?) {
         when (v) {
             mUserIconIv, mUserNameTv -> {
-                if (isLogined()) {
+                if (isLogin()) {
                     context?.startActivity<UserInfoActivity>()
                 } else {
                     context?.startActivity<LoginActivity>()
