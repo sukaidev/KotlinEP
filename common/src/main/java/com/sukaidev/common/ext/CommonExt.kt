@@ -16,8 +16,6 @@ import com.sukaidev.common.rx.BaseSubscriber
 import com.sukaidev.common.utils.GlideUtils
 import com.sukaidev.common.widget.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
-import com.trello.rxlifecycle.kotlin.bindToLifecycle
-import com.trello.rxlifecycle.RxLifecycle
 import org.jetbrains.anko.find
 import ren.qinc.numberbutton.NumberButton
 import rx.Observable

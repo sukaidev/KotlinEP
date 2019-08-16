@@ -2,9 +2,11 @@ package com.sukaidev.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.sukaidev.common.ext.enable
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
+import com.sukaidev.provider.router.RouterPath
 import com.sukaidev.user.R
 import com.sukaidev.user.data.protocol.UserInfo
 import com.sukaidev.user.injection.component.DaggerUserComponent
@@ -20,6 +22,7 @@ import org.jetbrains.anko.toast
  * Created by sukaidev on 2019/08/12.
  * 登录.
  */
+@Route(path = RouterPath.User.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), ILoginView, View.OnClickListener {
 
     override fun onLoginResult(result: UserInfo) {

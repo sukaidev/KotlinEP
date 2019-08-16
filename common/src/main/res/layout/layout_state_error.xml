@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch.Vertical"
     android:gravity="center">
 
@@ -12,5 +13,6 @@
         style="@style/WrapWrap"
         android:gravity="center"
         android:text="加载错误"
-        android:textSize="@dimen/text_large_size" />
+        android:textSize="@dimen/text_large_size"
+        tools:ignore="HardcodedText" />
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -25,11 +25,14 @@ buildscript {
     ext.take_photo_version = '4.0.3'
     // alerview
     ext.alert_view_version = '1.0.3'
+    // ARouter
+    ext.arouter_api_version = '1.5.0'
+    ext.arouter_compiler_version = '1.2.2'
 
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'

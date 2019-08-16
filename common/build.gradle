@@ -26,14 +26,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
 }
 
 dependencies {
@@ -83,10 +75,12 @@ dependencies {
     api  'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
     // FlowLayout
     api 'com.hyman:flowlayout-lib:1.1.2'
-    // 商品加减控件
-    api 'ren.qinc.numberbutton:numberbutton:0.0.1'
     // kotlin bus
     api 'com.eightbitlab:rxbus:1.0.2'
+    // 商品加减控件
+    api 'ren.qinc.numberbutton:numberbutton:0.0.1'
+    // ARouter
+    api "com.alibaba:arouter-api:$arouter_api_version"
 
     api 'androidx.appcompat:appcompat:1.0.2'
     api 'androidx.recyclerview:recyclerview:1.1.0-beta02'
