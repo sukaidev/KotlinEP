@@ -18,6 +18,7 @@ import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.Goods
 import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.event.SkuChangedEvent
+import com.sukaidev.goods.event.UpdateCartSizeEvent
 import com.sukaidev.goods.injection.component.DaggerGoodsComponent
 import com.sukaidev.goods.injection.module.CartModule
 import com.sukaidev.goods.injection.module.GoodsModule
@@ -148,7 +149,8 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
     }
 
     override fun onAddCartResult(result: Int) {
-        context!!.toast("Cart$result")
+        context!!.toast("添加购物车成功!")
+        Bus.send(UpdateCartSizeEvent())
     }
 
     private fun addCart() {

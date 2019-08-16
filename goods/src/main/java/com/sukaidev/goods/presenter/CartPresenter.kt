@@ -3,6 +3,7 @@ package com.sukaidev.goods.presenter
 import com.sukaidev.common.ext.execute
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.rx.BaseSubscriber
+import com.sukaidev.goods.data.protocol.CartGoods
 import com.sukaidev.goods.presenter.view.ICartView
 import com.sukaidev.goods.service.ICartService
 import javax.inject.Inject
@@ -17,21 +18,31 @@ class CartPresenter @Inject constructor() : BasePresenter<ICartView>() {
     lateinit var service: ICartService
 
     /**
-     * 添加商品到购物车
+     * 获取购物车商品列表
      */
-    fun addCart(
-        goodsId: Int, goodsDesc: String, goodsIcon: String, goodsPrice: Long,
-        goodsCount: Int, goodsSku: String
-    ) {
+    fun getCartList() {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
-        service.addCart(goodsId, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku)
-            .execute(object : BaseSubscriber<Int>(mView) {
-                override fun onNext(t: Int) {
-                    mView.onAddCartResult(t)
+        service.getCartList()
+            .execute(object : BaseSubscriber<MutableList<CartGoods>?>(mView) {
+                override fun onNext(t: MutableList<CartGoods>?) {
+                    mView.onGetCartList(t)
                 }
             }, lifecycleProvider)
     }
+
+    fun deleteCartList(deleteCartList: List<Int>) {
+        if (!checkNetWork()) {
+            return
+        }
+        service.deleteCartList(deleteCartList)
+            .execute(object : BaseSubscriber<String>(mView) {
+                override fun onNext(t: String) {
+
+                }
+            },lifecycleProvider)
+    }
+
+
 }

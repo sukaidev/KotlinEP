@@ -3,7 +3,13 @@ package com.sukaidev.kotlinmall.ui.activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.sukaidev.common.ui.activity.BaseActivity
+import com.sukaidev.common.utils.AppPrefsUtils
+import com.sukaidev.goods.common.GoodsConstant
+import com.sukaidev.goods.event.UpdateCartSizeEvent
+import com.sukaidev.goods.ui.fragment.CartFragment
 import com.sukaidev.goods.ui.fragment.CategoryFragment
 import com.sukaidev.kotlinmall.R
 import com.sukaidev.kotlinmall.ui.fragment.HomeFragment
@@ -21,19 +27,18 @@ class MainActivity : BaseActivity() {
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
     private val mMsgFragment by lazy { HomeFragment() }
-    private val mCartFragment by lazy { HomeFragment() }
+    private val mCartFragment by lazy { CartFragment() }
     private val mMineFragment by lazy { MineFragment() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mBottomNavBar.checkMsgBadge(false)
-        mBottomNavBar.checkCartBadge(20)
-
         initFragment()
         initBottomNav()
         changeFragment(0)
+        loadCartSize()
+        initObserve()
     }
 
 
@@ -76,5 +81,22 @@ class MainActivity : BaseActivity() {
         }
         manager.show(mStack[position])
         manager.commit()
+    }
+
+    private fun initObserve() {
+        // 订阅AddCartEvent事件
+        Bus.observe<UpdateCartSizeEvent>()
+            .subscribe {
+                loadCartSize()
+            }.registerInBus(this)
+    }
+
+    private fun loadCartSize() {
+        mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }

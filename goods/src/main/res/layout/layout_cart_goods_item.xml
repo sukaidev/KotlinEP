@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/WrapWrap.Vertical"
+    android:background="@drawable/border_bottom"
+    android:gravity="center_horizontal"
+    android:padding="@dimen/common_padding">
+
+    <androidx.appcompat.widget.AppCompatCheckBox
+        android:id="@+id/mCheckedCb"
+        style="@style/WrapWrap"
+        android:layout_centerVertical="true"
+        android:button="@null"
+        android:drawableStart="@drawable/common_check_selector"
+        android:drawableLeft="@drawable/common_check_selector" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/mGoodsIconIv"
+        android:layout_width="@dimen/common_icon_width"
+        android:layout_height="@dimen/common_icon_height"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/common_margin"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_toEndOf="@id/mCheckedCb"
+        android:layout_toRightOf="@id/mCheckedCb"
+        android:scaleType="fitXY" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mGoodsDescTv"
+        style="@style/WrapWrap"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/common_margin"
+        android:layout_marginLeft="@dimen/common_margin"
+        android:layout_toEndOf="@id/mGoodsIconIv"
+        android:layout_toRightOf="@id/mGoodsIconIv"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/text_light_dark" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mGoodsSkuTv"
+        style="@style/WrapWrap"
+        android:layout_below="@id/mGoodsDescTv"
+        android:layout_alignStart="@id/mGoodsDescTv"
+        android:layout_alignLeft="@id/mGoodsDescTv"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:textSize="@dimen/text_small_size" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mGoodsPriceTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/mGoodsSkuTv"
+        android:layout_alignStart="@id/mGoodsSkuTv"
+        android:layout_alignLeft="@id/mGoodsSkuTv"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:textColor="@color/common_red"
+        android:textSize="@dimen/text_middle_size" />
+
+    <ren.qinc.numberbutton.NumberButton
+        android:id="@+id/mGoodsCountBtn"
+        style="@style/WrapWrap"
+        android:layout_alignTop="@id/mGoodsPriceTv"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        app:editable="false" />
+</RelativeLayout>

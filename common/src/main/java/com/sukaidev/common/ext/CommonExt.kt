@@ -1,7 +1,6 @@
 package com.sukaidev.common.ext
 
 import android.graphics.drawable.AnimationDrawable
-import android.util.SparseArray
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -89,8 +88,8 @@ fun ImageView.loadUrl(url: String) {
     GlideUtils.loadUrlImage(context, url, this)
 }
 
-/*
-    多状态视图开始加载
+/**
+ * 多状态视图开始加载
  */
 fun MultiStateView.startLoading() {
     viewState = MultiStateView.ViewState.LOADING
@@ -99,13 +98,16 @@ fun MultiStateView.startLoading() {
     (animBackground as AnimationDrawable).start()
 }
 
-/*
-    扩展视图可见性
+/**
+ * 扩展视图可见性
  */
 fun View.setVisible(visible: Boolean) {
     this.visibility = if (visible) View.VISIBLE else View.GONE
 }
 
+/**
+ * 获取NumberButton中间的EditText
+ */
 fun NumberButton.getEditText(): EditText {
     return find(R.id.text_count)
 }

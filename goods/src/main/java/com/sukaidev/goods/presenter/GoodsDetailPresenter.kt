@@ -3,6 +3,8 @@ package com.sukaidev.goods.presenter
 import com.sukaidev.common.ext.execute
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.rx.BaseSubscriber
+import com.sukaidev.common.utils.AppPrefsUtils
+import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.Goods
 import com.sukaidev.goods.presenter.view.IGoodsDetailView
 import com.sukaidev.goods.service.ICartService
@@ -33,6 +35,9 @@ class GoodsDetailPresenter @Inject constructor() : BasePresenter<IGoodsDetailVie
         }, lifecycleProvider)
     }
 
+    /**
+     * 添加商品到购物车
+     */
     fun addCart(
         goodsId: Int, goodsDesc: String, goodsIcon: String, goodsPrice: Long,
         goodsCount: Int, goodsSku: String
@@ -44,6 +49,7 @@ class GoodsDetailPresenter @Inject constructor() : BasePresenter<IGoodsDetailVie
         cartService.addCart(goodsId, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku)
             .execute(object : BaseSubscriber<Int>(mView) {
                 override fun onNext(t: Int) {
+                    AppPrefsUtils.putInt(GoodsConstant.SP_CART_SIZE,t)
                     mView.onAddCartResult(t)
                 }
             }, lifecycleProvider)
