@@ -24,7 +24,7 @@ interface ICartService {
     /**
      * 删除购物车商品
      */
-    fun deleteCartList(list: List<Int>): Observable<String>
+    fun deleteCartList(list: List<Int>): Observable<Boolean>
 
     /**
      * 提交购物车商品

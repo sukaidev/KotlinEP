@@ -1,6 +1,7 @@
 package com.sukaidev.goods.service.impl
 
 import com.sukaidev.common.ext.convert
+import com.sukaidev.common.ext.convertBoolean
 import com.sukaidev.goods.data.protocol.CartGoods
 import com.sukaidev.goods.data.repository.CartRepository
 import com.sukaidev.goods.service.ICartService
@@ -32,8 +33,8 @@ class CartServiceImpl @Inject constructor() : ICartService {
             .convert()
     }
 
-    override fun deleteCartList(list: List<Int>): Observable<String> {
-        return repository.deleteCartList(list).convert()
+    override fun deleteCartList(list: List<Int>): Observable<Boolean> {
+        return repository.deleteCartList(list).convertBoolean()
     }
 
     override fun submitCart(list: MutableList<CartGoods>, totalPrice: Long): Observable<Int> {

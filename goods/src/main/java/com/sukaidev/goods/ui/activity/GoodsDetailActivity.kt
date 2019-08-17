@@ -18,6 +18,7 @@ import com.sukaidev.provider.common.afterLogin
 import com.sukaidev.provider.common.isLogin
 import com.sukaidev.provider.router.RouterPath
 import kotlinx.android.synthetic.main.activity_goods_detail.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import q.rorbin.badgeview.QBadgeView
 
@@ -47,6 +48,14 @@ class GoodsDetailActivity : BaseActivity() {
             afterLogin {
                 Bus.send(AddCartEvent())
             }
+        }
+
+        mEnterCartTv.onClick {
+            startActivity<CartActivity>()
+        }
+
+        mLeftIv.onClick {
+            finish()
         }
 
         mCartBadge = QBadgeView(this)

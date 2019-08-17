@@ -27,22 +27,37 @@ class CartPresenter @Inject constructor() : BasePresenter<ICartView>() {
         service.getCartList()
             .execute(object : BaseSubscriber<MutableList<CartGoods>?>(mView) {
                 override fun onNext(t: MutableList<CartGoods>?) {
-                    mView.onGetCartList(t)
+                    mView.onGetCartListResult(t)
                 }
             }, lifecycleProvider)
     }
 
+    /**
+     * 删除购物车商品
+     */
     fun deleteCartList(deleteCartList: List<Int>) {
         if (!checkNetWork()) {
             return
         }
         service.deleteCartList(deleteCartList)
-            .execute(object : BaseSubscriber<String>(mView) {
-                override fun onNext(t: String) {
-
+            .execute(object : BaseSubscriber<Boolean>(mView) {
+                override fun onNext(t: Boolean) {
+                    mView.onDeleteCartListResult(t)
                 }
-            },lifecycleProvider)
+            }, lifecycleProvider)
     }
 
-
+    /**
+     * 提交购物车
+     */
+    fun submitCart(list: MutableList<CartGoods>, totalPrice: Long) {
+        if (!checkNetWork()) {
+            return
+        }
+        service.submitCart(list, totalPrice).execute(object : BaseSubscriber<Int>(mView) {
+            override fun onNext(t: Int) {
+                mView.onSubmitCartResult(t)
+            }
+        }, lifecycleProvider)
+    }
 }

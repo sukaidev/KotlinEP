@@ -39,4 +39,5 @@ dependencies {
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 
     api project(":provider")
+    implementation 'androidx.fragment:fragment:1.2.0-alpha02'
 }

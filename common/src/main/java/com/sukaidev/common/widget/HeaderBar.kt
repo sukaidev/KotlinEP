@@ -6,13 +6,15 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
+import androidx.core.widget.ImageViewCompat
 import com.sukaidev.common.R
 import com.sukaidev.common.ext.onClick
 import kotlinx.android.synthetic.main.layout_header_bar.view.*
 
 /**
- * Created by sukai on 2019/08/11.
+ * Created by sukaidev on 2019/08/11.
  *
  */
 class HeaderBar @JvmOverloads constructor(
@@ -57,5 +59,9 @@ class HeaderBar @JvmOverloads constructor(
 
     fun getRightTv(): AppCompatTextView {
         return mRightTv
+    }
+
+    fun getLeftIv(): AppCompatImageView {
+        return mLeftIv
     }
 }
