@@ -3,6 +3,7 @@ package com.sukaidev.order.injection.component
 import com.sukaidev.common.injection.PerComponentScope
 import com.sukaidev.common.injection.component.ActivityComponent
 import com.sukaidev.order.injection.module.ShipAddressModule
+import com.sukaidev.order.ui.activity.ShipAddressActivity
 import dagger.Component
 
 /**
@@ -13,5 +14,5 @@ import dagger.Component
 @Component(dependencies = [ActivityComponent::class], modules = [ShipAddressModule::class])
 interface ShipAddressComponent {
 
-    fun inject()
+    fun inject(activity: ShipAddressActivity)
 }

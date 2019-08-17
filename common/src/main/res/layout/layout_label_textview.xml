@@ -10,6 +10,7 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mLabelTv"
         style="@style/LabelTitleTextStyle"
+        android:layout_marginEnd="@dimen/common_margin"
         android:layout_marginRight="@dimen/common_margin" />
 
     <androidx.appcompat.widget.AppCompatTextView

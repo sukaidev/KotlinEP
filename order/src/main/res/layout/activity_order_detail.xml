@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap.Vertical">
+
+    <com.sukaidev.common.widget.HeaderBar
+        android:id="@+id/mHeaderBar"
+        style="@style/MatchWrap"
+        app:titleText="订单详情" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MatchWrap"
+                android:background="@drawable/border_bottom_gray"
+                android:paddingStart="@dimen/common_margin"
+                android:paddingLeft="@dimen/common_margin"
+                android:paddingTop="@dimen/common_margin"
+                android:paddingBottom="@dimen/common_margin_small"
+                android:text="配送信息"
+                android:textColor="@color/text_light_dark"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <com.sukaidev.common.widget.LabelTextView
+                android:id="@+id/mShipNameTv"
+                style="@style/MatchWrap"
+                app:labelText="收货人:" />
+
+            <com.sukaidev.common.widget.LabelTextView
+                android:id="@+id/mShipMobileTv"
+                style="@style/MatchWrap"
+                app:labelText="收货电话:" />
+
+            <com.sukaidev.common.widget.LabelTextView
+                android:id="@+id/mShipAddressTv"
+                style="@style/MatchWrap"
+                app:labelText="收货地址:" />
+
+            <com.sukaidev.common.widget.LabelTextView
+                style="@style/MatchWrap"
+                app:contentText="快递运输"
+                app:labelText="配送方式:" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MatchWrap"
+                android:background="@drawable/border_bottom_gray"
+                android:paddingStart="@dimen/common_margin"
+                android:paddingLeft="@dimen/common_margin"
+                android:paddingTop="@dimen/common_margin"
+                android:paddingBottom="@dimen/common_margin_small"
+                android:text="支付信息"
+                android:textColor="@color/text_light_dark"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <com.sukaidev.common.widget.LabelTextView
+                style="@style/MatchWrap"
+                app:contentText="在线支付"
+                app:labelText="支付类型:" />
+
+            <com.sukaidev.common.widget.LabelTextView
+                style="@style/MatchWrap"
+                app:contentText="支付宝支付"
+                app:labelText="支付方式:" />
+
+            <com.sukaidev.common.widget.LabelTextView
+                android:id="@+id/mTotalPriceTv"
+                style="@style/MatchWrap"
+                app:labelText="实付费用:" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                style="@style/MatchWrap"
+                android:layout_marginTop="@dimen/common_margin"
+                android:background="@drawable/border_bottom"
+                android:drawableStart="@drawable/icon_shop"
+                android:drawableLeft="@drawable/icon_shop"
+                android:drawablePadding="@dimen/common_padding_small"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/common_padding"
+                android:paddingLeft="@dimen/common_padding"
+                android:paddingTop="@dimen/common_padding_small"
+                android:paddingBottom="@dimen/common_padding_small"
+                android:text="自营"
+                android:textColor="@color/text_light_dark"
+                tools:ignore="HardcodedText,RtlSymmetry" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mOrderGoodsRv"
+                style="@style/commonRecyclerView"
+                android:layout_height="wrap_content" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.core.widget.NestedScrollView>
+</androidx.appcompat.widget.LinearLayoutCompat>

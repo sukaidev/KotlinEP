@@ -6,8 +6,14 @@ package com.sukaidev.provider.router
  */
 object RouterPath {
     class User {
-        companion object{
+        companion object {
             const val PATH_LOGIN = "/user/login"
+        }
+    }
+
+    class Order {
+        companion object{
+            const val PATH_ORDER_CONFIRM = "/order/order_confirm"
         }
     }
 }
