@@ -25,6 +25,7 @@ dependencies {
 
     api project(':message')
     api project(':goods')
+    api project(':order')
     if (isUserModule.toBoolean()) {
         api project(':user')
     }

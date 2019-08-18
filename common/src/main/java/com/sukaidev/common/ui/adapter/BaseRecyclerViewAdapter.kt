@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
  * Created by sukaidev on 2019/08/11.
  * RecyclerViewAdapter基类.
  */
-abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(var mContext: Context) :
+abstract class BaseRecyclerViewAdapter<T, VH : RecyclerView.ViewHolder>(val mContext: Context) :
     RecyclerView.Adapter<VH>() {
 
     // item点击事件

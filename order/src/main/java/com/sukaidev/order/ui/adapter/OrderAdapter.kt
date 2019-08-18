@@ -22,7 +22,7 @@ import org.jetbrains.anko.dip
 
 /**
  * Created by sukaidev on 2019/08/18.
- * 订单页面数据适配器.
+ * 订单列表数据适配.
  */
 class OrderAdapter(context: Context) :
     BaseRecyclerViewAdapter<Order, OrderAdapter.ViewHolder>(context) {

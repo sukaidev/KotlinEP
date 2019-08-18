@@ -33,7 +33,7 @@ import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/16.
- *
+ * 购物车页面.
  */
 class CartFragment : BaseMvpFragment<CartPresenter>(), ICartView {
 

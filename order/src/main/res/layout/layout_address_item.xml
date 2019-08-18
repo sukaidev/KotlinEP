@@ -1,47 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_marginBottom="@dimen/common_margin"
-              style="@style/MatchWrap.Vertical">
-    <TextView
-            android:id="@+id/mShipNameTv"
-            style="@style/OrderShipName"/>
-    <TextView
-            android:id="@+id/mShipAddressTv"
-            style="@style/OrderShipAddress"/>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchWrap.Vertical"
+    android:layout_marginBottom="@dimen/common_margin">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mShipNameTv"
+        style="@style/OrderShipName" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mShipAddressTv"
+        style="@style/OrderShipAddress" />
+
     <RelativeLayout
-            style="@style/MatchWrap"
-            android:background="@drawable/border_bottom"
-            android:paddingLeft="@dimen/common_padding"
-            android:paddingTop="@dimen/common_padding_middle"
-            android:paddingRight="@dimen/common_padding"
-            android:paddingBottom="@dimen/common_padding_middle">
-        <TextView
-                android:id="@+id/mSetDefaultTv"
-                style="@style/WrapWrap"
-                android:background="@null"
-                android:button="@null"
-                android:text="设为默认"
-                android:textColor="@color/text_normal"
-                android:gravity="center_vertical"
-                android:drawableLeft="@drawable/common_check_selector"
-                android:drawablePadding="@dimen/common_padding_middle"
-                android:layout_centerVertical="true"/>
-        <TextView
-                android:id="@+id/mEditTv"
-                style="@style/WrapWrap"
-                android:gravity="center_vertical"
-                android:layout_marginRight="@dimen/common_margin"
-                android:text="@string/common_edit"
-                android:textSize="@dimen/text_small_size"
-                android:layout_toLeftOf="@+id/mDeleteTv"
-                android:layout_centerVertical="true"/>
-        <TextView
-                android:id="@+id/mDeleteTv"
-                style="@style/WrapWrap"
-                android:gravity="center_vertical"
-                android:text="@string/common_delete"
-                android:textSize="@dimen/text_small_size"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+        style="@style/MatchWrap"
+        android:background="@drawable/border_bottom"
+        android:paddingLeft="@dimen/common_padding"
+        android:paddingTop="@dimen/common_padding_middle"
+        android:paddingRight="@dimen/common_padding"
+        android:paddingBottom="@dimen/common_padding_middle">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mSetDefaultTv"
+            style="@style/WrapWrap"
+            android:layout_centerVertical="true"
+            android:background="@null"
+            android:button="@null"
+            android:drawableStart="@drawable/common_check_selector"
+            android:drawableLeft="@drawable/common_check_selector"
+            android:drawablePadding="@dimen/common_padding_middle"
+            android:gravity="center_vertical"
+            android:text="设为默认"
+            android:textColor="@color/text_normal"
+            tools:ignore="HardcodedText" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mEditTv"
+            style="@style/WrapWrap"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_toStartOf="@+id/mDeleteTv"
+            android:layout_toLeftOf="@+id/mDeleteTv"
+            android:gravity="center_vertical"
+            android:text="@string/common_edit"
+            android:textSize="@dimen/text_small_size" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mDeleteTv"
+            style="@style/WrapWrap"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="@string/common_delete"
+            android:textSize="@dimen/text_small_size" />
     </RelativeLayout>
-</LinearLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

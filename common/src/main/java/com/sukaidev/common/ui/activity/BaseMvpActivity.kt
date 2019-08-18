@@ -57,6 +57,10 @@ abstract class BaseMvpActivity<T : BasePresenter<*>> : BaseActivity(), BaseView 
         onBindView(savedInstanceState)
     }
 
+    /**
+     * 初始化依赖注入组件
+     * 注意：mPresenter中的mView也需要在这里进行初始化!
+     */
     abstract fun injectComponent()
 
     private fun initActivityInjection() {

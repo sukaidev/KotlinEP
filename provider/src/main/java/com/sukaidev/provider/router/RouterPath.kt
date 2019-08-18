@@ -13,7 +13,7 @@ object RouterPath {
 
     class Order {
         companion object{
-            const val PATH_ORDER_CONFIRM = "/order/order_confirm"
+            const val PATH_ORDER_CONFIRM = "/order/confirm"
         }
     }
 }

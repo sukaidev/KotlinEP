@@ -72,12 +72,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mSaveBtn"
-        style="@style/MatchWrap"
+        style="@style/FullBtnStyle"
         android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/common_margin"
-        android:background="@drawable/btn_common_selector"
-        android:padding="@dimen/common_padding_middle"
-        android:text="@string/common_save"
-        android:textColor="@color/common_white"
-        android:textSize="@dimen/text_big_size" />
+        android:text="@string/common_save" />
 </RelativeLayout>

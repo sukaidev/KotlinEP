@@ -3,12 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-kapt {
-    arguments {
-        arg("AROUTER_MODULE_NAME", project.getName())
-    }
-}
-
 android {
     compileSdkVersion 28
 
@@ -36,7 +30,6 @@ dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 
     api project(":provider")
     implementation 'androidx.fragment:fragment:1.2.0-alpha02'
