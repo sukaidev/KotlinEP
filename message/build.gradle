@@ -3,6 +3,12 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+
 android {
     compileSdkVersion 28
 
@@ -14,6 +20,18 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        ndk {
+            //选择要添加的对应 cpu 类型的 .so 库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'arm64-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME: "com.sukaidev.kotlinmall",
+                JPUSH_APPKEY : "3a382f23333240cdd530498c", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
+        ]
 
     }
 
@@ -33,6 +51,9 @@ dependencies {
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
+
+    api 'cn.jiguang.sdk:jpush:3.3.4'
+    api 'cn.jiguang.sdk:jcore:2.1.2'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

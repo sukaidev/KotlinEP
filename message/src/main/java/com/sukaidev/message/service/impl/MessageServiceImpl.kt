@@ -1,0 +1,22 @@
+package com.sukaidev.message.service.impl
+
+import com.sukaidev.common.ext.convert
+import com.sukaidev.message.data.protocol.Message
+import com.sukaidev.message.data.repository.MessageRepository
+import com.sukaidev.message.service.IMessageService
+import rx.Observable
+import javax.inject.Inject
+
+/**
+ * Created by sukaidev on 2019/08/19.
+ * 消息业务接口实现.
+ */
+class MessageServiceImpl @Inject constructor() : IMessageService {
+
+    @Inject
+    lateinit var repository: MessageRepository
+
+    override fun getMessageList(): Observable<MutableList<Message>?> {
+        return repository.getMessageList().convert()
+    }
+}

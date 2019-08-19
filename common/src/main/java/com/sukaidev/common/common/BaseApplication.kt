@@ -1,8 +1,6 @@
 package com.sukaidev.common.common
 
-import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import com.alibaba.android.arouter.launcher.ARouter
 import com.sukaidev.common.injection.component.AppComponent
 import com.sukaidev.common.injection.component.DaggerAppComponent
@@ -12,7 +10,7 @@ import com.sukaidev.common.injection.module.AppModule
  * Created by sukaidev on 2019/08/10.
  *
  */
-class BaseApplication : Application() {
+open class BaseApplication : Application() {
 
     private var isDebug: Boolean = true
 
