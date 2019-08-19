@@ -4,21 +4,21 @@ import com.sukaidev.common.ext.execute
 import com.sukaidev.common.presenter.BasePresenter
 import com.sukaidev.common.rx.BaseSubscriber
 import com.sukaidev.order.data.protocol.Order
-import com.sukaidev.order.presenter.view.IOrderConfirmView
+import com.sukaidev.order.presenter.view.IOrderDetailView
 import com.sukaidev.order.service.IOrderService
 import javax.inject.Inject
 
 /**
- * Created by sukaidev on 2019/08/17.
+ * Created by sukaidev on 2019/08/19.
  *
  */
-class OrderConfirmPresenter @Inject constructor() : BasePresenter<IOrderConfirmView>() {
+class OrderDetailPresenter @Inject constructor() : BasePresenter<IOrderDetailView>() {
 
     @Inject
     lateinit var service: IOrderService
 
     /**
-     * 根据Id查询订单
+     * 根据Id获取订单详情
      */
     fun getOrderById(orderId: Int) {
         if (!checkNetWork()) {
@@ -29,22 +29,6 @@ class OrderConfirmPresenter @Inject constructor() : BasePresenter<IOrderConfirmV
             override fun onNext(t: Order) {
                 mView.onGetOrderByIdResult(t)
             }
-        }, lifecycleProvider)
+        },lifecycleProvider)
     }
-
-    /**
-     * 提交订单
-     */
-    fun submitOrder(order: Order) {
-        if (!checkNetWork()) {
-            return
-        }
-        mView.showLoading()
-        service.submitOrder(order).execute(object : BaseSubscriber<String>(mView) {
-            override fun onNext(t: String) {
-                mView.onSubmitOrderResult(t)
-            }
-        }, lifecycleProvider)
-    }
-
 }

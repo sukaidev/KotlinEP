@@ -7,6 +7,8 @@ import com.sukaidev.order.data.protocol.ShipAddress
  * Created by sukaidev on 2019/08/18.
  *
  */
-interface IShipAddressView:BaseView {
+interface IShipAddressView : BaseView {
     fun onGetShipAddressListResult(result: MutableList<ShipAddress>?)
+    fun onSetDefaultResult(result: Boolean)
+    fun onDeleteDefaultResult(result: Boolean)
 }

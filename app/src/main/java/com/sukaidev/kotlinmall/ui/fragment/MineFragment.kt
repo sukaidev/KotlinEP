@@ -8,9 +8,13 @@ import com.sukaidev.common.ui.fragment.BaseFragment
 import com.sukaidev.common.utils.AppPrefsUtils
 import com.sukaidev.kotlinmall.R
 import com.sukaidev.kotlinmall.ui.activity.SettingActivity
+import com.sukaidev.order.common.OrderConstant
+import com.sukaidev.order.common.OrderStatus
+import com.sukaidev.order.ui.activity.OrderActivity
 import com.sukaidev.order.ui.activity.ShipAddressActivity
 import com.sukaidev.provider.common.ProviderConstant
 import com.sukaidev.provider.common.ProviderConstant.Companion.KEY_SP_USER_ICON
+import com.sukaidev.provider.common.afterLogin
 import com.sukaidev.provider.common.isLogin
 import com.sukaidev.user.ui.activity.LoginActivity
 import com.sukaidev.user.ui.activity.UserInfoActivity
@@ -39,6 +43,10 @@ class MineFragment : BaseFragment(), View.OnClickListener {
     private fun initView() {
         mUserIconIv.onClick(this)
         mUserNameTv.onClick(this)
+        mWaitPayOrderTv.onClick(this)
+        mWaitConfirmOrderTv.onClick(this)
+        mCompleteOrderTv.onClick(this)
+        mAllOrderTv.onClick(this)
         mAddressTv.onClick(this)
         mSettingTv.onClick(this)
     }
@@ -65,7 +73,21 @@ class MineFragment : BaseFragment(), View.OnClickListener {
                     context?.startActivity<LoginActivity>()
                 }
             }
-            mAddressTv -> context?.startActivity<ShipAddressActivity>()
+            mWaitPayOrderTv -> {
+                context?.startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
+            }
+            mWaitConfirmOrderTv -> {
+                context?.startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
+            }
+            mCompleteOrderTv -> {
+                context?.startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
+            }
+            mAllOrderTv -> {
+                afterLogin {
+                    context?.startActivity<OrderActivity>()
+                }
+            }
+            mAddressTv -> afterLogin { context?.startActivity<ShipAddressActivity>() }
             mSettingTv -> context?.startActivity<SettingActivity>()
         }
     }

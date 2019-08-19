@@ -33,4 +33,32 @@ class ShipAddressPresenter @Inject constructor() : BasePresenter<IShipAddressVie
                 }, lifecycleProvider)
         }
     }
+
+    /**
+     * 设置默认地址
+     */
+    fun setDefaultAddress(address: ShipAddress) {
+        if (!checkNetWork()) {
+            return
+        }
+        service.editShipAddress(address).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
+                mView.onSetDefaultResult(t)
+            }
+        }, lifecycleProvider)
+    }
+
+    /**
+     * 删除地址
+     */
+    fun deleteShipAddress(addressId: Int) {
+        if (!checkNetWork()) {
+            return
+        }
+        service.deleteShipAddress(addressId).execute(object : BaseSubscriber<Boolean>(mView) {
+            override fun onNext(t: Boolean) {
+                mView.onDeleteDefaultResult(t)
+            }
+        }, lifecycleProvider)
+    }
 }

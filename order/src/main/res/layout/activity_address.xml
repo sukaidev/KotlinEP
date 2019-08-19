@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch.Vertical.Common">
 
     <com.sukaidev.common.widget.HeaderBar
@@ -25,9 +26,9 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/common_margin"
         android:background="@drawable/btn_common_selector"
-        android:gravity="center"
         android:padding="@dimen/common_padding_middle"
         android:text="新建地址"
         android:textColor="@color/common_white"
-        android:textSize="@dimen/text_big_size" />
+        android:textSize="@dimen/text_big_size"
+        tools:ignore="HardcodedText" />
 </RelativeLayout>

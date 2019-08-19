@@ -35,23 +35,6 @@ class EditShipAddressPresenter @Inject constructor() : BasePresenter<IEditShipAd
     }
 
     /**
-     * 删除收货地址
-     */
-    fun deleteShipAddress(id: Int) {
-        if (!checkNetWork()) {
-            return
-        } else {
-            mView.showLoading()
-            service.deleteShipAddress(id)
-                .execute(object : BaseSubscriber<Boolean>(mView) {
-                    override fun onNext(t: Boolean) {
-                        mView.onDeleteShipAddressResult(t)
-                    }
-                }, lifecycleProvider)
-        }
-    }
-
-    /**
      * 修改收货地址
      */
     fun editShipAddress(address: ShipAddress) {

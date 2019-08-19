@@ -5,6 +5,7 @@ import com.sukaidev.common.ext.enable
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
 import com.sukaidev.order.R
+import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.data.protocol.ShipAddress
 import com.sukaidev.order.injection.component.DaggerShipAddressComponent
 import com.sukaidev.order.injection.module.ShipAddressModule
@@ -19,6 +20,7 @@ import org.jetbrains.anko.toast
  */
 class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEditShipAddressView {
 
+    private var mAddress: ShipAddress? = null
 
     override fun injectComponent() {
         DaggerShipAddressComponent
@@ -35,8 +37,8 @@ class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEd
     }
 
     override fun onBindView(savedInstanceState: Bundle?) {
+        initData()
         initView()
-        loadData()
     }
 
     private fun initView() {
@@ -45,16 +47,28 @@ class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEd
         mSaveBtn.enable(mShipAddressEt) { isBtnEnable() }
 
         mSaveBtn.onClick {
-            mPresenter.addShipAddress(
-                mShipNameEt.text.toString(),
-                mShipMobileEt.text.toString(),
-                mShipAddressEt.text.toString()
-            )
+            if (mAddress == null) {
+                mPresenter.addShipAddress(
+                    mShipNameEt.text.toString(),
+                    mShipMobileEt.text.toString(),
+                    mShipAddressEt.text.toString()
+                )
+            } else {
+                mAddress!!.shipUserName = mShipNameEt.text.toString()
+                mAddress!!.shipUserMobile = mShipMobileEt.text.toString()
+                mAddress!!.shipAddress = mShipAddressEt.text.toString()
+                mPresenter.editShipAddress(mAddress!!)
+            }
         }
     }
 
-    private fun loadData() {
-
+    private fun initData() {
+        mAddress = intent.getParcelableExtra<ShipAddress>(OrderConstant.KEY_SHIP_ADDRESS)
+        mAddress?.let {
+            mShipNameEt.setText(it.shipUserName)
+            mShipMobileEt.setText(it.shipUserMobile)
+            mShipAddressEt.setText(it.shipAddress)
+        }
     }
 
     private fun isBtnEnable(): Boolean {
@@ -68,11 +82,8 @@ class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEd
         finish()
     }
 
-    override fun onDeleteShipAddressResult(result: Boolean) {
-
-    }
-
     override fun onEditShipAddress(result: Boolean) {
-
+        toast("修改地址成功")
+        finish()
     }
 }

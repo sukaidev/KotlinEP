@@ -1,14 +1,22 @@
 package com.sukaidev.order.ui.activity
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bigkoo.alertview.AlertView
+import com.bigkoo.alertview.OnItemClickListener
+import com.eightbitlab.rxbus.Bus
+import com.jph.takephoto.compress.CompressConfig
 import com.kennyc.view.MultiStateView
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ext.setVisible
 import com.sukaidev.common.ext.startLoading
 import com.sukaidev.common.ui.activity.BaseMvpActivity
+import com.sukaidev.common.ui.adapter.BaseRecyclerViewAdapter
 import com.sukaidev.order.R
+import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.data.protocol.ShipAddress
+import com.sukaidev.order.event.SelectAddressEvent
 import com.sukaidev.order.injection.component.DaggerShipAddressComponent
 import com.sukaidev.order.injection.module.ShipAddressModule
 import com.sukaidev.order.presenter.ShipAddressPresenter
@@ -47,17 +55,38 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), IShipAddres
 
         mAdapter.mOptClickListener = object : ShipAddressAdapter.OnOptClickListener {
             override fun onSetDefault(address: ShipAddress) {
-                toast("设为默认成功")
+                mPresenter.setDefaultAddress(address)
             }
 
             override fun onEdit(address: ShipAddress) {
-                toast("编辑")
+                startActivity<ShipAddressEditActivity>(OrderConstant.KEY_SHIP_ADDRESS to address)
             }
 
             override fun onDelete(address: ShipAddress) {
-                toast("删除")
+                AlertView(
+                    "删除",
+                    "确定删除该地址？",
+                    "取消",
+                    null,
+                    arrayOf("确定"),
+                    this@ShipAddressActivity,
+                    AlertView.Style.Alert,
+                    OnItemClickListener { _, position ->
+                        if (position == 0) {
+                            mPresenter.deleteShipAddress(address.id)
+                        }
+                    }
+                ).show()
             }
         }
+
+        mAdapter.setOnItemClickListener(object :
+            BaseRecyclerViewAdapter.OnItemClickListener<ShipAddress> {
+            override fun onItemClick(item: ShipAddress, position: Int) {
+                Bus.send(SelectAddressEvent(item))
+                this@ShipAddressActivity.finish()
+            }
+        })
 
         mAddAddressBtn.onClick {
             startActivity<ShipAddressEditActivity>()
@@ -81,5 +110,15 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), IShipAddres
         } else {
             mMultiStateView.viewState = MultiStateView.ViewState.EMPTY
         }
+    }
+
+    override fun onSetDefaultResult(result: Boolean) {
+        toast("设置默认成功")
+        loadData()
+    }
+
+    override fun onDeleteDefaultResult(result: Boolean) {
+        toast("删除成功")
+        loadData()
     }
 }
