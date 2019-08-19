@@ -12,8 +12,14 @@ object RouterPath {
     }
 
     class Order {
-        companion object{
+        companion object {
             const val PATH_ORDER_CONFIRM = "/order/confirm"
+        }
+    }
+
+    class Pay {
+        companion object{
+            const val PATH_PAY = "/pay/pay"
         }
     }
 }

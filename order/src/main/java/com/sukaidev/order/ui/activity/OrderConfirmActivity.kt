@@ -13,6 +13,7 @@ import com.sukaidev.common.ext.setVisible
 import com.sukaidev.common.ui.activity.BaseMvpActivity
 import com.sukaidev.common.utils.MoneyConverter
 import com.sukaidev.order.R
+import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.data.protocol.Order
 import com.sukaidev.order.event.SelectAddressEvent
 import com.sukaidev.order.injection.component.DaggerOrderComponent
@@ -134,5 +135,10 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), IOrderCon
 
     override fun onSubmitOrderResult(result: String) {
         toast("订单提交成功")
+        ARouter.getInstance().build(RouterPath.Pay.PATH_PAY)
+            .withInt(ProviderConstant.KEY_ORDER_ID, mCurrentOrder!!.id)
+            .withLong(ProviderConstant.KEY_ORDER_PRICE, mCurrentOrder!!.totalPrice)
+            .navigation()
+        finish()
     }
 }

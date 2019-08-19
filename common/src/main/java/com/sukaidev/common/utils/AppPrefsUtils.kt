@@ -20,13 +20,14 @@ object AppPrefsUtils {
      * PreferenceManager.getDefaultSharedPreferences(Context)生成 包名_preferences.xml
      * Context.getSharedPreferences(String name,int mode)生成name.xml
      */
-    private val PREFERENCES = BaseApplication.context.getSharedPreferences(BaseConstant.TABLE_PREFS, Context.MODE_PRIVATE)
+    private val PREFERENCES = BaseApplication.instance()
+        .getSharedPreferences(BaseConstant.TABLE_PREFS, Context.MODE_PRIVATE)
 
     fun putBoolean(key: String, value: Boolean) {
         PREFERENCES
-                .edit()
-                .putBoolean(key, value)
-                .apply()
+            .edit()
+            .putBoolean(key, value)
+            .apply()
     }
 
     fun getBoolean(key: String): Boolean {
@@ -35,9 +36,9 @@ object AppPrefsUtils {
 
     fun putString(key: String, value: String) {
         PREFERENCES
-                .edit()
-                .putString(key, value)
-                .apply()
+            .edit()
+            .putString(key, value)
+            .apply()
     }
 
     fun getString(key: String): String? {
@@ -46,9 +47,9 @@ object AppPrefsUtils {
 
     fun putInt(key: String, value: Int) {
         PREFERENCES
-                .edit()
-                .putInt(key, value)
-                .apply()
+            .edit()
+            .putInt(key, value)
+            .apply()
     }
 
     fun getInt(key: String): Int {
@@ -57,9 +58,9 @@ object AppPrefsUtils {
 
     fun putLong(key: String, value: Long) {
         PREFERENCES
-                .edit()
-                .putLong(key, value)
-                .apply()
+            .edit()
+            .putLong(key, value)
+            .apply()
     }
 
     fun getLong(key: String): Long {
@@ -68,9 +69,9 @@ object AppPrefsUtils {
 
     fun putFloat(key: String, value: Float) {
         PREFERENCES
-                .edit()
-                .putFloat(key, value)
-                .apply()
+            .edit()
+            .putFloat(key, value)
+            .apply()
     }
 
     fun getFloat(key: String): Float {
@@ -78,12 +79,12 @@ object AppPrefsUtils {
     }
 
     fun putStringSet(key: String, set: Set<String>) {
-        val localSet = getStringSet(key)?.toMutableSet()
-        localSet?.addAll(set)
+        val localSet = getStringSet(key).toMutableSet()
+        localSet.addAll(set)
         PREFERENCES
-                .edit()
-                .putStringSet(key, localSet)
-                .apply()
+            .edit()
+            .putStringSet(key, localSet)
+            .apply()
     }
 
     /**
@@ -96,9 +97,9 @@ object AppPrefsUtils {
 
     fun remove(key: String) {
         PREFERENCES
-                .edit()
-                .remove(key)
-                .apply()
+            .edit()
+            .remove(key)
+            .apply()
     }
 
 }

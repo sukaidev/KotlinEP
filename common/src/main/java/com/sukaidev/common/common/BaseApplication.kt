@@ -19,8 +19,8 @@ class BaseApplication : Application() {
     lateinit var appComponent: AppComponent
 
     companion object {
-        @SuppressLint("StaticFieldLeak")
-        lateinit var context: Context
+        private var instance: Application? = null
+        fun instance() = instance!!
     }
 
     override fun onCreate() {
@@ -28,7 +28,7 @@ class BaseApplication : Application() {
 
         initAppInjection()
 
-        context = this
+        instance = this
 
         if (isDebug) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
             ARouter.openLog()     // 打印日志

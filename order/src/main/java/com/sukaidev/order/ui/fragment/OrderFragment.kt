@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.kennyc.view.MultiStateView
@@ -19,6 +20,7 @@ import com.sukaidev.order.presenter.view.IOrderListView
 import com.sukaidev.order.ui.activity.OrderDetailActivity
 import com.sukaidev.order.ui.adapter.OrderAdapter
 import com.sukaidev.provider.common.ProviderConstant
+import com.sukaidev.provider.router.RouterPath
 import kotlinx.android.synthetic.main.fragment_order.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -50,6 +52,11 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), IOrderListView {
         loadData()
     }
 
+    override fun onStart() {
+        super.onStart()
+        loadData()
+    }
+
     private fun initView() {
         mOrderRv.layoutManager = LinearLayoutManager(activity)
         mAdapter = OrderAdapter(activity as Context)
@@ -59,7 +66,10 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), IOrderListView {
             override fun onOptClick(optType: Int, order: Order) {
                 when (optType) {
                     OrderConstant.OPT_ORDER_PAY -> {
-
+                        ARouter.getInstance().build(RouterPath.Pay.PATH_PAY)
+                            .withInt(ProviderConstant.KEY_ORDER_ID, order.id)
+                            .withLong(ProviderConstant.KEY_ORDER_PRICE, order.totalPrice)
+                            .navigation()
                     }
                     OrderConstant.OPT_ORDER_CONFIRM -> {
                         mPresenter.confirmOrder(order.id)
@@ -71,7 +81,8 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), IOrderListView {
             }
         }
 
-        mAdapter.setOnItemClickListener(object:BaseRecyclerViewAdapter.OnItemClickListener<Order>{
+        mAdapter.setOnItemClickListener(object :
+            BaseRecyclerViewAdapter.OnItemClickListener<Order> {
             override fun onItemClick(item: Order, position: Int) {
                 context?.startActivity<OrderDetailActivity>(ProviderConstant.KEY_ORDER_ID to item.id)
             }

@@ -79,14 +79,14 @@ class GoodsDetailTabOneFragment : BaseMvpFragment<GoodsDetailPresenter>(), IGood
                 (activity as GoodsDetailActivity).contentView,
                 Gravity.BOTTOM and Gravity.CENTER_HORIZONTAL, 0, 0
             )
-            (activity as GoodsDetailActivity).contentView!!.startAnimation(mAnimationStart)
+            (activity as GoodsDetailActivity).contentView?.startAnimation(mAnimationStart)
         }
     }
 
     private fun initSkuView() {
         mSkuPop = GoodsSkuView(activity as GoodsDetailActivity)
         mSkuPop.setOnDismissListener {
-            (activity as GoodsDetailActivity).contentView!!.startAnimation(mAnimationEnd)
+            (activity as GoodsDetailActivity).contentView?.startAnimation(mAnimationEnd)
 
         }
     }

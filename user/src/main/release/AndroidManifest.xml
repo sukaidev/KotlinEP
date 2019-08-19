@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.sukaidev.user">
 
-
     <application
         android:name="com.sukaidev.common.common.BaseApplication"
         android:allowBackup="true"

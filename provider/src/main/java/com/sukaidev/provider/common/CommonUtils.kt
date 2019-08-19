@@ -19,7 +19,7 @@ fun afterLogin(method: () -> Unit) {
     if (isLogin()) {
         method()
     } else {
-        BaseApplication.context.toast("请先登录")
+        BaseApplication.instance().toast("请先登录")
         ARouter.getInstance().build(RouterPath.User.PATH_LOGIN).navigation()
     }
 }
