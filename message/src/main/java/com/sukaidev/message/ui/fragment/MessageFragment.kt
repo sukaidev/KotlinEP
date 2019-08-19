@@ -5,17 +5,24 @@ import android.view.View
 import com.sukaidev.common.ui.fragment.BaseMvpFragment
 import com.sukaidev.message.R
 import com.sukaidev.message.data.protocol.Message
+import com.sukaidev.message.injection.component.DaggerMessageComponent
+import com.sukaidev.message.injection.module.MessageModule
 import com.sukaidev.message.presenter.MessagePresenter
 import com.sukaidev.message.presenter.view.IMessageView
 
 /**
  * Created by sukaidev on 2019/08/19.
- *
+ * 消息中心页面.
  */
-class MessageFragment :BaseMvpFragment<MessagePresenter>(),IMessageView  {
+class MessageFragment : BaseMvpFragment<MessagePresenter>(), IMessageView {
 
     override fun injectComponent() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        DaggerMessageComponent
+            .builder()
+            .activityComponent(activityComponent)
+            .messageModule(MessageModule())
+            .build()
+            .inject(this)
     }
 
     override fun setLayout(): Any {

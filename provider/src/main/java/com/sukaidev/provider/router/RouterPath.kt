@@ -18,8 +18,15 @@ object RouterPath {
     }
 
     class Pay {
-        companion object{
+        companion object {
             const val PATH_PAY = "/pay/pay"
+        }
+    }
+
+    class Message {
+        companion object {
+            const val PATH_MESSAGE_PUSH = "/message/push"
+            const val PATH_MESSAGE_ORDER = "/message/order"
         }
     }
 }

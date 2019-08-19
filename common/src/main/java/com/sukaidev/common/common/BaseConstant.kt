@@ -9,7 +9,7 @@ class BaseConstant {
 
         const val IMAGE_SERVER_ADDRESS = "http://qiniu.sukaidev.top/"
 
-        const val SERVER_ADDRESS = "http://sukaidev.top:8080/Kotlin_Mall/"
+        const val SERVER_ADDRESS = "http://sukaidev.top:8080/Kotlin_Server/"
 
         const val TABLE_PREFS = "kotlin_mall"
 

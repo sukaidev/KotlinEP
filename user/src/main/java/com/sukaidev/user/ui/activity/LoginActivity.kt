@@ -2,10 +2,12 @@ package com.sukaidev.user.ui.activity
 
 import android.os.Bundle
 import android.view.View
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.sukaidev.common.ext.enable
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
+import com.sukaidev.provider.IPushProvider
 import com.sukaidev.provider.router.RouterPath
 import com.sukaidev.user.R
 import com.sukaidev.user.data.protocol.UserInfo
@@ -25,10 +27,18 @@ import org.jetbrains.anko.toast
 @Route(path = RouterPath.User.PATH_LOGIN)
 class LoginActivity : BaseMvpActivity<LoginPresenter>(), ILoginView, View.OnClickListener {
 
-    override fun onLoginResult(result: UserInfo) {
-        toast("登录成功")
-        UserPrefsUtils.putUserInfo(result)
-        finish()
+    @Autowired(name = RouterPath.Message.PATH_MESSAGE_PUSH)
+    @JvmField
+    var mIPushProvider: IPushProvider? = null
+
+    override fun injectComponent() {
+        DaggerUserComponent
+            .builder()
+            .activityComponent(activityComponent)
+            .userModule(UserModule())
+            .build()
+            .inject(this)
+        mPresenter.mView = this
     }
 
     override fun setLayout(): Int {
@@ -43,23 +53,17 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), ILoginView, View.OnClic
         mForgetPwdTv.onClick(this)
     }
 
-    override fun injectComponent() {
-        DaggerUserComponent
-            .builder()
-            .activityComponent(activityComponent)
-            .userModule(UserModule())
-            .build()
-            .inject(this)
-        mPresenter.mView = this
-    }
-
     override fun onClick(v: View) {
         when (v) {
-            mLoginBtn -> {
-                mPresenter.login(mMobileEt.text.toString(), mPwdEt.text.toString(), "")
-            }
             mHeaderBar.getRightTv() -> {
                 startActivity<RegisterActivity>()
+            }
+            mLoginBtn -> {
+                mPresenter.login(
+                    mMobileEt.text.toString(),
+                    mPwdEt.text.toString(),
+                    mIPushProvider?.getPushId() ?: ""
+                )
             }
             mForgetPwdTv -> {
                 startActivity<ForgetPwdActivity>()
@@ -73,5 +77,11 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), ILoginView, View.OnClic
     private fun isBtnEnable(): Boolean {
         return mMobileEt.text.isNullOrEmpty().not()
                 && mPwdEt.text.isNullOrEmpty().not()
+    }
+
+    override fun onLoginResult(result: UserInfo) {
+        toast("登录成功")
+        UserPrefsUtils.putUserInfo(result)
+        finish()
     }
 }
