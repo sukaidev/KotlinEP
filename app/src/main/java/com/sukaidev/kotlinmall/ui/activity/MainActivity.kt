@@ -14,6 +14,8 @@ import com.sukaidev.goods.ui.fragment.CategoryFragment
 import com.sukaidev.kotlinmall.R
 import com.sukaidev.kotlinmall.ui.fragment.HomeFragment
 import com.sukaidev.kotlinmall.ui.fragment.MineFragment
+import com.sukaidev.message.ui.fragment.MessageFragment
+import com.sukaidev.provider.event.MessageBadgeEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
 
@@ -26,7 +28,7 @@ class MainActivity : BaseActivity() {
     private val mStack = Stack<Fragment>()
     private val mHomeFragment by lazy { HomeFragment() }
     private val mCategoryFragment by lazy { CategoryFragment() }
-    private val mMsgFragment by lazy { HomeFragment() }
+    private val mMsgFragment by lazy { MessageFragment() }
     private val mCartFragment by lazy { CartFragment() }
     private val mMineFragment by lazy { MineFragment() }
 
@@ -88,6 +90,11 @@ class MainActivity : BaseActivity() {
         Bus.observe<UpdateCartSizeEvent>()
             .subscribe {
                 loadCartSize()
+            }.registerInBus(this)
+        // 订阅AddCartEvent事件
+        Bus.observe<MessageBadgeEvent>()
+            .subscribe {
+                mBottomNavBar.checkMsgBadge(it.isVisible)
             }.registerInBus(this)
     }
 

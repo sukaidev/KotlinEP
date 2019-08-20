@@ -26,11 +26,13 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(':message')
-    api project(':goods')
-    api project(':order')
+    implementation project(':message')
+    implementation project(':goods')
+    implementation project(':order')
+    implementation project(':pay')
+    implementation project(':provider')
     if (isUserModule.toBoolean()) {
         api project(':user')
     }

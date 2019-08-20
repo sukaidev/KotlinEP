@@ -11,7 +11,7 @@ import com.sukaidev.provider.router.RouterPath
  *
  */
 @Route(path = RouterPath.Message.PATH_MESSAGE_PUSH)
-class PushProviderImpl() : IPushProvider {
+class PushProviderImpl : IPushProvider {
 
     private var mContext: Context? = null
 
