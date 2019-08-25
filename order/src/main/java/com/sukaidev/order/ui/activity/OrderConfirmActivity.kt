@@ -77,6 +77,10 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), IOrderCon
         mSubmitOrderBtn.onClick {
             mCurrentOrder?.let {
                 mPresenter.submitOrder(it)
+                ARouter.getInstance().build(RouterPath.Pay.PATH_PAY)
+                    .withInt(ProviderConstant.KEY_ORDER_ID, it.id)
+                    .withLong(ProviderConstant.KEY_ORDER_PRICE, it.totalPrice)
+                    .navigation()
             }
         }
 

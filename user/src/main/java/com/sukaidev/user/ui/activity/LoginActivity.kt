@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
+import com.eightbitlab.rxbus.Bus
+import com.sukaidev.common.event.LoginSuccessEvent
 import com.sukaidev.common.ext.enable
 import com.sukaidev.common.ext.onClick
 import com.sukaidev.common.ui.activity.BaseMvpActivity
@@ -82,6 +84,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), ILoginView, View.OnClic
     override fun onLoginResult(result: UserInfo) {
         toast("登录成功")
         UserPrefsUtils.putUserInfo(result)
+        Bus.send(LoginSuccessEvent())
         finish()
     }
 }

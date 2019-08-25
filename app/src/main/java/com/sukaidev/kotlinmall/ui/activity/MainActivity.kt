@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
+import com.sukaidev.common.event.LoginSuccessEvent
 import com.sukaidev.common.ui.activity.BaseActivity
 import com.sukaidev.common.utils.AppPrefsUtils
 import com.sukaidev.goods.common.GoodsConstant
@@ -86,6 +87,11 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initObserve() {
+        // 订阅LoginSuccessEvent事件
+        Bus.observe<LoginSuccessEvent>()
+            .subscribe{
+                loadCartSize()
+            }.registerInBus(this)
         // 订阅AddCartEvent事件
         Bus.observe<UpdateCartSizeEvent>()
             .subscribe {
