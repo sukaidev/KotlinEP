@@ -2,18 +2,15 @@ package com.sukaidev.core.ext
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.drawable.AnimationDrawable
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatEditText
-import com.kennyc.view.MultiStateView
 import com.sukaidev.common.data.protocol.BaseResp
-import com.sukaidev.common.rx.BaseSubscriber
 import com.sukaidev.core.R
 import com.sukaidev.core.rx.BaseFunc
 import com.sukaidev.core.rx.BaseFuncBoolean
+import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.core.widget.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import org.jetbrains.anko.find

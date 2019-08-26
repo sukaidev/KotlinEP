@@ -1,7 +1,8 @@
 package com.sukaidev.core.ui.activities
 
 import android.os.Bundle
-import com.sukaidev.core.ui.delegates.FastSupportDelegate
+import com.sukaidev.core.ui.delegates.BaseDelegate
+import com.sukaidev.core.ui.delegates.BottomDelegate
 import com.sukaidev.core.ui.delegates.LauncherDelegate
 import com.sukaidev.core.ui.launcher.ILauncherListener
 
@@ -20,7 +21,7 @@ class ExampleActivity : ProxyActivity(), ILauncherListener {
      * 设置根Fragment
      * 此处为启动页
      */
-    override fun setRootDelegate(): FastSupportDelegate {
+    override fun setRootDelegate(): BaseDelegate {
         return LauncherDelegate()
     }
 

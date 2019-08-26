@@ -10,7 +10,7 @@ import com.sukaidev.common.R
 
 /**
  * Created by sukaidev on 2019/08/13.
- * 底部导航栏.
+ * 自定义底部导航栏，继承自Design包中的BottomNavigationBar.
  */
 class BottomNavBar @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0

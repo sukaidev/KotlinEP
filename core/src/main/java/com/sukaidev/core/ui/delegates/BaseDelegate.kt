@@ -10,9 +10,9 @@ import com.sukaidev.core.ui.activities.ProxyActivity
 
 /**
  * Created by sukaidev on 2019/08/25.
- *
+ * Fragment基类.
  */
-abstract class BaseDelegate : FastSupportDelegate() {
+abstract class BaseDelegate : SupportDelegate() {
 
     /**
      * 设置布局

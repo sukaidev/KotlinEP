@@ -2,44 +2,86 @@ package com.sukaidev.core.ui.activities
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.MotionEvent
+import androidx.annotation.CallSuper
+import androidx.annotation.CheckResult
+import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 import androidx.appcompat.widget.ContentFrameLayout
+import com.sukaidev.core.ui.delegates.BaseDelegate
+import com.trello.rxlifecycle.LifecycleProvider
+import com.trello.rxlifecycle.android.ActivityEvent
+import me.yokeyword.fragmentation.*
 import com.sukaidev.core.R
-import com.sukaidev.core.ui.delegates.FastSupportDelegate
-import com.trello.rxlifecycle.components.support.RxAppCompatActivity
-import me.yokeyword.fragmentation.ExtraTransaction
-import me.yokeyword.fragmentation.ISupportActivity
-import me.yokeyword.fragmentation.SupportActivityDelegate
-import me.yokeyword.fragmentation.anim.FragmentAnimator
-import me.yokeyword.fragmentation.ISupportFragment
+import com.trello.rxlifecycle.LifecycleTransformer
+import com.trello.rxlifecycle.RxLifecycle
+import com.trello.rxlifecycle.android.RxLifecycleAndroid
+import rx.Observable
+import rx.subjects.BehaviorSubject
 
 /**
  * Created by sukaidev on 2019/08/25.
  * 自定义SupportActivity.
+ * 由于单继承的限制，手动实现了LifecycleProvider接口来支持RxLifecycle.
  */
-abstract class ProxyActivity : RxAppCompatActivity(), ISupportActivity {
+abstract class ProxyActivity : SupportActivity(), LifecycleProvider<ActivityEvent> {
 
-    private val mDelegate: SupportActivityDelegate = SupportActivityDelegate(this)
+    private val lifecycleSubject = BehaviorSubject.create<ActivityEvent>()
 
-    abstract fun setRootDelegate(): FastSupportDelegate
-
-    override fun getSupportDelegate(): SupportActivityDelegate {
-        return mDelegate
+    @NonNull
+    @CheckResult
+    override fun lifecycle(): Observable<ActivityEvent> {
+        return lifecycleSubject.asObservable()
     }
 
-    /**
-     * Perform some extra transactions.
-     * 额外的事务：自定义Tag，添加SharedElement动画，操作非回退栈Fragment
-     */
-    override fun extraTransaction(): ExtraTransaction {
-        return mDelegate.extraTransaction()
+    @NonNull
+    @CheckResult
+    override fun <T> bindUntilEvent(@NonNull event: ActivityEvent): LifecycleTransformer<T> {
+        return RxLifecycle.bindUntilEvent(lifecycleSubject, event)
     }
 
+    @NonNull
+    @CheckResult
+    override fun <T> bindToLifecycle(): LifecycleTransformer<T> {
+        return RxLifecycleAndroid.bindActivity(lifecycleSubject)
+    }
+
+    abstract fun setRootDelegate(): BaseDelegate
+
+    @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mDelegate.onCreate(savedInstanceState)
+        lifecycleSubject.onNext(ActivityEvent.CREATE)
         initContainer(savedInstanceState)
+    }
+
+    @CallSuper
+    override fun onStart() {
+        super.onStart()
+        lifecycleSubject.onNext(ActivityEvent.START)
+    }
+
+    @CallSuper
+    override fun onResume() {
+        super.onResume()
+        lifecycleSubject.onNext(ActivityEvent.RESUME)
+    }
+
+    @CallSuper
+    override fun onPause() {
+        lifecycleSubject.onNext(ActivityEvent.PAUSE)
+        super.onPause()
+    }
+
+    @CallSuper
+    override fun onStop() {
+        lifecycleSubject.onNext(ActivityEvent.STOP)
+        super.onStop()
+    }
+
+    @CallSuper
+    override fun onDestroy() {
+        lifecycleSubject.onNext(ActivityEvent.DESTROY)
+        super.onDestroy()
     }
 
     @SuppressLint("RestrictedApi")
@@ -50,68 +92,6 @@ abstract class ProxyActivity : RxAppCompatActivity(), ISupportActivity {
         if (savedInstanceState == null) {
             loadRootFragment(R.id.delegate_container, setRootDelegate())
         }
-
-    }
-
-    override fun onPostCreate(savedInstanceState: Bundle?) {
-        super.onPostCreate(savedInstanceState)
-        mDelegate.onPostCreate(savedInstanceState)
-    }
-
-    override fun onDestroy() {
-        mDelegate.onDestroy()
-        super.onDestroy()
-        System.gc()
-        System.runFinalization()
-    }
-
-    override fun dispatchTouchEvent(ev: MotionEvent?): Boolean {
-        return mDelegate.dispatchTouchEvent(ev) || super.dispatchTouchEvent(ev)
-    }
-
-    /**
-     * 设置Fragment内的全局动画
-     */
-    override fun setFragmentAnimator(fragmentAnimator: FragmentAnimator?) {
-        mDelegate.fragmentAnimator = fragmentAnimator
-    }
-
-    /**
-     * 获取设置的全局动画
-     */
-    override fun getFragmentAnimator(): FragmentAnimator {
-        return mDelegate.fragmentAnimator
-    }
-
-    /**
-     * Activity回退栈内Fragment的数量 小于等于1 时,finish activity
-     */
-    override fun onBackPressedSupport() {
-        mDelegate.onBackPressedSupport()
-    }
-
-    /**
-     * 构建Fragment转场动画
-     * 如果是在Activity内实现,则构建的是Activity内所有Fragment的转场动画,
-     * 如果是在Fragment内实现,则构建的是该Fragment的转场动画,此时优先级 大于 Activity的onCreateFragmentAnimator()
-     */
-    override fun onCreateFragmentAnimator(): FragmentAnimator {
-        return mDelegate.onCreateFragmentAnimator()
-    }
-
-    /**
-     * 前面的事务全部执行后 执行该action
-     */
-    override fun post(runnable: Runnable?) {
-        mDelegate.post(runnable)
-    }
-
-    private fun loadRootFragment(containerId: Int, toFragment: ISupportFragment) {
-        mDelegate.loadRootFragment(containerId, toFragment)
-    }
-
-    protected fun startWithPop(toFragment: ISupportFragment){
-        mDelegate.startWithPop(toFragment)
     }
 
 }
