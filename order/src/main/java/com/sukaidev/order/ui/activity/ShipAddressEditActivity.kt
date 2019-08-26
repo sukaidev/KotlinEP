@@ -25,7 +25,7 @@ class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEd
     override fun injectComponent() {
         DaggerShipAddressComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .shipAddressModule(ShipAddressModule())
             .build()
             .inject(this)

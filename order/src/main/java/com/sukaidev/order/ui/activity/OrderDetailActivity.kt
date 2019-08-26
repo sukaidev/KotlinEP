@@ -25,7 +25,7 @@ class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), IOrderDetai
     override fun injectComponent() {
         DaggerOrderComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .orderModule(OrderModule())
             .build()
             .inject(this)

@@ -36,7 +36,7 @@ class LoginActivity : BaseMvpActivity<LoginPresenter>(), ILoginView, View.OnClic
     override fun injectComponent() {
         DaggerUserComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .userModule(UserModule())
             .build()
             .inject(this)

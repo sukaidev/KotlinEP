@@ -2,7 +2,6 @@ package com.sukaidev.pay.ui.activity
 
 import android.os.Bundle
 import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alipay.sdk.app.EnvUtils
 import com.alipay.sdk.app.PayTask
@@ -37,7 +36,7 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), IPayView, View.OnC
     override fun injectComponent() {
         DaggerPayComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .payModule(PayModule())
             .build()
             .inject(this)

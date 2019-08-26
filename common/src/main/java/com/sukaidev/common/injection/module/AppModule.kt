@@ -7,7 +7,7 @@ import dagger.Provides
 import javax.inject.Singleton
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 @Module

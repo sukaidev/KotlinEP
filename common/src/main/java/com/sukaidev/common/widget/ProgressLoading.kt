@@ -9,7 +9,7 @@ import com.sukaidev.common.R
 import org.jetbrains.anko.find
 
 /**
- * Created by sukai on 2019/08/11.
+ * Created by sukaidev on 2019/08/11.
  *
  */
 class ProgressLoading private constructor(context: Context, val theme: Int) : Dialog(context, theme) {

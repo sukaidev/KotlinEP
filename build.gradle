@@ -2,13 +2,15 @@
 
 buildscript {
     // kotlin版本号
-    ext.kotlin_version = '1.3.41'
+    ext.kotlin_version = '1.3.50'
     // anko版本号
     ext.anko_version = '0.10.8'
     // rxkotlin版本号
     ext.rx_kotlin_version = '1.0.0'
     // rxandroid版本号
     ext.rx_android_version = '1.2.1'
+    // fragmentation版本号
+    ext.fragmentation_version = '1.3.7'
     // retrofit版本号
     ext.retrofit_version = '2.6.1'
     // okttp版本号

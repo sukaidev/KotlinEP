@@ -61,7 +61,7 @@ class UserInfoActivity : BaseMvpActivity<UserInfoPresenter>(), IUserInfoView,
     override fun injectComponent() {
         DaggerUserComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .userModule(UserModule())
             .build()
             .inject(this)

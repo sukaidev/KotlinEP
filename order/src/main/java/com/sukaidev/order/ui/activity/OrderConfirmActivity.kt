@@ -13,7 +13,6 @@ import com.sukaidev.common.ext.setVisible
 import com.sukaidev.common.ui.activity.BaseMvpActivity
 import com.sukaidev.common.utils.MoneyConverter
 import com.sukaidev.order.R
-import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.data.protocol.Order
 import com.sukaidev.order.event.SelectAddressEvent
 import com.sukaidev.order.injection.component.DaggerOrderComponent
@@ -44,7 +43,7 @@ class OrderConfirmActivity : BaseMvpActivity<OrderConfirmPresenter>(), IOrderCon
     override fun injectComponent() {
         DaggerOrderComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .orderModule(OrderModule())
             .build()
             .inject(this)

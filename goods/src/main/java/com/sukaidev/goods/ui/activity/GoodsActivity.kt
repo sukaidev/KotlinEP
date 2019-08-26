@@ -2,7 +2,6 @@ package com.sukaidev.goods.ui.activity
 
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout
 import com.kennyc.view.MultiStateView
@@ -34,7 +33,7 @@ class GoodsActivity : BaseMvpActivity<GoodsListPresenter>(), IGoodsListView,
     override fun injectComponent() {
         DaggerGoodsComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .goodsModule(GoodsModule())
             .build()
             .inject(this)

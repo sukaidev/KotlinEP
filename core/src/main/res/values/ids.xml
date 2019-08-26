@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="delegate_container" type="id" />
+
+    <item name="star_count" type="id" />
+    <item name="star_is_selected" type="id" />
+
+    <item name="evaluation_very_good" type="id" />
+    <item name="evaluation_good" type="id" />
+    <item name="evaluation_normal" type="id" />
+    <item name="evaluation_not_bad" type="id" />
+    <item name="evaluation_very_bad" type="id" />
+</resources>

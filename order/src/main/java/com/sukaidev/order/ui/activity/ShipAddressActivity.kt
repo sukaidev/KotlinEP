@@ -1,16 +1,12 @@
 package com.sukaidev.order.ui.activity
 
-import android.net.Uri
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.eightbitlab.rxbus.Bus
-import com.jph.takephoto.compress.CompressConfig
 import com.kennyc.view.MultiStateView
 import com.sukaidev.common.ext.onClick
-import com.sukaidev.common.ext.setVisible
-import com.sukaidev.common.ext.startLoading
 import com.sukaidev.common.ui.activity.BaseMvpActivity
 import com.sukaidev.common.ui.adapter.BaseRecyclerViewAdapter
 import com.sukaidev.order.R
@@ -37,7 +33,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), IShipAddres
     override fun injectComponent() {
         DaggerShipAddressComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .shipAddressModule(ShipAddressModule())
             .build()
             .inject(this)
