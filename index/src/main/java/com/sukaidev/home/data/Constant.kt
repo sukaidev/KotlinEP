@@ -1,5 +1,9 @@
-package com.sukaidev.kotlinmall.common
+package com.sukaidev.home.data
 
+/**
+ * Created by sukaidev on 2019/08/27.
+ *
+ */
 
 /*
  * 首页Banner
@@ -45,4 +49,3 @@ const val HOME_TOPIC_FOUR =
     "http://img.zcool.cn/community/01796c58772f66a801219c77e4fc04.png@1280w_1l_2o_100sh.png"
 const val HOME_TOPIC_FIVE =
     "http://img.zcool.cn/community/0154805791ffeb0000012e7edba495.jpg@900w_1l_2o_100sh.jpg"
-

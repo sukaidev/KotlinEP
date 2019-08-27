@@ -28,14 +28,19 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation project(':message')
-    implementation project(':goods')
-    implementation project(':order')
-    implementation project(':pay')
-    implementation project(':provider')
-    if (isUserModule.toBoolean()) {
-        api project(':user')
+    if (isCoreModule.toBoolean()) {
+        implementation project(':core')
     }
+    implementation project(':index')
+
+//    implementation project(':message')
+//    implementation project(':goods')
+//    implementation project(':order')
+//    implementation project(':pay')
+//    implementation project(':provider')
+//    if (isUserModule.toBoolean()) {
+//        api project(':user')
+//    }
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     testImplementation 'junit:junit:4.12'

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/news_height"
+    android:background="@drawable/corner_news_bg"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="@dimen/common_padding_middle"
+    android:paddingLeft="@dimen/common_padding_middle"
+    android:paddingTop="@dimen/common_padding_small"
+    android:paddingBottom="@dimen/common_padding_small"
+    tools:ignore="RtlSymmetry">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        style="@style/WrapMatch"
+        android:layout_marginEnd="@dimen/common_margin_middle"
+        android:layout_marginRight="@dimen/common_margin_middle"
+        android:src="@drawable/icon_news" />
+
+    <View
+        style="@style/DividerFixedWidth"
+        android:layout_marginRight="@dimen/common_margin_middle"
+        android:layout_marginEnd="@dimen/common_margin_middle" />
+
+    <ViewFlipper
+        android:id="@+id/mFlipperView"
+        style="@style/MatchWrap"
+        android:flipInterval="3000" />
+</androidx.appcompat.widget.LinearLayoutCompat>

@@ -1,1 +1,1 @@
-include ':app', ':common', ':provider', ':user', ':message', ':goods', ':order', ':pay', ':core'
+include ':app', ':common', ':provider', ':user', ':message', ':goods', ':order', ':pay', ':core', ':index'
