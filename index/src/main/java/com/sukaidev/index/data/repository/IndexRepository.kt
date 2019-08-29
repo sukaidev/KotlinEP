@@ -1,12 +1,6 @@
 package com.sukaidev.index.data.repository
 
-import com.sukaidev.core.data.protocol.BaseResp
-import com.sukaidev.index.data.api.IndexApi
-import retrofit2.Retrofit
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
-import retrofit2.create
+import com.sukaidev.index.data.data
 import rx.Observable
 import javax.inject.Inject
 
@@ -16,18 +10,10 @@ import javax.inject.Inject
  */
 class IndexRepository @Inject constructor() {
 
-    val baseUrl = "https://www.sukaidev.top/api/"
-
     /**
-     * 获取首页数据
+     * 获取首页数据，模拟网络请求
      */
-    fun getIndexData(): Observable<String>? {
-        return Retrofit.Builder()
-            .baseUrl(baseUrl)
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .build()
-            .create(IndexApi::class.java)
-            .getIndexData()
+    fun getIndexData(): Observable<String> {
+        return Observable.just(data)
     }
 }

@@ -8,5 +8,5 @@ import rx.Observable
  */
 interface IndexService {
 
-    fun getIndexData(): Observable<String>?
+    fun getIndexData(): Observable<String>
 }

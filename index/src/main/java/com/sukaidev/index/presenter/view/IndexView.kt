@@ -8,5 +8,5 @@ import com.sukaidev.core.presenter.view.BaseView
  */
 interface IndexView : BaseView{
 
-    fun onGetIndexDataResult(result:String?)
+    fun onGetIndexDataResult(result:String)
 }

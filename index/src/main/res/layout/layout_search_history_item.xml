@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchWrap.Horizontal"
+    android:background="@drawable/border_bottom"
+    android:gravity="center_vertical"
+    android:padding="@dimen/common_padding">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        style="@style/WrapWrap"
+        android:src="@drawable/icon_search_history" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mSearchHistoryTv"
+        style="@style/WrapWrap"
+        android:layout_marginStart="@dimen/common_margin_middle"
+        android:layout_marginLeft="@dimen/common_margin_middle"
+        android:textColor="@color/common_black" />
+</androidx.appcompat.widget.LinearLayoutCompat>

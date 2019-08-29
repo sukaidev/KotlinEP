@@ -10,6 +10,6 @@ import rx.Observable
 interface IndexApi {
 
     @GET("FastEC/kotlin_index.php")
-    fun getIndexData(): Observable<String>?
+    fun getIndexData(): Observable<String>
 
 }

@@ -14,7 +14,7 @@ class IndexServiceImpl @Inject constructor() : IndexService {
     @Inject
     lateinit var repository: IndexRepository
 
-    override fun getIndexData(): Observable<String>? {
+    override fun getIndexData(): Observable<String> {
         return repository.getIndexData()
     }
 }

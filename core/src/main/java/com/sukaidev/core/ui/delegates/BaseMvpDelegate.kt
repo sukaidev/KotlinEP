@@ -16,7 +16,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/26.
  *
  */
-abstract class BaseMvpDelegate<T : BasePresenter<*>> : BaseDelegate(), BaseView {
+abstract class BaseMvpDelegate<T : BasePresenter<*>> : ProxyDelegate(), BaseView {
 
     @Inject
     lateinit var mPresenter: T

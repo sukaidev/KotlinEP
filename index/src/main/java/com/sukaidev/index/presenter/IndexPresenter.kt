@@ -1,5 +1,6 @@
 package com.sukaidev.index.presenter
 
+import android.util.Log
 import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
@@ -24,7 +25,7 @@ class IndexPresenter @Inject constructor() : BasePresenter<IndexView>() {
         if (!checkNetWork()) {
             return
         }
-        service.getIndexData()?.execute(object : BaseSubscriber<String>(mView) {
+        service.getIndexData().execute(object : BaseSubscriber<String>(mView) {
             override fun onNext(t: String) {
                 mView.onGetIndexDataResult(t)
             }
