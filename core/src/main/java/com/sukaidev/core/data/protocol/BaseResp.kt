@@ -1,7 +1,7 @@
-package com.sukaidev.common.data.protocol
+package com.sukaidev.core.data.protocol
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 data class BaseResp<out T>(val status: Int, val message: String, val data: T)

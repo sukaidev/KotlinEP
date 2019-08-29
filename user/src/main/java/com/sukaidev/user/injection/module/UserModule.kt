@@ -6,7 +6,7 @@ import dagger.Module
 import dagger.Provides
 
 /**
- * Created by sukai on 2019/08/10.
+ * Created by sukaidev on 2019/08/10.
  *
  */
 @Module

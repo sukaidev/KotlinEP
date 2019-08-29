@@ -21,7 +21,7 @@ class BannerCreator {
             banner.setImageLoader(BannerImageLoader())
                 .setImages(banners)
                 .setBannerAnimation(Transformer.Default)
-                .setDelayTime(2000)
+                .setDelayTime(4000)
                 .setIndicatorGravity(BannerConfig.CENTER)
                 .start()
         }

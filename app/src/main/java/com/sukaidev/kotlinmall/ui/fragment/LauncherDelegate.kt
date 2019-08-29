@@ -4,12 +4,12 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import com.sukaidev.core.R
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.ui.launcher.ILauncherListener
 import com.sukaidev.core.utils.timer.BaseTimeTask
 import com.sukaidev.core.utils.timer.ITimerListener
+import com.sukaidev.kotlinmall.R
 import kotlinx.android.synthetic.main.delegate_launcher.*
 import java.util.*
 

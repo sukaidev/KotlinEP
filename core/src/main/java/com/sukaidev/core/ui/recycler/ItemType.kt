@@ -7,7 +7,8 @@ package com.sukaidev.core.ui.recycler
 class ItemType {
     companion object {
         const val BANNER = 1
-        const val TEXT = 2
-        const val IMAGE_TEXT = 3
+        const val NEWS = 2
+        const val DISCOUNT = 3
+        const val GOODS = 4
     }
 }

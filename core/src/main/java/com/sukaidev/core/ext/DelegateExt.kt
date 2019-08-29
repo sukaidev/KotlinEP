@@ -6,7 +6,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.core.R
 import com.sukaidev.core.rx.BaseFunc
 import com.sukaidev.core.rx.BaseFuncBoolean

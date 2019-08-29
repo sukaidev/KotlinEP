@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
-import com.sukaidev.core.R
 import com.sukaidev.core.ui.delegates.BaseDelegate
-import com.sukaidev.home.ui.fragment.IndexDelegate
+import com.sukaidev.index.ui.fragment.IndexDelegate
+import com.sukaidev.kotlinmall.R
 import kotlinx.android.synthetic.main.delegate_bottom.*
 import java.util.*
 
@@ -18,10 +18,10 @@ class BottomDelegate : BaseDelegate() {
 
     private val mStack = Stack<Fragment>()
     private val mHomeFragment by lazy { IndexDelegate() }
-    private val mCategoryFragment by lazy { IndexDelegate() }
-    private val mMsgFragment by lazy { IndexDelegate() }
-    private val mCartFragment by lazy { IndexDelegate() }
-    private val mMineFragment by lazy { IndexDelegate() }
+    private val mCategoryFragment by lazy { EmptyDelegate() }
+    private val mMsgFragment by lazy { EmptyDelegate() }
+    private val mCartFragment by lazy { EmptyDelegate() }
+    private val mMineFragment by lazy { EmptyDelegate() }
 
 
     override fun setLayout(): Any {
