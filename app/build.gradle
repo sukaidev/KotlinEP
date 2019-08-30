@@ -28,10 +28,9 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    if (isCoreModule.toBoolean()) {
-        implementation project(':core')
-    }
+    implementation project(':core')
     implementation project(':index')
+    implementation project(':user')
 
 //    implementation project(':message')
 //    implementation project(':goods')

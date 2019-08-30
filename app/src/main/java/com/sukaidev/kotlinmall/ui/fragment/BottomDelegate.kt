@@ -2,15 +2,12 @@ package com.sukaidev.kotlinmall.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
-import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.index.ui.fragment.IndexDelegate
 import com.sukaidev.kotlinmall.R
+import com.sukaidev.user.ui.fragment.UserDelegate
 import kotlinx.android.synthetic.main.delegate_bottom.*
-import me.yokeyword.fragmentation.SupportFragment
-import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -19,12 +16,15 @@ import kotlin.collections.ArrayList
  */
 class BottomDelegate : ProxyDelegate() {
 
+    // 记录当前显示Fragment坐标
+    private var mCurrentDelegate = 0
+
     private val mDelegates = ArrayList<ProxyDelegate>()
     private val mHomeFragment by lazy { IndexDelegate() }
     private val mCategoryFragment by lazy { EmptyDelegate() }
     private val mMsgFragment by lazy { EmptyDelegate() }
     private val mCartFragment by lazy { EmptyDelegate() }
-    private val mMineFragment by lazy { EmptyDelegate() }
+    private val mUserFragment by lazy { UserDelegate() }
 
 
     override fun setLayout(): Any {
@@ -42,14 +42,14 @@ class BottomDelegate : ProxyDelegate() {
         manager?.add(R.id.mContainer, mCategoryFragment)
         manager?.add(R.id.mContainer, mMsgFragment)
         manager?.add(R.id.mContainer, mCartFragment)
-        manager?.add(R.id.mContainer, mMineFragment)
+        manager?.add(R.id.mContainer, mUserFragment)
         manager?.commit()*/
 
         mDelegates.add(mHomeFragment)
         mDelegates.add(mCategoryFragment)
         mDelegates.add(mMsgFragment)
         mDelegates.add(mCartFragment)
-        mDelegates.add(mMineFragment)
+        mDelegates.add(mUserFragment)
 
         loadMultipleRootFragment(
             R.id.mContainer,
@@ -58,7 +58,7 @@ class BottomDelegate : ProxyDelegate() {
             mCategoryFragment,
             mMsgFragment,
             mCartFragment,
-            mMineFragment
+            mUserFragment
         )
 
     }
@@ -74,11 +74,19 @@ class BottomDelegate : ProxyDelegate() {
             }
 
             override fun onTabSelected(position: Int) {
-                changeFragment(position)
+                if (mCurrentDelegate != position) {
+                    showHideFragment(mDelegates[position], mDelegates[mCurrentDelegate])
+                    mCurrentDelegate = position
+                }
             }
         })
     }
 
+/*    */
+    /**
+     * 切换fragment显示
+     * 注意要将原来的fragment隐藏
+     *//*
     private fun changeFragment(position: Int) {
         val manager = fragmentManager?.beginTransaction()
         for (fragment in mDelegates) {
@@ -86,5 +94,5 @@ class BottomDelegate : ProxyDelegate() {
         }
         manager?.show(mDelegates[position])
         manager?.commit()
-    }
+    }*/
 }

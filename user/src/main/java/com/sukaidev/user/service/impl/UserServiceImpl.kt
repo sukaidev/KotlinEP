@@ -1,10 +1,10 @@
 package com.sukaidev.user.service.impl
 
-import com.sukaidev.common.ext.convert
-import com.sukaidev.common.ext.convertBoolean
+import com.sukaidev.core.ext.convert
+import com.sukaidev.core.ext.convertBoolean
 import com.sukaidev.user.data.protocol.UserInfo
 import com.sukaidev.user.data.repository.UserRepository
-import com.sukaidev.user.service.IUserService
+import com.sukaidev.user.service.UserService
 import rx.Observable
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/10.
  *
  */
-class UserServiceImpl @Inject constructor() : IUserService {
+class UserServiceImpl @Inject constructor() : UserService {
 
     @Inject
     lateinit var repository: UserRepository

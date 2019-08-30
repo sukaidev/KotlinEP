@@ -1,9 +1,9 @@
 package com.sukaidev.provider.common
 
 import com.alibaba.android.arouter.launcher.ARouter
-import com.sukaidev.common.common.BaseApplication
-import com.sukaidev.common.common.BaseConstant
-import com.sukaidev.common.utils.AppPrefsUtils
+import com.sukaidev.core.common.BaseApplication
+import com.sukaidev.core.common.BaseConstant
+import com.sukaidev.core.utils.AppPrefsUtils
 import com.sukaidev.provider.router.RouterPath
 import org.jetbrains.anko.toast
 
@@ -19,7 +19,7 @@ fun afterLogin(method: () -> Unit) {
     if (isLogin()) {
         method()
     } else {
-        BaseApplication.instance().toast("请先登录")
+        BaseApplication.instance.toast("请先登录")
         ARouter.getInstance().build(RouterPath.User.PATH_LOGIN).navigation()
     }
 }

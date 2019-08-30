@@ -1,10 +1,8 @@
 package com.sukaidev.user.data.repository
 
-import com.sukaidev.common.data.net.RetrofitFactory
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.net.RetrofitFactory
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.user.data.api.UploadApi
-import com.sukaidev.user.data.api.UserApi
-import com.sukaidev.user.data.protocol.*
 import rx.Observable
 import javax.inject.Inject
 

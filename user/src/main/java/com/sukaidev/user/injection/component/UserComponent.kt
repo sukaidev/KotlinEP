@@ -1,10 +1,10 @@
 package com.sukaidev.user.injection.component
 
-import com.sukaidev.common.injection.PerComponentScope
-import com.sukaidev.common.injection.component.ActivityComponent
+import com.sukaidev.core.injection.PerComponentScope
+import com.sukaidev.core.injection.component.ActivityComponent
 import com.sukaidev.user.injection.module.UploadModule
 import com.sukaidev.user.injection.module.UserModule
-import com.sukaidev.user.ui.activity.*
+import com.sukaidev.user.ui.fragment.*
 import dagger.Component
 
 /**
@@ -17,9 +17,9 @@ import dagger.Component
     modules = [UserModule::class, UploadModule::class]
 )
 interface UserComponent {
-    fun inject(activity: LoginActivity)
-    fun inject(activity: RegisterActivity)
-    fun inject(activity: ForgetPwdActivity)
-    fun inject(activity: ResetPwdActivity)
-    fun inject(activity: UserInfoActivity)
+    fun inject(delegate: LoginDelegate)
+    fun inject(delegate: RegisterDelegate)
+    fun inject(delegate: ForgetPwdDelegate)
+    fun inject(delegate: ResetPwdDelegate)
+    fun inject(delegate: UserInfoDelegate)
 }

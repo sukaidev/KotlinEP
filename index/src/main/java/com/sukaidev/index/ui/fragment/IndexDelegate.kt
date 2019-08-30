@@ -6,8 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ui.delegates.BaseDelegate
-import com.sukaidev.core.ui.delegates.BaseMvpDelegate
-import com.sukaidev.core.ui.delegates.ProxyDelegate
+import com.sukaidev.core.ui.delegates.ProxyMvpDelegate
 import com.sukaidev.core.ui.recycler.BaseDecoration
 import com.sukaidev.core.ui.recycler.MultipleRecyclerAdapter
 import com.sukaidev.index.R
@@ -23,7 +22,7 @@ import kotlinx.android.synthetic.main.delegate_index.*
  * Created by sukaidev on 2019/08/26.
  * 主页Fragment.
  */
-class IndexDelegate : BaseMvpDelegate<IndexPresenter>(), IndexView {
+class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
 
     private lateinit var mAdapter: MultipleRecyclerAdapter
 

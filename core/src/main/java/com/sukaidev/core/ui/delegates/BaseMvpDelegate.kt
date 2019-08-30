@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/26.
- *
+ * Mvp架构Fragment基类.
  */
 abstract class BaseMvpDelegate<T : BasePresenter<*>> : ProxyDelegate(), BaseView {
 
@@ -43,18 +43,5 @@ abstract class BaseMvpDelegate<T : BasePresenter<*>> : ProxyDelegate(), BaseView
 
     override fun onError(msg: String) {
         _mActivity.toast(msg)
-    }
-
-    private val WAIT_TIME = 2000L
-    private var TOUCH_TIME: Long = 0
-
-    override fun onBackPressedSupport(): Boolean {
-        if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
-            _mActivity.finish()
-        } else {
-            TOUCH_TIME = System.currentTimeMillis()
-            Toast.makeText(context, "双击退出", Toast.LENGTH_SHORT).show()
-        }
-        return true
     }
 }

@@ -1,8 +1,4 @@
-if (isCoreModule.toBoolean()) {
-    apply plugin: 'com.android.library'
-} else {
-    apply plugin: 'com.android.application'
-}
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -28,17 +24,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    sourceSets {
-        main {
-            if (isUserModule.toBoolean()) {
-                manifest.srcFile 'src/main/release/AndroidManifest.xml'
-            } else {
-                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
-            }
-        }
-    }
-
 }
 
 dependencies {

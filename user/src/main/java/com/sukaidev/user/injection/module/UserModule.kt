@@ -1,6 +1,6 @@
 package com.sukaidev.user.injection.module
 
-import com.sukaidev.user.service.IUserService
+import com.sukaidev.user.service.UserService
 import com.sukaidev.user.service.impl.UserServiceImpl
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,7 @@ import dagger.Provides
 class UserModule {
 
     @Provides
-    fun providesUserService(service: UserServiceImpl): IUserService {
+    fun providesUserService(service: UserServiceImpl): UserService {
         return service
     }
 }

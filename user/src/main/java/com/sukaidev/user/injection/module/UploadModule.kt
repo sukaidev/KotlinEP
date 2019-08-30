@@ -1,6 +1,6 @@
 package com.sukaidev.user.injection.module
 
-import com.sukaidev.user.service.IUploadService
+import com.sukaidev.user.service.UploadService
 import com.sukaidev.user.service.impl.UploadServiceImpl
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,7 @@ import dagger.Provides
 class UploadModule {
 
     @Provides
-    fun providesUploadService(service: UploadServiceImpl): IUploadService {
+    fun providesUploadService(service: UploadServiceImpl): UploadService {
         return service
     }
 }

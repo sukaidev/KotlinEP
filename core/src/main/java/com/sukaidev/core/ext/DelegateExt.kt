@@ -2,10 +2,14 @@ package com.sukaidev.core.ext
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.core.R
 import com.sukaidev.core.rx.BaseFunc
@@ -13,6 +17,10 @@ import com.sukaidev.core.rx.BaseFuncBoolean
 import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.core.widget.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
+import de.hdodenhof.circleimageview.CircleImageView
+import me.yokeyword.fragmentation.ISupportFragment
+import me.yokeyword.fragmentation.SupportFragment
+import me.yokeyword.fragmentation.SupportFragmentDelegate
 import org.jetbrains.anko.find
 import ren.qinc.numberbutton.NumberButton
 import rx.Observable
@@ -48,8 +56,8 @@ private class NotNullSingleValueVar<T> : ReadWriteProperty<Any?, T> {
 }
 
 
-private class Preference<T>(val context: Context, val name: String, val default: T)
-    : ReadWriteProperty<Any?, T> {
+private class Preference<T>(val context: Context, val name: String, val default: T) :
+    ReadWriteProperty<Any?, T> {
 
     val prefs: SharedPreferences by lazy {
         context.getSharedPreferences("default", Context.MODE_PRIVATE)
@@ -131,6 +139,27 @@ fun View.onClick(method: () -> Unit) {
 }
 
 /**
+ * 扩展Fragmentation启动fragment方法以支持参数传递
+ * 暂时只写了Int和String两种情况
+ */
+fun <T : SupportFragment> SupportFragmentDelegate.startWithNewBundle(
+    delegate: T,
+    vararg params: Pair<String, Any?>
+) {
+    val args = Bundle()
+    params.forEach {
+        when (val value = it.second) {
+            is Int -> args.putInt(it.first, value)
+            is String -> args.putString(it.first, value)
+            else -> throw IllegalArgumentException("startWithNewBundle(${it.first}) has wrong type ${value?.javaClass?.name}")
+        }
+        return@forEach
+    }
+    delegate.arguments = args
+    start(delegate)
+}
+
+/**
  * 通过EditText状态修改Button状态
  */
 fun Button.enable(et: AppCompatEditText, method: () -> Boolean) {
@@ -154,4 +183,9 @@ fun View.setVisible(visible: Boolean) {
  */
 fun NumberButton.getEditText(): EditText {
     return find(R.id.text_count)
+}
+
+fun CircleImageView.loadUrl(url: String) {
+    Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop()
+        .dontAnimate().into(this)
 }

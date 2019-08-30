@@ -1,7 +1,7 @@
 package com.sukaidev.user.utils
 
-import com.sukaidev.common.common.BaseConstant
-import com.sukaidev.common.utils.AppPrefsUtils
+import com.sukaidev.core.common.BaseConstant
+import com.sukaidev.core.utils.AppPrefsUtils
 import com.sukaidev.provider.common.ProviderConstant
 import com.sukaidev.user.data.protocol.UserInfo
 

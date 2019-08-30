@@ -10,10 +10,8 @@ import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setVisible
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.utils.AppPrefsUtils
-import com.sukaidev.index.R
 import com.sukaidev.index.ui.adapter.SearchHistoryAdapter
 import kotlinx.android.synthetic.main.delegate_search.*
-import kotlinx.android.synthetic.main.layout_search_history_item.*
 import org.jetbrains.anko.toast
 
 /**
@@ -25,7 +23,7 @@ class SearchDelegate : ProxyDelegate(), View.OnClickListener {
     private lateinit var mAdapter: SearchHistoryAdapter
 
     override fun setLayout(): Any {
-        return R.layout.delegate_search
+        return com.sukaidev.index.R.layout.delegate_search
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
@@ -94,8 +92,8 @@ class SearchDelegate : ProxyDelegate(), View.OnClickListener {
                 // 先将键盘隐藏再将fragment出栈
                 val inputMethodManager =
                     getProxyActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(mSearchHistoryTv.windowToken, 0)
-                pop()
+                inputMethodManager.hideSoftInputFromWindow(mSearchTv.windowToken, 0)
+                supportDelegate.pop()
             }
             mSearchTv -> doSearch()
             mClearBtn -> {
