@@ -6,7 +6,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.index.ui.fragment.IndexDelegate
 import com.sukaidev.kotlinmall.R
-import com.sukaidev.user.ui.user.MineDelegate
+import com.sukaidev.mine.ui.user.MineDelegate
 import kotlinx.android.synthetic.main.delegate_bottom.*
 import kotlin.collections.ArrayList
 

@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">Mine</string>
+    <string name="app_name">user</string>
+    <string name="un_login_text">登录/注册</string>
+
+    <!--关于页面-->
+    <string name="about_app">about app</string>
+    <string name="about_app_text">\n
+        1.使用Kotlin语言开发\n
+        2.采用MVP软件设计架构\n
+        3.搭建通用框架\n
+    </string>
+    <string name="sourceCode">source code</string>
+    <string name="sourceCodeUrl">https://github.com/sukaidev/KotlinMall</string>
+    <string name="appIntroduce">introduce</string>
+    <string name="appIntroduceUrl">https://github.com/sukaidev/KotlinMall</string>
+    <string name="about_author">about author</string>
+    <string name="blogUrl">https://www.sukaidev.top/</string>
+    <string name="githubUrl">https://github.com/sukaidev</string>
+    <string name="email">suhaihong88@gmail.com</string>
+    <string name="about_library">\n
+        1.org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.41\n
+        2.org.jetbrains.anko:anko-commons:0.10.8\n
+        3.io.reactivex:rxkotlin:1.0.0\n
+        4.io.reactivex:rxandroid:1.2.1\n
+        5.com.squareup.retrofit2:retrofit:2.6.1\n
+        6.com.squareup.okhttp3:okhttp:3.12.1\n
+        7.com.google.dagger:dagger:2.11\n
+        8.com.trello:rxlifecycle-kotlin:1.0\n
+        9.com.eightbitlab:rxbus:1.0.2\n
+        10.com.github.bumptech.glide:glide:4.9.0\n
+        11.com.jph.takephoto:takephoto_library:4.0.3\n
+        12.com.alibaba:arouter-api:1.5.0\n
+        13.com.youth.banner:banner:1.4.10\n
+        14.de.hdodenhof:circleimageview:3.0.0
+    </string>
 </resources>
