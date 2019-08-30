@@ -1,8 +1,7 @@
-package com.sukaidev.user.ui.fragment
+package com.sukaidev.user.ui.user
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.loadUrl
 import com.sukaidev.core.ui.delegates.BaseDelegate
@@ -12,18 +11,18 @@ import com.sukaidev.provider.common.ProviderConstant
 import com.sukaidev.provider.common.ProviderConstant.Companion.KEY_SP_USER_ICON
 import com.sukaidev.provider.common.isLogin
 import com.sukaidev.user.R
+import com.sukaidev.user.ui.setttings.SettingsDelegate
 import kotlinx.android.synthetic.main.delegate_user_info.mUserIconIv
-import kotlinx.android.synthetic.main.delegate_user.*
-import org.jetbrains.anko.toast
+import kotlinx.android.synthetic.main.delegate_mine.*
 
 /**
  * Created by sukaidev on 2019/08/14.
  * 用户页面.
  */
-class UserDelegate : ProxyDelegate(), View.OnClickListener {
+class MineDelegate : ProxyDelegate(), View.OnClickListener {
 
     override fun setLayout(): Any {
-        return R.layout.delegate_user
+        return R.layout.delegate_mine
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
@@ -82,12 +81,12 @@ class UserDelegate : ProxyDelegate(), View.OnClickListener {
                     context?.startActivity<OrderActivity>()
                 }*/
             }
-/*            mAddressTv -> afterLogin { context?.startActivity<ShipAddressActivity>() }
-            mSettingTv -> context?.startActivity<SettingActivity>()*/
+/*            mAddressTv -> afterLogin { context?.startActivity<ShipAddressActivity>() }*/
+            mSettingTv -> getParentDelegate<BaseDelegate>().supportDelegate.start(SettingsDelegate())
         }
     }
 
-    private val WAIT_TIME = 2000L
+/*    private val WAIT_TIME = 2000L
     private var TOUCH_TIME: Long = 0
 
     override fun onBackPressedSupport(): Boolean {
@@ -98,5 +97,5 @@ class UserDelegate : ProxyDelegate(), View.OnClickListener {
             context?.toast("双击退出")
         }
         return true
-    }
+    }*/
 }

@@ -1,4 +1,4 @@
-package com.sukaidev.user.ui.fragment
+package com.sukaidev.user.ui.user
 
 import android.os.Bundle
 import android.view.View

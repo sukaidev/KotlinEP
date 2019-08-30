@@ -32,10 +32,12 @@ dependencies {
     // android support
     api 'androidx.appcompat:appcompat:1.0.2'
     api 'androidx.recyclerview:recyclerview:1.1.0-beta03'
+    api 'com.android.support:design:28.0.0'
     api 'androidx.cardview:cardview:1.0.0'
 
     // kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api 'androidx.core:core-ktx:1.0.2'
     // Anko Commons
     api "org.jetbrains.anko:anko-commons:$anko_version"
     // fragmentation
@@ -94,8 +96,6 @@ dependencies {
     // fastJson
     api 'com.alibaba:fastjson:1.1.71.android'
 
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'

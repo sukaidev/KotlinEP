@@ -1,11 +1,10 @@
-package com.sukaidev.user.ui.fragment
+package com.sukaidev.user.ui.user
 
 import android.os.Bundle
 import android.view.View
 import com.sukaidev.core.ext.enable
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.startWithNewBundle
-import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.user.R
 import com.sukaidev.user.injection.component.DaggerUserComponent
@@ -17,8 +16,6 @@ import kotlinx.android.synthetic.main.delegate_forget_pwd.mHeaderBar
 import kotlinx.android.synthetic.main.delegate_forget_pwd.mMobileEt
 import kotlinx.android.synthetic.main.delegate_forget_pwd.mVerifyCodeBtn
 import kotlinx.android.synthetic.main.delegate_forget_pwd.mVerifyCodeEt
-import kotlinx.android.synthetic.main.delegate_register.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 
 /**

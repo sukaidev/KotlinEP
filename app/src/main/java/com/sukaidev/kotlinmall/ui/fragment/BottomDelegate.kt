@@ -6,7 +6,7 @@ import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.index.ui.fragment.IndexDelegate
 import com.sukaidev.kotlinmall.R
-import com.sukaidev.user.ui.fragment.UserDelegate
+import com.sukaidev.user.ui.user.MineDelegate
 import kotlinx.android.synthetic.main.delegate_bottom.*
 import kotlin.collections.ArrayList
 
@@ -24,7 +24,7 @@ class BottomDelegate : ProxyDelegate() {
     private val mCategoryFragment by lazy { EmptyDelegate() }
     private val mMsgFragment by lazy { EmptyDelegate() }
     private val mCartFragment by lazy { EmptyDelegate() }
-    private val mUserFragment by lazy { UserDelegate() }
+    private val mUserFragment by lazy { MineDelegate() }
 
 
     override fun setLayout(): Any {

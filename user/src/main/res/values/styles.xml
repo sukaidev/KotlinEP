@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!--展开时标题-->
+    <style name="title_expanded_style">
+        <item name="android:text">极速商城</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">22sp</item>
+
+    </style>
+    <!--折叠时标题-->
+    <style name="title_collapsed_style">
+        <item name="android:text">极速商城</item>
+        <item name="android:textColor">@color/common_white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <!-- 用户信息单行 -->
     <style name="user_info_line_style">
         <item name="android:background">@drawable/border_bottom</item>

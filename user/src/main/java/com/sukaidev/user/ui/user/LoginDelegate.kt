@@ -1,4 +1,4 @@
-package com.sukaidev.user.ui.fragment
+package com.sukaidev.user.ui.user
 
 import android.os.Bundle
 import android.view.View
@@ -8,9 +8,7 @@ import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.event.LoginSuccessEvent
 import com.sukaidev.core.ext.enable
 import com.sukaidev.core.ext.onClick
-import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
-import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.provider.IPushProvider
 import com.sukaidev.provider.router.RouterPath
 import com.sukaidev.user.R

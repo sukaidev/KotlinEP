@@ -4,7 +4,7 @@ import com.sukaidev.core.injection.PerComponentScope
 import com.sukaidev.core.injection.component.ActivityComponent
 import com.sukaidev.user.injection.module.UploadModule
 import com.sukaidev.user.injection.module.UserModule
-import com.sukaidev.user.ui.fragment.*
+import com.sukaidev.user.ui.user.*
 import dagger.Component
 
 /**
