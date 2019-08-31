@@ -8,23 +8,19 @@ import android.view.View
 import android.view.ViewGroup.LayoutParams
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
-import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
-import com.sukaidev.common.ext.getEditText
-import com.sukaidev.common.ext.loadUrl
-import com.sukaidev.common.ext.onClick
-import com.sukaidev.common.utils.MoneyConverter
-import com.sukaidev.common.widget.DefaultTextWatcher
+import com.sukaidev.core.ext.getEditText
+import com.sukaidev.core.ext.loadUrl
+import com.sukaidev.core.ext.onClick
+import com.sukaidev.core.utils.MoneyConverter
+import com.sukaidev.core.widget.DefaultTextWatcher
 import com.sukaidev.goods.R
 import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.GoodsSku
 import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.event.SkuChangedEvent
-import com.sukaidev.provider.common.afterLogin
-import com.sukaidev.provider.common.isLogin
-import com.sukaidev.provider.router.RouterPath
+import com.sukaidev.goods.common.afterLogin
 import kotlinx.android.synthetic.main.layout_sku_pop.view.*
-import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/16.

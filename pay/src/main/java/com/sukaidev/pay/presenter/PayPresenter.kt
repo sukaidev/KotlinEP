@@ -1,8 +1,8 @@
 package com.sukaidev.pay.presenter
 
-import com.sukaidev.common.ext.execute
-import com.sukaidev.common.presenter.BasePresenter
-import com.sukaidev.common.rx.BaseSubscriber
+import com.sukaidev.core.ext.execute
+import com.sukaidev.core.presenter.BasePresenter
+import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.pay.presenter.view.IPayView
 import com.sukaidev.pay.service.IPayService
 import javax.inject.Inject
@@ -23,7 +23,7 @@ class PayPresenter @Inject constructor() : BasePresenter<IPayView>() {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
+//        mView.showLoading()
         service.getPaySign(orderId, totalPrice).execute(object : BaseSubscriber<String>(mView) {
             override fun onNext(t: String) {
                 mView.onGetPaySignResult(t)
@@ -38,7 +38,7 @@ class PayPresenter @Inject constructor() : BasePresenter<IPayView>() {
         if (!checkNetWork()) {
             return
         }
-        mView.showLoading()
+//        mView.showLoading()
         service.payOrder(orderId).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
                 mView.onPayOrderResult(t)

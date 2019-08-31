@@ -1,6 +1,6 @@
 package com.sukaidev.goods.data.api
 
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.goods.data.protocol.Category
 import com.sukaidev.goods.data.protocol.GetCategoryReq
 import retrofit2.http.Body

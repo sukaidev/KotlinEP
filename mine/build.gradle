@@ -48,8 +48,8 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':provider')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':provider')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
     kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"

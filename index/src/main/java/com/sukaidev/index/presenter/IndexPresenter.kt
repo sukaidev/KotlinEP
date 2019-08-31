@@ -1,12 +1,10 @@
 package com.sukaidev.index.presenter
 
-import android.util.Log
 import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.index.presenter.view.IndexView
 import com.sukaidev.index.service.IndexService
-import com.sukaidev.index.service.impl.IndexServiceImpl
 import javax.inject.Inject
 
 /**
@@ -16,7 +14,7 @@ import javax.inject.Inject
 class IndexPresenter @Inject constructor() : BasePresenter<IndexView>() {
 
     @Inject
-    lateinit var service: IndexServiceImpl
+    lateinit var service: IndexService
 
     /**
      * 获取首页数据

@@ -15,6 +15,8 @@ enum class MultipleFields {
     IMAGE_TEXT,
     SPAN_SIZE,
     ID,
+    PARENT_ID,
+    IS_SELECTED,
     NAME,
     TAG
 }

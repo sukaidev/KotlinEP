@@ -36,7 +36,7 @@ class SkuView @JvmOverloads constructor(
         mGoodsSku = goodsSku
         mSkuTitleTv.text = goodsSku.skuTitle
 
-        //FlowLayout设置数据
+        // FlowLayout设置数据
         mSkuContentView.adapter = object : TagAdapter<String>(goodsSku.skuContent) {
             override fun getView(parent: FlowLayout?, position: Int, t: String?): View {
                 val view = LayoutInflater.from(context)

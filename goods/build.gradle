@@ -27,12 +27,11 @@ android {
 }
 
 dependencies {
-    api fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
 
-    api project(":provider")
-    implementation 'androidx.fragment:fragment:1.2.0-alpha02'
+    implementation project(":core")
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

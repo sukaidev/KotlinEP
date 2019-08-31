@@ -7,7 +7,7 @@ import rx.Observable
  * Created by sukaidev on 2019/08/15.
  * 商品信息M层接口.
  */
-interface IGoodsService {
+interface GoodsService {
 
     /**
      * 获取商品列表

@@ -1,7 +1,7 @@
 package com.sukaidev.goods.data.repository
 
-import com.sukaidev.common.data.net.RetrofitFactory
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.net.RetrofitFactory
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.goods.data.api.CategoryApi
 import com.sukaidev.goods.data.api.GoodsApi
 import com.sukaidev.goods.data.protocol.GetCategoryReq

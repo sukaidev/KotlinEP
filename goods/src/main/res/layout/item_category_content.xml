@@ -4,12 +4,12 @@
     android:layout_marginBottom="@dimen/common_margin">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/mCategoryIconIv"
+        android:id="@+id/mCategoryContentIconIv"
         android:layout_width="65dp"
         android:layout_height="65dp" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/mSecondCategoryNameTv"
+        android:id="@+id/mCategoryContentNameTv"
         style="@style/WrapWrap"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/common_margin_middle"

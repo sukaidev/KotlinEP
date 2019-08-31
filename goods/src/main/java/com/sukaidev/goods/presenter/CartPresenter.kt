@@ -1,21 +1,21 @@
 package com.sukaidev.goods.presenter
 
-import com.sukaidev.common.ext.execute
-import com.sukaidev.common.presenter.BasePresenter
-import com.sukaidev.common.rx.BaseSubscriber
+import com.sukaidev.core.ext.execute
+import com.sukaidev.core.presenter.BasePresenter
+import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.goods.data.protocol.CartGoods
-import com.sukaidev.goods.presenter.view.ICartView
-import com.sukaidev.goods.service.ICartService
+import com.sukaidev.goods.presenter.view.CartView
+import com.sukaidev.goods.service.CartService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/16.
  *
  */
-class CartPresenter @Inject constructor() : BasePresenter<ICartView>() {
+class CartPresenter @Inject constructor() : BasePresenter<CartView>() {
 
     @Inject
-    lateinit var service: ICartService
+    lateinit var service: CartService
 
     /**
      * 获取购物车商品列表

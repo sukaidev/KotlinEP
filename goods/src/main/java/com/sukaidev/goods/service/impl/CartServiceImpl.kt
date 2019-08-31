@@ -1,10 +1,10 @@
 package com.sukaidev.goods.service.impl
 
-import com.sukaidev.common.ext.convert
-import com.sukaidev.common.ext.convertBoolean
+import com.sukaidev.core.ext.convert
+import com.sukaidev.core.ext.convertBoolean
 import com.sukaidev.goods.data.protocol.CartGoods
 import com.sukaidev.goods.data.repository.CartRepository
-import com.sukaidev.goods.service.ICartService
+import com.sukaidev.goods.service.CartService
 import rx.Observable
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/16.
  *
  */
-class CartServiceImpl @Inject constructor() : ICartService {
+class CartServiceImpl @Inject constructor() : CartService {
 
     @Inject
     lateinit var repository: CartRepository

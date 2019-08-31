@@ -30,7 +30,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(':core')
+    implementation project(':core')
 
     api 'com.squareup.retrofit2:converter-scalars:2.5.0'
 

@@ -49,6 +49,11 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
         }
     }
 
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
+        mPresenter.getIndexData()
+    }
+
     private fun initRecyclerView() {
         val manager = GridLayoutManager(context, 4)
         mIndexRv.layoutManager = manager
@@ -60,7 +65,6 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
                 ), 10
             )
         )
-        mPresenter.getIndexData()
     }
 
     override fun onGetIndexDataResult(result: String) {

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.sukaidev.core.ui.delegates.ProxyDelegate
+import com.sukaidev.goods.ui.category.CategoryDelegate
 import com.sukaidev.index.ui.fragment.IndexDelegate
 import com.sukaidev.kotlinmall.R
 import com.sukaidev.mine.ui.user.MineDelegate
@@ -21,7 +22,7 @@ class BottomDelegate : ProxyDelegate() {
 
     private val mDelegates = ArrayList<ProxyDelegate>()
     private val mHomeFragment by lazy { IndexDelegate() }
-    private val mCategoryFragment by lazy { EmptyDelegate() }
+    private val mCategoryFragment by lazy { CategoryDelegate() }
     private val mMsgFragment by lazy { EmptyDelegate() }
     private val mCartFragment by lazy { EmptyDelegate() }
     private val mUserFragment by lazy { MineDelegate() }

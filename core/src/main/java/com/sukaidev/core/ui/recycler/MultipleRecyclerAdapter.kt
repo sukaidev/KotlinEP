@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.item_multiple_news.view.*
  * Created by sukaidev on 2019/08/27.
  *
  */
-open class MultipleRecyclerAdapter (data: ArrayList<MultipleItemEntity>) :
+open class MultipleRecyclerAdapter (data: MutableList<MultipleItemEntity>) :
     BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>(data),
     BaseQuickAdapter.SpanSizeLookup,
     BaseQuickAdapter.OnItemClickListener {

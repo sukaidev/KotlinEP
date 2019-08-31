@@ -1,12 +1,12 @@
 package com.sukaidev.pay.presenter.view
 
-import com.sukaidev.common.presenter.view.BaseView
+import com.sukaidev.core.presenter.view.BaseView
 
 /**
  * Created by sukaidev on 2019/08/19.
  *
  */
-interface IPayView :BaseView {
+interface IPayView : BaseView {
 
     fun onGetPaySignResult(result:String)
 

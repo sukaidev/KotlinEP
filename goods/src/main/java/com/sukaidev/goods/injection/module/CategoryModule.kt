@@ -1,6 +1,6 @@
 package com.sukaidev.goods.injection.module
 
-import com.sukaidev.goods.service.ICategoryService
+import com.sukaidev.goods.service.CategoryService
 import com.sukaidev.goods.service.impl.CategoryServiceImpl
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,7 @@ import dagger.Provides
 class CategoryModule {
 
     @Provides
-    fun providesCategoryService(service: CategoryServiceImpl): ICategoryService {
+    fun providesCategoryService(service: CategoryServiceImpl): CategoryService {
         return service
     }
 }

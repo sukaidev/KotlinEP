@@ -1,7 +1,7 @@
 package com.sukaidev.pay.service.impl
 
-import com.sukaidev.common.ext.convert
-import com.sukaidev.common.ext.convertBoolean
+import com.sukaidev.core.ext.convert
+import com.sukaidev.core.ext.convertBoolean
 import com.sukaidev.pay.data.repository.PayRepository
 import com.sukaidev.pay.service.IPayService
 import rx.Observable

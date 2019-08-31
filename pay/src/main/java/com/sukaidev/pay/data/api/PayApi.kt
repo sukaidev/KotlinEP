@@ -1,6 +1,6 @@
 package com.sukaidev.pay.data.api
 
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.pay.data.protocol.GetPaySignReq
 import com.sukaidev.pay.data.protocol.PayOrderReq
 import retrofit2.http.Body

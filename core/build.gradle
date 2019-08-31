@@ -35,6 +35,9 @@ dependencies {
     api 'com.android.support:design:28.0.0'
     api 'androidx.cardview:cardview:1.0.0'
 
+    // logger
+    api 'com.orhanobut:logger:2.2.0'
+
     // kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'androidx.core:core-ktx:1.0.2'

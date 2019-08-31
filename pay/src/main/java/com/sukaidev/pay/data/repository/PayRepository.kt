@@ -1,7 +1,7 @@
 package com.sukaidev.pay.data.repository
 
-import com.sukaidev.common.data.net.RetrofitFactory
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.net.RetrofitFactory
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.pay.data.api.PayApi
 import com.sukaidev.pay.data.protocol.GetPaySignReq
 import com.sukaidev.pay.data.protocol.PayOrderReq

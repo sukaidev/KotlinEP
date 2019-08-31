@@ -7,7 +7,7 @@ import rx.Observable
  * Created by sukaidev on 2019/08/16.
  *
  */
-interface ICartService {
+interface CartService {
     /**
      * 获取购物车列表
      */

@@ -1,7 +1,7 @@
 package com.sukaidev.pay.injection.component
 
-import com.sukaidev.common.injection.PerComponentScope
-import com.sukaidev.common.injection.component.ActivityComponent
+import com.sukaidev.core.injection.PerComponentScope
+import com.sukaidev.core.injection.component.ActivityComponent
 import com.sukaidev.pay.injection.module.PayModule
 import com.sukaidev.pay.ui.activity.CashRegisterActivity
 import dagger.Component

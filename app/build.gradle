@@ -30,6 +30,7 @@ dependencies {
 
     implementation project(':core')
     implementation project(':index')
+    implementation project(':goods')
     implementation project(':mine')
 
 //    implementation project(':message')

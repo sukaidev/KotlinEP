@@ -1,6 +1,6 @@
 package com.sukaidev.goods.injection.module
 
-import com.sukaidev.goods.service.ICartService
+import com.sukaidev.goods.service.CartService
 import com.sukaidev.goods.service.impl.CartServiceImpl
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,7 @@ import dagger.Provides
 class CartModule {
 
     @Provides
-    fun providesCartService(service: CartServiceImpl): ICartService {
+    fun providesCartService(service: CartServiceImpl): CartService {
         return service
     }
 }

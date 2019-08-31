@@ -5,11 +5,11 @@ import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alipay.sdk.app.EnvUtils
 import com.alipay.sdk.app.PayTask
-import com.sukaidev.common.ext.onClick
-import com.sukaidev.common.ui.activity.BaseMvpActivity
-import com.sukaidev.common.utils.MoneyConverter
+import com.sukaidev.core.ext.onClick
+import com.sukaidev.core.ui.activities.BaseMvpActivity
+import com.sukaidev.core.ui.delegates.BaseDelegate
+import com.sukaidev.core.utils.MoneyConverter
 import com.sukaidev.pay.R
-import com.sukaidev.pay.injection.component.DaggerPayComponent
 import com.sukaidev.pay.injection.module.PayModule
 import com.sukaidev.pay.presenter.PayPresenter
 import com.sukaidev.pay.presenter.view.IPayView
@@ -24,7 +24,8 @@ import org.jetbrains.anko.uiThread
  * Created by sukaidev on 2019/08/19.
  * 收银台界面.
  */
-@Route(path = RouterPath.Pay.PATH_PAY)
+//@Route(path = RouterPath.Pay.PATH_PAY)
+/*
 class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), IPayView, View.OnClickListener {
 
     // 订单号
@@ -53,9 +54,11 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), IPayView, View.OnC
         initData()
     }
 
-    /**
+    */
+/**
      * 初始化视图
-     */
+     *//*
+
     private fun initView() {
         mOrderId = intent.getIntExtra(ProviderConstant.KEY_ORDER_ID, -1)
         mTotalPrice = intent.getLongExtra(ProviderConstant.KEY_ORDER_PRICE, -1)
@@ -63,9 +66,11 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), IPayView, View.OnC
         mTotalPriceTv.text = MoneyConverter.changeF2YWithUnit(mTotalPrice)
     }
 
-    /**
+    */
+/**
      * 初始化数据
-     */
+     *//*
+
     private fun initData() {
         mAlipayTypeTv.isSelected = true
         mAlipayTypeTv.onClick(this)
@@ -91,18 +96,22 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), IPayView, View.OnC
         }
     }
 
-    /**
+    */
+/**
      * 选择支付类型，UI变化
-     */
+     *//*
+
     private fun updatePayType(isAliPay: Boolean, isWeixinPay: Boolean, isBankCardPay: Boolean) {
         mAlipayTypeTv.isSelected = isAliPay
         mWeixinTypeTv.isSelected = isWeixinPay
         mBankCardTypeTv.isSelected = isBankCardPay
     }
 
-    /**
+    */
+/**
      * 获取支付签名回调
-     */
+     *//*
+
     override fun onGetPaySignResult(result: String) {
         doAsync {
             val resultMap: Map<String, String> =
@@ -117,11 +126,13 @@ class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), IPayView, View.OnC
         }
     }
 
-    /**
+    */
+/**
      * 支付订单回调
-     */
+     *//*
+
     override fun onPayOrderResult(result: Boolean) {
         toast("支付成功")
         finish()
     }
-}
+}*/

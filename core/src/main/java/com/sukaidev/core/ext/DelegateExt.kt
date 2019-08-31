@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
 import com.bumptech.glide.Glide
@@ -185,7 +186,7 @@ fun NumberButton.getEditText(): EditText {
     return find(R.id.text_count)
 }
 
-fun CircleImageView.loadUrl(url: String) {
+fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop()
         .dontAnimate().into(this)
 }

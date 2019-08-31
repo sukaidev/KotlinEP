@@ -79,22 +79,8 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
         mTakePhoto.onCreate(savedInstanceState)
 
         initData()
+        initView()
 
-        mUserIconView.onClick {
-            checkPermission()
-        }
-        mHeaderBar.getLeftIv().onClick {
-            pop()
-        }
-        mHeaderBar.getRightTv().onClick {
-            context?.toast("点击了")
-            mPresenter.editUser(
-                mRemoteFileUrl!!,
-                mUserNameEt.text?.toString() ?: "",
-                if (mGenderMaleRb.isChecked) "0" else "1",
-                mUserSignEt.text?.toString() ?: ""
-            )
-        }
     }
 
     /**
@@ -122,6 +108,24 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
         mUserNameEt.setText(mUserName)
         mUserSignEt.setText(mUserSign)
         mUserMobileTv.text = mUserMobile
+    }
+
+    private fun initView(){
+        mUserIconView.onClick {
+            checkPermission()
+        }
+        mHeaderBar.getLeftIv().onClick {
+            pop()
+        }
+        mHeaderBar.getRightTv().onClick {
+            context?.toast("点击了")
+            mPresenter.editUser(
+                mRemoteFileUrl!!,
+                mUserNameEt.text?.toString() ?: "",
+                if (mGenderMaleRb.isChecked) "0" else "1",
+                mUserSignEt.text?.toString() ?: ""
+            )
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

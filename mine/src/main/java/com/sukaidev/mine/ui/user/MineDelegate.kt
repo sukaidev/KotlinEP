@@ -14,6 +14,7 @@ import com.sukaidev.mine.R
 import com.sukaidev.mine.ui.setttings.SettingsDelegate
 import kotlinx.android.synthetic.main.delegate_user_info.mUserIconIv
 import kotlinx.android.synthetic.main.delegate_mine.*
+import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/14.
@@ -86,7 +87,7 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
         }
     }
 
-/*    private val WAIT_TIME = 2000L
+    private val WAIT_TIME = 2000L
     private var TOUCH_TIME: Long = 0
 
     override fun onBackPressedSupport(): Boolean {
@@ -94,8 +95,8 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
             _mActivity.finish()
         } else {
             TOUCH_TIME = System.currentTimeMillis()
-            context?.toast("双击退出")
+            context?.toast("再次点击退出")
         }
         return true
-    }*/
+    }
 }

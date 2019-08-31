@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch.Vertical.Common">
 
-    <com.sukaidev.common.widget.HeaderBar
+    <com.sukaidev.core.widget.HeaderBar
         style="@style/MatchWrap"
         app:isShowBack="false"
         app:titleText="商品分类" />
@@ -12,7 +12,7 @@
     <androidx.appcompat.widget.LinearLayoutCompat style="@style/MatchWrap.Horizontal">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mTopCategoryRv"
+            android:id="@+id/mListRv"
             style="@style/commonRecyclerView"
             android:layout_weight="5" />
 
@@ -24,14 +24,14 @@
             android:paddingRight="@dimen/common_padding">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/mTopCategoryIv"
+                android:id="@+id/mContentHeaderIv"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:scaleType="fitXY"
                 android:src="@drawable/category_banner" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/mCategoryTitleTv"
+                android:id="@+id/mContentTitleTv"
                 style="@style/WrapWrap"
                 android:layout_marginTop="@dimen/common_margin_middle"
                 android:text="热卖热荐"
@@ -40,20 +40,15 @@
                 android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
-            <com.kennyc.view.MultiStateView
-                android:id="@+id/mMultiStateView"
-                style="@style/MultiStateStyle">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/mSecondCategoryRv"
-                    style="@style/commonRecyclerView"
-                    android:layout_marginTop="@dimen/common_margin_small"
-                    android:background="@drawable/border_all"
-                    android:paddingStart="12dp"
-                    android:paddingLeft="12dp"
-                    android:paddingTop="@dimen/common_padding_small"
-                    tools:ignore="RtlSymmetry" />
-            </com.kennyc.view.MultiStateView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/mContentRv"
+                style="@style/commonRecyclerView"
+                android:layout_marginTop="@dimen/common_margin_small"
+                android:background="@drawable/border_all"
+                android:paddingStart="12dp"
+                android:paddingLeft="12dp"
+                android:paddingTop="@dimen/common_padding_small"
+                tools:ignore="RtlSymmetry" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
