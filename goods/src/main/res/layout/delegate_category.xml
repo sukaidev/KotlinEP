@@ -50,6 +50,15 @@
                 android:paddingTop="@dimen/common_padding_small"
                 tools:ignore="RtlSymmetry" />
 
+            <ViewStub
+                android:id="@+id/view_stub_empty"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/white"
+                android:layout="@layout/stub_content_empty"
+                android:minHeight="50dp"
+                android:orientation="horizontal" />
+
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -33,12 +33,11 @@ abstract class BaseMvpDelegate<T : BasePresenter<*>> : ProxyDelegate(), BaseView
     abstract fun injectComponent()
 
     private fun initActivityInjection() {
-        mActivityComponent =
-            DaggerActivityComponent.builder()
-                .appComponent((_mActivity.application as BaseApplication).appComponent)
-                .activityModule(
-                    ActivityModule(_mActivity)
-                ).lifecycleProviderModule(LifecycleProviderModule(this)).build()
+        mActivityComponent = DaggerActivityComponent.builder()
+            .appComponent((_mActivity.application as BaseApplication).appComponent)
+            .activityModule(ActivityModule(_mActivity))
+            .lifecycleProviderModule(LifecycleProviderModule(this))
+            .build()
     }
 
     override fun onError(msg: String) {

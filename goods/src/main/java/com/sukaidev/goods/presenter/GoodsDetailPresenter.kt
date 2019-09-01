@@ -1,10 +1,10 @@
 package com.sukaidev.goods.presenter
 
+import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.core.utils.AppPrefsUtils
-import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.Goods
 import com.sukaidev.goods.presenter.view.GoodsDetailView
 import com.sukaidev.goods.service.CartService

@@ -12,15 +12,12 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mCategoryListTv"
-        style="@style/MatchWrap"
+        style="@style/MatchMatch"
+        android:layout_toEndOf="@id/view_line"
+        android:layout_toRightOf="@id/view_line"
         android:background="@drawable/top_category_bg_selector"
         android:gravity="center"
         android:padding="@dimen/common_padding_middle"
         android:textColor="@drawable/top_category_text_selector" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.3dp"
-        android:background="#c9c9c9" />
 
 </RelativeLayout>

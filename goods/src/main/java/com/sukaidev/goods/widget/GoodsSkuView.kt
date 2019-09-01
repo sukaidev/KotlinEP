@@ -9,13 +9,13 @@ import android.view.ViewGroup.LayoutParams
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.core.ext.getEditText
 import com.sukaidev.core.ext.loadUrl
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.utils.MoneyConverter
 import com.sukaidev.core.widget.DefaultTextWatcher
 import com.sukaidev.goods.R
-import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.GoodsSku
 import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.event.SkuChangedEvent

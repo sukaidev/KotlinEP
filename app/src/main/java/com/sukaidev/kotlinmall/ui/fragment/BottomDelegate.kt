@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.sukaidev.core.ui.delegates.ProxyDelegate
-import com.sukaidev.goods.ui.category.CategoryDelegate
+import com.sukaidev.goods.ui.fragment.CategoryDelegate
 import com.sukaidev.index.ui.fragment.IndexDelegate
 import com.sukaidev.kotlinmall.R
 import com.sukaidev.mine.ui.user.MineDelegate

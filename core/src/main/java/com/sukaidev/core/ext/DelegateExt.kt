@@ -4,11 +4,16 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.View
+import android.view.ViewStub
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.annotation.IdRes
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
+import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sukaidev.core.data.protocol.BaseResp
@@ -16,6 +21,7 @@ import com.sukaidev.core.R
 import com.sukaidev.core.rx.BaseFunc
 import com.sukaidev.core.rx.BaseFuncBoolean
 import com.sukaidev.core.rx.BaseSubscriber
+import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.core.widget.DefaultTextWatcher
 import com.trello.rxlifecycle.LifecycleProvider
 import de.hdodenhof.circleimageview.CircleImageView
@@ -140,13 +146,11 @@ fun View.onClick(method: () -> Unit) {
 }
 
 /**
- * 扩展Fragmentation启动fragment方法以支持参数传递
+ * 扩展Fragmentation
+ * 模仿了Anko中的startActivity,支持参数传递
  * 暂时只写了Int和String两种情况
  */
-fun <T : SupportFragment> SupportFragmentDelegate.startWithNewBundle(
-    delegate: T,
-    vararg params: Pair<String, Any?>
-) {
+inline fun <reified T : SupportFragment> SupportFragmentDelegate.startWithNewBundle(vararg params: Pair<String, Any?>) {
     val args = Bundle()
     params.forEach {
         when (val value = it.second) {
@@ -156,6 +160,7 @@ fun <T : SupportFragment> SupportFragmentDelegate.startWithNewBundle(
         }
         return@forEach
     }
+    val delegate = T::class.java.newInstance()
     delegate.arguments = args
     start(delegate)
 }
@@ -189,4 +194,18 @@ fun NumberButton.getEditText(): EditText {
 fun ImageView.loadUrl(url: String) {
     Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop()
         .dontAnimate().into(this)
+}
+
+/**
+ * 设置空布局
+ */
+fun setViewStateEmpty(delegate: BaseDelegate, contentView: View, @IdRes layoutId: Int, @IdRes textViewId: Int, text: String) {
+    if (contentView.visibility != View.GONE) {
+        // ViewStub填充后会变为null 所以每次都需初始化
+        val mViewStub: ViewStub? = delegate.view?.findViewById(layoutId)
+        val stubView = mViewStub?.inflate()
+        val tvShowEmpty = stubView?.find<AppCompatTextView>(textViewId)
+        tvShowEmpty?.text = text
+        contentView.visibility = View.GONE
+    }
 }

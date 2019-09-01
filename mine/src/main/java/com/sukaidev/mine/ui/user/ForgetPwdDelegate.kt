@@ -66,11 +66,8 @@ class ForgetPwdDelegate : BaseMvpDelegate<ForgetPwdPresenter>(), ForgetPwdView,
         val delegate = ResetPwdDelegate()
         delegate.arguments = args
         start(delegate)
-        context?.toast("result")*/
-        supportDelegate.startWithNewBundle(
-            ResetPwdDelegate(),
-            "mobile" to mMobileEt.text.toString()
-        )
+*/
+        supportDelegate.startWithNewBundle<ResetPwdDelegate>("mobile" to mMobileEt.text.toString())
     }
 
     private fun isBtnEnable(): Boolean {

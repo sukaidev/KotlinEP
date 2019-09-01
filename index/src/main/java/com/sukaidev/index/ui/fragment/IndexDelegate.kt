@@ -44,8 +44,7 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initRecyclerView()
-        mSearchTv.onClick {
-            getParentDelegate<BaseDelegate>().supportDelegate.start(SearchDelegate())
+        mSearchTv.onClick { getParentDelegate<BaseDelegate>().supportDelegate.start(SearchDelegate())
         }
     }
 
@@ -57,19 +56,11 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
     private fun initRecyclerView() {
         val manager = GridLayoutManager(context, 4)
         mIndexRv.layoutManager = manager
-        mIndexRv.addItemDecoration(
-            BaseDecoration.create(
-                ContextCompat.getColor(
-                    context!!,
-                    R.color.white
-                ), 10
-            )
-        )
+        mIndexRv.addItemDecoration(BaseDecoration.create(ContextCompat.getColor(context!!, R.color.white), 10))
     }
 
     override fun onGetIndexDataResult(result: String) {
-        mAdapter =
-            MultipleRecyclerAdapter.create(IndexDataConverter().setJsonData(result))
+        mAdapter = MultipleRecyclerAdapter.create(IndexDataConverter().setJsonData(result))
         mIndexRv.adapter = mAdapter
         mBanner = mAdapter.getViewByPosition(0, R.id.mIndexBanner) as Banner
     }

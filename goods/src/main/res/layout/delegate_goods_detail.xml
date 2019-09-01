@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch.Common">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                app:statusBarScrim="@android:color/transparent">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.youth.banner.Banner
+                        android:id="@+id/mGoodsDetailBanner"
+                        android:layout_width="match_parent"
+                        android:layout_height="380dp" />
+
+                    <androidx.appcompat.widget.ContentFrameLayout
+                        android:id=" @+id/mGoodsContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/mGoodsDetailBanner" />
+                </RelativeLayout>
+
+                <!--要放在下面-->
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/mGoodsDetailHeaderBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginTop="16dp"
+                    app:contentInsetStart="0dp"
+                    app:layout_collapseMode="pin">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:id="@+id/mLeftIv"
+                            style="@style/WrapMatch"
+                            android:paddingLeft="@dimen/common_padding"
+                            android:paddingRight="@dimen/common_padding"
+                            android:src="@drawable/icon_back" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/mTitleTv"
+                            style="@style/WrapWrap"
+                            android:layout_centerInParent="true"
+                            android:text="@string/goods_detail"
+                            android:textColor="@color/common_white"
+                            android:textSize="@dimen/text_large_size" />
+
+                    </RelativeLayout>
+                </androidx.appcompat.widget.Toolbar>
+                <!--如果将TabLayout写在这里，将透明-->
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/mTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.appcompat.widget.ContentFrameLayout
+            android:id=" @+id/mDetailContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mGoodsDetailBanner" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <include layout="@layout/layout_goods_detail_bottom" />
+</RelativeLayout>

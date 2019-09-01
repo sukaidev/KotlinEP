@@ -7,8 +7,8 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.TextView
 import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.goods.R
-import com.sukaidev.goods.common.GoodsConstant
 import com.sukaidev.goods.data.protocol.GoodsSku
 import com.sukaidev.goods.event.SkuChangedEvent
 import com.zhy.view.flowlayout.FlowLayout
