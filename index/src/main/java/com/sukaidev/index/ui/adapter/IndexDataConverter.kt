@@ -1,6 +1,5 @@
 package com.sukaidev.index.ui.adapter
 
-import android.util.Log
 import com.alibaba.fastjson.JSON
 import com.alibaba.fastjson.JSONObject
 import com.sukaidev.core.ui.recycler.DataConverter
@@ -36,6 +35,17 @@ class IndexDataConverter : DataConverter() {
                         .setField(MultipleFields.ITEM_TYPE, type)
                         .setField(MultipleFields.ID, id)
                         .setField(MultipleFields.BANNERS, images)
+                        .setField(MultipleFields.SPAN_SIZE, spanSize)
+                        .build()
+                    ENTITIES.add(entity)
+                }
+                "text" -> {
+                    type = ItemType.TEXT
+                    text = data.getString("text")
+                    val entity: MultipleItemEntity = MultipleItemEntity.builder()
+                        .setField(MultipleFields.ITEM_TYPE, type)
+                        .setField(MultipleFields.ID, id)
+                        .setField(MultipleFields.TEXT, text)
                         .setField(MultipleFields.SPAN_SIZE, spanSize)
                         .build()
                     ENTITIES.add(entity)

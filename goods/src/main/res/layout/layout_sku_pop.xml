@@ -41,7 +41,7 @@
             android:layout_alignStart="@id/mGoodsCodeTv"
             android:layout_alignLeft="@id/mGoodsCodeTv"
             android:layout_marginBottom="@dimen/common_margin_small"
-            android:textColor="@color/common_red" />
+            android:textColor="@color/app_main" />
 
         <View
             android:id="@+id/mDividerView"
@@ -88,7 +88,7 @@
             android:layout_below="@id/rl_sku_amount"
             android:layout_marginTop="80dp"
             android:layout_weight="1"
-            android:background="@color/common_red"
+            android:background="@color/app_main"
             android:gravity="center"
             android:padding="@dimen/common_padding"
             android:text="加入购物车"

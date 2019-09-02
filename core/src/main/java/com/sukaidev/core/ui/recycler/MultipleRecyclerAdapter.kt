@@ -13,12 +13,13 @@ import kotlinx.android.synthetic.main.item_goods_image_text.view.*
 import kotlinx.android.synthetic.main.item_index_discount.view.*
 import kotlinx.android.synthetic.main.item_multiple_banner.view.*
 import kotlinx.android.synthetic.main.item_multiple_news.view.*
+import kotlinx.android.synthetic.main.item_multiple_text.view.*
 
 /**
  * Created by sukaidev on 2019/08/27.
  *
  */
-open class MultipleRecyclerAdapter (data: MutableList<MultipleItemEntity>) :
+open class MultipleRecyclerAdapter(data: MutableList<MultipleItemEntity>) :
     BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>(data),
     BaseQuickAdapter.SpanSizeLookup,
     BaseQuickAdapter.OnItemClickListener {
@@ -49,6 +50,7 @@ open class MultipleRecyclerAdapter (data: MutableList<MultipleItemEntity>) :
         // 设置不同的布局
         addItemType(ItemType.BANNER, R.layout.item_multiple_banner)
         addItemType(ItemType.NEWS, R.layout.item_multiple_news)
+        addItemType(ItemType.TEXT, R.layout.item_multiple_text)
         addItemType(ItemType.DISCOUNT, R.layout.item_index_discount)
         addItemType(ItemType.GOODS, R.layout.item_goods_image_text)
         // 设置宽度监听
@@ -75,6 +77,10 @@ open class MultipleRecyclerAdapter (data: MutableList<MultipleItemEntity>) :
             ItemType.NEWS -> {
                 news = entity?.getField(MultipleFields.NEWS)
                 holder.itemView.mNewsFlipperView.setData(news)
+            }
+            ItemType.TEXT -> {
+                text = entity?.getField(MultipleFields.TEXT)
+                holder.itemView.mSingleTv.text = text
             }
             ItemType.DISCOUNT -> {
                 imageUrl = entity?.getField(MultipleFields.DISCOUNT_URL)

@@ -3,7 +3,6 @@ package com.sukaidev.goods.ui.fragment
 import android.os.Bundle
 import android.view.View
 import android.view.ViewStub
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -21,8 +20,6 @@ import com.sukaidev.goods.presenter.view.CategoryView
 import com.sukaidev.goods.ui.adapter.CategoryContentAdapter
 import com.sukaidev.goods.ui.adapter.CategoryListAdapter
 import kotlinx.android.synthetic.main.delegate_category.*
-import org.jetbrains.anko.find
-import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/15.
@@ -34,8 +31,6 @@ class CategoryDelegate : ProxyMvpDelegate<CategoryPresenter>(), CategoryView {
     private lateinit var mListAdapter: CategoryListAdapter
     // 内容数据适配器
     private lateinit var mContentAdapter: CategoryContentAdapter
-
-    private var mViewStub: ViewStub? = null
 
     override fun injectComponent() {
         DaggerCategoryComponent
@@ -99,7 +94,7 @@ class CategoryDelegate : ProxyMvpDelegate<CategoryPresenter>(), CategoryView {
                 mContentAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
                     val categoryId = (adapter.getItem(position) as Category).id
                     getParentDelegate<ProxyDelegate>()
-                        .supportDelegate.startWithNewBundle<GoodsDelegate>(GoodsConstant.KEY_CATEGORY_ID to categoryId)
+                        .supportDelegate.startWithNewBundle<GoodsListDelegate>(GoodsConstant.KEY_CATEGORY_ID to categoryId)
                 }
             }
         }

@@ -6,7 +6,7 @@
         <item name="android:textSize">@dimen/text_middle_size</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="colorPrimary">@color/common_black</item>
+        <item name="colorPrimary">@color/common_white</item>
         <item name="colorPrimaryDark">@color/common_black</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
@@ -15,6 +15,19 @@
         <item name="android:windowBackground">@color/common_black</item>
     </style>
 
+    <!--透明Activity-->
+    <style name="Theme.AppCompat.Translucent">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation</item>
+    </style>
+
+    <style name="anim_panel_up_from_bottom" parent="@android:style/Animation">
+        <item name="android:windowEnterAnimation">@anim/push_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/push_bottom_out</item>
+    </style>
 
     <!-- 加载弹框样式 -->
     <style name="LightDialog" parent="@android:style/Theme.Dialog">

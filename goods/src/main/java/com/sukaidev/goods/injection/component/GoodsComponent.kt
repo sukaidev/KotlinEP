@@ -4,7 +4,8 @@ import com.sukaidev.core.injection.PerComponentScope
 import com.sukaidev.core.injection.component.ActivityComponent
 import com.sukaidev.goods.injection.module.CartModule
 import com.sukaidev.goods.injection.module.GoodsModule
-import com.sukaidev.goods.ui.fragment.GoodsDelegate
+import com.sukaidev.goods.ui.fragment.GoodsDetailDelegate
+import com.sukaidev.goods.ui.fragment.GoodsListDelegate
 import dagger.Component
 
 /**
@@ -17,6 +18,6 @@ import dagger.Component
     modules = [GoodsModule::class, CartModule::class]
 )
 interface GoodsComponent {
-    fun inject(delegate: GoodsDelegate)
-//    fun inject(fragment: GoodsDetailTabOneFragment)
+    fun inject(delegate: GoodsListDelegate)
+    fun inject(delegate: GoodsDetailDelegate)
 }

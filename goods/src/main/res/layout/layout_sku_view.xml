@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:zhy="http://schemas.android.com/apk/res-auto"
-              style="@style/MatchWrap.Vertical">
+    xmlns:zhy="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchWrap.Vertical">
+
     <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/mSkuTitleTv"
-            style="@style/WrapWrap"
-            android:textSize="@dimen/text_small_size"
-            android:textColor="@color/text_dark"
-            android:layout_marginTop="@dimen/common_margin_small"
-            android:layout_marginBottom="@dimen/common_margin"/>
+        android:id="@+id/mSkuTitleTv"
+        style="@style/WrapWrap"
+        android:layout_marginTop="@dimen/common_margin_small"
+        android:layout_marginBottom="@dimen/common_margin"
+        android:textColor="@color/text_dark"
+        android:textSize="@dimen/text_small_size" />
+
     <com.zhy.view.flowlayout.TagFlowLayout
-            android:id="@+id/mSkuContentView"
-            style="@style/MatchWrap"
-            zhy:max_select="1"/>
+        android:id="@+id/mSkuContentView"
+        style="@style/MatchWrap"
+        zhy:max_select="1" />
 </androidx.appcompat.widget.LinearLayoutCompat>

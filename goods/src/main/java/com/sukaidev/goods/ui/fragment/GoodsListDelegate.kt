@@ -8,6 +8,7 @@ import cn.bingoogolapple.refreshlayout.BGARefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.core.ext.setViewStateEmpty
+import com.sukaidev.core.ext.startWithNewBundle
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.goods.R
 import com.sukaidev.goods.data.protocol.Goods
@@ -22,11 +23,13 @@ import kotlinx.android.synthetic.main.delegate_goods.*
  * Created by sukaidev on 2019/08/15.
  * 商品详细列表页面.
  */
-class GoodsDelegate : BaseMvpDelegate<GoodsListPresenter>(), GoodsListView, BGARefreshLayout.BGARefreshLayoutDelegate {
+class GoodsListDelegate : BaseMvpDelegate<GoodsListPresenter>(), GoodsListView, BGARefreshLayout.BGARefreshLayoutDelegate {
 
     private lateinit var mGoodsAdapter: GoodsAdapter
     private var mCurrentPage: Int = 1
     private var mMaxPage: Int = 1
+
+    private var hasRecyclerInit: Boolean = false
 
     // 搜索商品类型
     private var searchGoodsType: Int? = 0
@@ -81,7 +84,10 @@ class GoodsDelegate : BaseMvpDelegate<GoodsListPresenter>(), GoodsListView, BGAR
         mGoodsAdapter = GoodsAdapter(R.layout.item_goods, data)
         mGoodsRv.adapter = mGoodsAdapter
         mGoodsAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+            val itemId = (adapter.getItem(position) as Goods).id
+            supportDelegate.startWithNewBundle<GoodsDetailDelegate>(GoodsConstant.KEY_GOODS_ID to itemId)
         }
+        hasRecyclerInit = true
     }
 
     /**
@@ -110,11 +116,15 @@ class GoodsDelegate : BaseMvpDelegate<GoodsListPresenter>(), GoodsListView, BGAR
                 mGoodsRv.visibility = View.VISIBLE
             }
             mMaxPage = result[0].maxPage
-            if (mCurrentPage == 1) {
-                initView(result)
-            } else {
-                mGoodsAdapter.addData(result)
-                mGoodsAdapter.notifyDataSetChanged()
+            when (mCurrentPage) {
+                1 -> {
+                    if (hasRecyclerInit) { // 若已经初始化
+                        mGoodsAdapter.setNewData(result)
+                    } else {
+                        initView(result)
+                    }
+                }
+                else -> mGoodsAdapter.addData(result)
             }
         } else {
             setViewStateEmpty(this, mRefreshLayout, R.id.stub_goods_empty, R.id.tv_stub_content_empty, "暂时没有商品")

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mGoodsTitleTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/mGoodsDescTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:textSize="16sp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <!--        <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="top"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:text="￥"
+                    android:textColor="@color/app_main"
+                    android:textSize="18sp"
+                    tools:ignore="HardcodedText" />-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mGoodsPriceTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="5dp"
+            android:gravity="center_vertical"
+            android:text=""
+            android:textColor="@color/app_main"
+            android:textSize="24sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <RelativeLayout
+        android:id="@+id/mSkuView"
+        style="@style/MatchWrap"
+        android:layout_marginTop="@dimen/common_margin"
+        android:background="@drawable/border_all"
+        android:padding="@dimen/common_padding_middle">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mSkuLabelTv"
+            style="@style/WrapWrap"
+            android:layout_centerVertical="true"
+            android:text="已选"
+            android:textColor="@color/text_dark"
+            android:textSize="@dimen/text_small_size"
+            tools:ignore="HardcodedText" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mSkuSelectedTv"
+            style="@style/WrapWrap"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:layout_marginRight="@dimen/common_margin"
+            android:layout_toStartOf="@+id/mMoreIv"
+            android:layout_toLeftOf="@+id/mMoreIv"
+            android:layout_toEndOf="@id/mSkuLabelTv"
+            android:layout_toRightOf="@id/mSkuLabelTv"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="8961蓝色，L,1件"
+            android:textColor="@color/text_light_dark"
+            tools:ignore="HardcodedText" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/mMoreIv"
+            style="@style/WrapWrap"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/icon_gray_more" />
+    </RelativeLayout>
+</androidx.appcompat.widget.LinearLayoutCompat>

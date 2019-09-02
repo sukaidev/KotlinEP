@@ -1,12 +1,17 @@
 package com.sukaidev.goods.data.protocol
 
+import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
+
 /**
  * Created by sukaidev on 2019/08/15.
  * 商品信息数据类.
  */
+@Parcelize
 data class Goods(
     val id: Int,//商品ID
     val categoryId: Int,//分类ID
+    val goodsTitle:String, // 商品标题
     val goodsDesc: String,//商品描述
     val goodsDefaultIcon: String,//默认图标
     val goodsDefaultPrice: Long,//默认价格
@@ -19,4 +24,4 @@ data class Goods(
     val goodsBanner: String,//商品banner图
     val goodsSku:List<GoodsSku>,//商品SKU
     val maxPage:Int//最大页码
-)
+) : Parcelable

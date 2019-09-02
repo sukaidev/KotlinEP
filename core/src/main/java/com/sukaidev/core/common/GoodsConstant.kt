@@ -24,5 +24,10 @@ class GoodsConstant {
         const val SKU_SEPARATOR = ","
         //购物车数量
         const val SP_CART_SIZE = "cart_size"
+
+        // 商品对象
+        const val ARG_GOODS_OBJECT = "goods_object"
+        // 商品详情图片
+        const val ARG_GOODS_DETAIL_IMAGES = "goods_detail_image"
     }
 }

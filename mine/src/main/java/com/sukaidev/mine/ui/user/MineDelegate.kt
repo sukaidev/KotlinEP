@@ -1,5 +1,6 @@
 package com.sukaidev.mine.ui.user
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
 import com.sukaidev.core.ext.onClick

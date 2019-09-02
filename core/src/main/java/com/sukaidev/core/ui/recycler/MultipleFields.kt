@@ -8,6 +8,7 @@ enum class MultipleFields {
     ITEM_TYPE,
     BANNERS,
     NEWS,
+    TEXT,
     DISCOUNT_URL,
     DISCOUNT_BEFORE,
     DISCOUNT_AFTER,
