@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/MatchMatch.Common"
+    android:orientation="vertical">
+
+    <com.sukaidev.core.widget.HeaderBar
+        android:id="@+id/mHeaderBar"
+        style="@style/MatchWrap"
+        app:isShowBack="false"
+        app:rightText="@string/common_edit"
+        app:titleText="购物车" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mCartGoodsRv"
+        style="@style/commonRecyclerView"
+        android:layout_height="0dp"
+        android:layout_weight="8" />
+
+    <ViewStub
+        android:id="@+id/mViewStub"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:background="@color/common_white"
+        android:layout="@layout/layout_stub_content_empty"
+        android:minHeight="50dp" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="1"
+        android:minHeight="50dp"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/mAllCheckedCb"
+            style="?android:attr/borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/common_margin"
+            android:layout_marginLeft="@dimen/common_margin"
+            android:button="@null"
+            android:drawableStart="@drawable/common_check_selector"
+            android:drawableLeft="@drawable/common_check_selector"
+            android:drawablePadding="@dimen/common_padding_middle"
+            android:text="@string/all_check"
+            android:textColor="@color/app_main"
+            android:textSize="@dimen/text_big_size" />
+
+        <!--合计部分-->
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:minHeight="50dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mTotalPriceTitleTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="@string/total_price"
+                android:textColor="@android:color/darker_gray" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/mTotalPriceTv"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center|start"
+                android:textColor="@color/app_main"
+                android:textSize="20sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mSettleAccountsBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_btn_settle"
+            android:gravity="center"
+            android:text="@string/settle"
+            android:textColor="@color/common_white"
+            android:textSize="20sp" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/mDeleteBtn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/shape_btn_settle"
+            android:gravity="center"
+            android:text="@string/delete"
+            android:textColor="@color/common_white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

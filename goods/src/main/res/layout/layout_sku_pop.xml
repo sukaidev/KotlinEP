@@ -43,6 +43,15 @@
             android:layout_marginBottom="@dimen/common_margin_small"
             android:textColor="@color/app_main" />
 
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/mGoodsTitleTv"
+            style="@style/WrapWrap"
+            android:layout_above="@id/mGoodsPriceTv"
+            android:layout_alignStart="@id/mGoodsCodeTv"
+            android:layout_alignLeft="@id/mGoodsCodeTv"
+            android:layout_marginBottom="@dimen/common_margin_small"
+            android:textColor="@android:color/black" />
+
         <View
             android:id="@+id/mDividerView"
             style="@style/DividerFixedHeight"

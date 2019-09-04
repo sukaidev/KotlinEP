@@ -45,7 +45,7 @@ class BottomNavBar @JvmOverloads constructor(
             .setActiveColorResource(R.color.app_main)
             .setInActiveColorResource(R.color.text_normal)
         mCartBadge = TextBadgeItem()
-        mCartBadge.setText("10")
+        mCartBadge.setText("0")
         cartItem.setBadgeItem(mCartBadge)
         // 消息
         val msgItem = BottomNavigationItem(
@@ -83,6 +83,7 @@ class BottomNavBar @JvmOverloads constructor(
         if (count == 0) {
             mCartBadge.hide()
         } else {
+            mCartBadge.show()
             mCartBadge.setText("$count")
         }
     }

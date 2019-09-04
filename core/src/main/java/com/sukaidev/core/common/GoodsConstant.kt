@@ -29,5 +29,8 @@ class GoodsConstant {
         const val ARG_GOODS_OBJECT = "goods_object"
         // 商品详情图片
         const val ARG_GOODS_DETAIL_IMAGES = "goods_detail_image"
+
+        //
+        const val ARG_STARTED_FROM_DETAIL = "started_from_goods_detail"
     }
 }

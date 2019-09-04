@@ -4,8 +4,8 @@ import com.sukaidev.core.injection.PerComponentScope
 import com.sukaidev.core.injection.component.ActivityComponent
 import com.sukaidev.goods.injection.module.CartModule
 import com.sukaidev.goods.injection.module.GoodsModule
-import com.sukaidev.goods.ui.fragment.GoodsDetailDelegate
-import com.sukaidev.goods.ui.fragment.GoodsListDelegate
+import com.sukaidev.goods.ui.goods.GoodsDetailDelegate
+import com.sukaidev.goods.ui.goods.GoodsListDelegate
 import dagger.Component
 
 /**

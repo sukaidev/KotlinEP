@@ -5,6 +5,7 @@
     style="@style/MatchMatch.Vertical">
 
     <com.sukaidev.core.widget.HeaderBar
+        android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
         app:titleText="设置" />
 

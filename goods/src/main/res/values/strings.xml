@@ -4,4 +4,13 @@
     <string name="content_empty">这里还没有商品~</string>
     <string name="goods_detail">商品详情</string>
     <string name="goods_desc">详细数据</string>
+
+    <!--购物车-->
+    <string name="goods_title">商品标题</string>
+    <string name="goods_sku">商品Sku</string>
+    <string name="goods_price">商品价格</string>
+    <string name="settle">结算</string>
+    <string name="delete">删除</string>
+    <string name="all_check">全选</string>
+    <string name="total_price">合计</string>
 </resources>

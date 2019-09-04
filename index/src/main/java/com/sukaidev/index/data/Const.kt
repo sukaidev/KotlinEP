@@ -75,14 +75,14 @@ const val data = "{\n" +
         "            \"describe\": \"text\"\n" +
         "        },\n" +
         "        {\n" +
-        "            \"goodsId\": 16,\n" +
+        "            \"goodsId\": 17,\n" +
         "            \"text\": \"小米MIX 2S\",\n" +
         "            \"imageUrl\": \"https://i8.mifile.cn/v1/a1/b7aa0b1e-90bb-725d-fbd1-1bb26a051606.webp\",\n" +
         "            \"spanSize\": 2,\n" +
         "            \"describe\": \"goods\"\n" +
         "        },\n" +
         "        {\n" +
-        "            \"goodsId\": 17,\n" +
+        "            \"goodsId\": 16,\n" +
         "            \"text\": \"小米 9\",\n" +
         "            \"imageUrl\": \"https://i8.mifile.cn/v1/a1/aac29a74-bf7b-463d-7e15-8348d83d3a7f.webp\",\n" +
         "            \"spanSize\": 2,\n" +

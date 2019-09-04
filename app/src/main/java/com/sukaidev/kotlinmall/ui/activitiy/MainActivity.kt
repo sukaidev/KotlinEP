@@ -23,4 +23,5 @@ class MainActivity : ProxyActivity(), ILauncherListener {
     override fun onLauncherFinished() {
         startWithPop(BottomDelegate())
     }
+
 }

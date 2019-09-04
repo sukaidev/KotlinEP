@@ -27,11 +27,11 @@ class CartRepository @Inject constructor() {
      * 添加商品到购物车
      */
     fun addCart(
-        goodsId: Int, goodsDesc: String, goodsIcon: String, goodsPrice: Long,
+        goodsId: Int, goodsTitle: String, goodsDesc: String, goodsIcon: String, goodsPrice: Long,
         goodsCount: Int, goodsSku: String
     ): Observable<BaseResp<Int>> {
         return RetrofitFactory.instance.create(CartApi::class.java)
-            .addCart(AddCartReq(goodsId, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku))
+            .addCart(AddCartReq(goodsId, goodsTitle, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku))
     }
 
     /**

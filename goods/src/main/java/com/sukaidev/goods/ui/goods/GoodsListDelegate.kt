@@ -1,4 +1,4 @@
-package com.sukaidev.goods.ui.fragment
+package com.sukaidev.goods.ui.goods
 
 import android.os.Bundle
 import android.view.View
@@ -7,6 +7,7 @@ import cn.bingoogolapple.refreshlayout.BGANormalRefreshViewHolder
 import cn.bingoogolapple.refreshlayout.BGARefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.sukaidev.core.common.GoodsConstant
+import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setViewStateEmpty
 import com.sukaidev.core.ext.startWithNewBundle
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
@@ -16,7 +17,6 @@ import com.sukaidev.goods.injection.component.DaggerGoodsComponent
 import com.sukaidev.goods.injection.module.GoodsModule
 import com.sukaidev.goods.presenter.GoodsListPresenter
 import com.sukaidev.goods.presenter.view.GoodsListView
-import com.sukaidev.goods.ui.adapter.GoodsAdapter
 import kotlinx.android.synthetic.main.delegate_goods.*
 
 /**
@@ -53,11 +53,17 @@ class GoodsListDelegate : BaseMvpDelegate<GoodsListPresenter>(), GoodsListView, 
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
+        arguments?.let {
+            searchGoodsType = it.getInt(GoodsConstant.KEY_SEARCH_GOODS_TYPE)
+            keyWord = it.getString(GoodsConstant.KEY_GOODS_KEYWORD)
+            keyCategoryId = it.getInt(GoodsConstant.KEY_CATEGORY_ID)
+        }
+
         initRefreshLayout()
 
-        searchGoodsType = arguments?.getInt(GoodsConstant.KEY_SEARCH_GOODS_TYPE)
-        keyWord = arguments?.getString(GoodsConstant.KEY_GOODS_KEYWORD)
-        keyCategoryId = arguments?.getInt(GoodsConstant.KEY_CATEGORY_ID)
+        mHeaderBar.getLeftIv().onClick {
+            supportDelegate.pop()
+        }
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {

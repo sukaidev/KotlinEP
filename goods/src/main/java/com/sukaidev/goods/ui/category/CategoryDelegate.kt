@@ -1,8 +1,7 @@
-package com.sukaidev.goods.ui.fragment
+package com.sukaidev.goods.ui.category
 
 import android.os.Bundle
 import android.view.View
-import android.view.ViewStub
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -17,8 +16,7 @@ import com.sukaidev.goods.injection.component.DaggerCategoryComponent
 import com.sukaidev.goods.injection.module.CategoryModule
 import com.sukaidev.goods.presenter.CategoryPresenter
 import com.sukaidev.goods.presenter.view.CategoryView
-import com.sukaidev.goods.ui.adapter.CategoryContentAdapter
-import com.sukaidev.goods.ui.adapter.CategoryListAdapter
+import com.sukaidev.goods.ui.goods.GoodsListDelegate
 import kotlinx.android.synthetic.main.delegate_category.*
 
 /**

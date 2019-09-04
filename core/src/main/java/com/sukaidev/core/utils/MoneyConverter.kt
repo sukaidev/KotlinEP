@@ -109,7 +109,7 @@ object MoneyConverter {
         元 转换为 分
      */
     fun changeY2F(amount: String): String {
-        val currency = amount.replace("\\$|\\¥|\\,".toRegex(), "")
+        val currency = amount.replace("\\$|\\¥ |\\,".toRegex(), "")
         val index = currency.indexOf(".")
         val length = currency.length
         var amLong: Long? = 0L

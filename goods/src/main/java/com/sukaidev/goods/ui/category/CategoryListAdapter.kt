@@ -1,4 +1,4 @@
-package com.sukaidev.goods.ui.adapter
+package com.sukaidev.goods.ui.category
 
 import android.view.View
 import androidx.core.content.ContextCompat

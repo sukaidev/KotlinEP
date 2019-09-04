@@ -1,4 +1,4 @@
-package com.sukaidev.goods.ui.fragment
+package com.sukaidev.goods.ui.goods
 
 import android.os.Bundle
 import android.view.View

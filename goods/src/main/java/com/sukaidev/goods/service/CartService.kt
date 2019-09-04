@@ -17,7 +17,7 @@ interface CartService {
      * 添加商品到购物车
      */
     fun addCart(
-        goodsId: Int, goodsDesc: String, goodsIcon: String, goodsPrice: Long,
+        goodsId: Int, goodsTitle: String, goodsDesc: String, goodsIcon: String, goodsPrice: Long,
         goodsCount: Int, goodsSku: String
     ): Observable<Int>
 

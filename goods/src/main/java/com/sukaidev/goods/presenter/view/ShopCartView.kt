@@ -7,7 +7,7 @@ import com.sukaidev.goods.data.protocol.CartGoods
  * Created by sukaidev on 2019/08/16.
  *
  */
-interface CartView : BaseView {
+interface ShopCartView : BaseView {
     /**
      * 获取购物车商品列表回调
      */
@@ -22,5 +22,4 @@ interface CartView : BaseView {
      * 提交购物车回调
      */
     fun onSubmitCartResult(result: Int)
-
 }

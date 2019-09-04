@@ -26,7 +26,7 @@
         android:scaleType="fitXY" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/mGoodsDescTv"
+        android:id="@+id/mGoodsTitleTv"
         style="@style/WrapWrap"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/common_margin"
@@ -34,27 +34,30 @@
         android:layout_toEndOf="@id/mGoodsIconIv"
         android:layout_toRightOf="@id/mGoodsIconIv"
         android:ellipsize="end"
+        android:text="@string/goods_title"
         android:maxLines="1"
         android:textColor="@color/text_light_dark" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mGoodsSkuTv"
         style="@style/WrapWrap"
-        android:layout_below="@id/mGoodsDescTv"
-        android:layout_alignStart="@id/mGoodsDescTv"
-        android:layout_alignLeft="@id/mGoodsDescTv"
+        android:text="@string/goods_sku"
+        android:layout_below="@id/mGoodsTitleTv"
+        android:layout_alignStart="@id/mGoodsTitleTv"
+        android:layout_alignLeft="@id/mGoodsTitleTv"
         android:layout_marginTop="@dimen/common_margin_small"
         android:textSize="@dimen/text_small_size" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mGoodsPriceTv"
+        android:text="@string/goods_price"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/mGoodsSkuTv"
         android:layout_alignStart="@id/mGoodsSkuTv"
         android:layout_alignLeft="@id/mGoodsSkuTv"
         android:layout_marginTop="@dimen/common_margin_small"
-        android:textColor="@color/common_red"
+        android:textColor="@color/app_main"
         android:textSize="@dimen/text_middle_size" />
 
     <ren.qinc.numberbutton.NumberButton

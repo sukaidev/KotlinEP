@@ -4,7 +4,7 @@ import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.goods.data.protocol.CartGoods
-import com.sukaidev.goods.presenter.view.CartView
+import com.sukaidev.goods.presenter.view.ShopCartView
 import com.sukaidev.goods.service.CartService
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/16.
  *
  */
-class CartPresenter @Inject constructor() : BasePresenter<CartView>() {
+class ShopCartPresenter @Inject constructor() : BasePresenter<ShopCartView>() {
 
     @Inject
     lateinit var service: CartService

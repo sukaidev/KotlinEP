@@ -23,6 +23,11 @@ class SettingsDelegate : ProxyDelegate() {
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
+
+        mHeaderBar.getLeftIv().onClick {
+            supportDelegate.pop()
+        }
+
         mFeedBackTv.onClick {
             val uri = Uri.parse("https://github.com/sukaidev/KotlinMall/issues/new")
             startActivity(Intent(Intent.ACTION_VIEW, uri))

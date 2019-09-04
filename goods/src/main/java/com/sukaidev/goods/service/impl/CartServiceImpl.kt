@@ -23,13 +23,14 @@ class CartServiceImpl @Inject constructor() : CartService {
 
     override fun addCart(
         goodsId: Int,
+        goodsTitle: String,
         goodsDesc: String,
         goodsIcon: String,
         goodsPrice: Long,
         goodsCount: Int,
         goodsSku: String
     ): Observable<Int> {
-        return repository.addCart(goodsId, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku)
+        return repository.addCart(goodsId, goodsTitle, goodsDesc, goodsIcon, goodsPrice, goodsCount, goodsSku)
             .convert()
     }
 

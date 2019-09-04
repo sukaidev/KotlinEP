@@ -5,9 +5,9 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.sukaidev.core.common.GoodsConstant
+import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.event.GoodsClickedEvent
 import com.sukaidev.core.ext.onClick
-import com.sukaidev.core.ext.startWithNewBundle
 import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.core.ui.delegates.ProxyMvpDelegate
 import com.sukaidev.core.ui.recycler.BaseDecoration
@@ -20,6 +20,7 @@ import com.sukaidev.index.injection.module.IndexModule
 import com.sukaidev.index.presenter.IndexPresenter
 import com.sukaidev.index.presenter.view.IndexView
 import com.sukaidev.index.ui.adapter.IndexDataConverter
+import com.sukaidev.index.ui.adapter.SearchGoodsDelegate
 import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.delegate_index.*
 
@@ -50,7 +51,7 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initRecyclerView()
         mSearchTv.onClick {
-            getParentDelegate<BaseDelegate>().supportDelegate.start(SearchDelegate())
+            getParentDelegate<BaseDelegate>().supportDelegate.start(SearchGoodsDelegate())
         }
     }
 
@@ -71,7 +72,7 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
         mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             val itemId: Int = (adapter.getItem(position) as MultipleItemEntity).getField(MultipleFields.ID)
             if (itemId > 0) {
-
+                Bus.send(GoodsClickedEvent(itemId))
 //                supportDelegate.startWithNewBundle<GoodsDetailDelegate>(GoodsConstant.KEY_GOODS_ID to itemId)
             }
         }

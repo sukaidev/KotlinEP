@@ -6,6 +6,7 @@ package com.sukaidev.goods.data.protocol
  */
 data class AddCartReq(
     val goodsId: Int, //商品ID
+    val goodsTitle:String, // 商品标题
     val goodsDesc: String, //商品描述
     val goodsIcon: String, //商品图标
     val goodsPrice: Long, //商品价格

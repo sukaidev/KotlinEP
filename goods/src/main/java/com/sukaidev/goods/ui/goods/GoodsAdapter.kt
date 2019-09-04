@@ -1,4 +1,4 @@
-package com.sukaidev.goods.ui.adapter
+package com.sukaidev.goods.ui.goods
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

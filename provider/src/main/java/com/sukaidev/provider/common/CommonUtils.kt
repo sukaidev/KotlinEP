@@ -1,10 +1,10 @@
 package com.sukaidev.provider.common
 
-import com.alibaba.android.arouter.launcher.ARouter
+import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.common.BaseApplication
 import com.sukaidev.core.common.BaseConstant
+import com.sukaidev.core.event.LoginEvent
 import com.sukaidev.core.utils.AppPrefsUtils
-import com.sukaidev.provider.router.RouterPath
 import org.jetbrains.anko.toast
 
 /**
@@ -20,6 +20,7 @@ fun afterLogin(method: () -> Unit) {
         method()
     } else {
         BaseApplication.instance.toast("请先登录")
-        ARouter.getInstance().build(RouterPath.User.PATH_LOGIN).navigation()
+//        ARouter.getInstance().build(RouterPath.User.PATH_LOGIN).navigation()
+        Bus.send(LoginEvent())
     }
 }

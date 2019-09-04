@@ -1,4 +1,4 @@
-package com.sukaidev.goods.ui
+package com.sukaidev.goods.ui.category
 
 import com.sukaidev.core.ui.recycler.DataConverter
 import com.sukaidev.core.ui.recycler.ItemType

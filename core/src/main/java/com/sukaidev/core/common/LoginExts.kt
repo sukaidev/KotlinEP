@@ -1,7 +1,9 @@
-package com.sukaidev.goods.common
+package com.sukaidev.core.common
 
+import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.common.BaseApplication
 import com.sukaidev.core.common.BaseConstant
+import com.sukaidev.core.event.LoginEvent
 import com.sukaidev.core.utils.AppPrefsUtils
 import org.jetbrains.anko.toast
 
@@ -19,5 +21,6 @@ fun afterLogin(method: () -> Unit) {
     } else {
         BaseApplication.instance.toast("请先登录")
 //        ARouter.getInstance().build(RouterPath.User.PATH_LOGIN).navigation()
+        Bus.send(LoginEvent())
     }
 }

@@ -1,4 +1,4 @@
-package com.sukaidev.goods.ui.fragment
+package com.sukaidev.goods.ui.goods
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,25 +10,27 @@ import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.core.ext.onClick
-import com.sukaidev.core.ui.banner.BannerImageLoader
-import com.sukaidev.core.ui.delegates.ProxyDelegate
+import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.core.utils.MoneyConverter
 import com.sukaidev.goods.R
-import com.sukaidev.goods.data.protocol.AddCartReq
 import com.sukaidev.goods.data.protocol.Goods
 import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.event.SkuChangedEvent
+import com.sukaidev.goods.event.UpdateDetailCartSizeEvent
+import com.sukaidev.goods.injection.component.DaggerCartComponent
+import com.sukaidev.goods.injection.module.CartModule
+import com.sukaidev.goods.presenter.GoodsInfoPresenter
+import com.sukaidev.goods.presenter.view.GoodsInfoView
 import com.sukaidev.goods.widget.GoodsSkuView
-import com.youth.banner.BannerConfig
-import com.youth.banner.Transformer
 import kotlinx.android.synthetic.main.delegate_goods_info.*
 import org.jetbrains.anko.contentView
+import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/09/02.
  * 商品基本信息.
  */
-class GoodsInfoDelegate : ProxyDelegate() {
+class GoodsInfoDelegate : BaseMvpDelegate<GoodsInfoPresenter>(), GoodsInfoView {
 
     private lateinit var mSkuPop: GoodsSkuView
     //SKU弹层出场动画
@@ -39,8 +41,6 @@ class GoodsInfoDelegate : ProxyDelegate() {
     // 当前商品对象
     private lateinit var mCurGoods: Goods
 
-    private lateinit var listener: OnAddCartListener
-
     companion object {
         // 通过传参构建GoodsInfoDelegate对象
         fun create(goods: Goods): GoodsInfoDelegate {
@@ -50,6 +50,16 @@ class GoodsInfoDelegate : ProxyDelegate() {
             delegate.arguments = args
             return delegate
         }
+    }
+
+    override fun injectComponent() {
+        DaggerCartComponent
+            .builder()
+            .activityComponent(mActivityComponent)
+            .cartModule(CartModule())
+            .build()
+            .inject(this)
+        mPresenter.mView = this
     }
 
     override fun setLayout(): Any {
@@ -147,6 +157,7 @@ class GoodsInfoDelegate : ProxyDelegate() {
      */
     private fun loadPopData(result: Goods) {
         mSkuPop.setGoodsIcon(result.goodsDefaultIcon)
+        mSkuPop.setGoodsTitle(result.goodsTitle)
         mSkuPop.setGoodsCode(result.goodsCode)
         mSkuPop.setGoodsPrice(result.goodsDefaultPrice)
         mSkuPop.setSkuData(result.goodsSku)
@@ -156,26 +167,24 @@ class GoodsInfoDelegate : ProxyDelegate() {
      * 加入购物车
      */
     private fun addCart() {
-        val goodsReq = AddCartReq(
-            mCurGoods.id, mCurGoods.goodsDesc, mCurGoods.goodsDefaultIcon, mCurGoods.goodsDefaultPrice, mSkuPop.getSelectCount(),
+        mPresenter.addCart(
+            mCurGoods.id,
+            mCurGoods.goodsTitle,
+            mCurGoods.goodsDesc,
+            mCurGoods.goodsDefaultIcon,
+            mCurGoods.goodsDefaultPrice,
+            mSkuPop.getSelectCount(),
             mSkuPop.getSelectSku()
         )
-        listener.onAddCart(goodsReq)
+    }
+
+    override fun onAddCartResult(result: Int) {
+        context?.toast("加入购物车成功！")
+        Bus.send(UpdateDetailCartSizeEvent())
     }
 
     override fun onDestroy() {
         super.onDestroy()
         Bus.unregister(this)
-    }
-
-    /**
-     * 加入购物车回调
-     */
-    interface OnAddCartListener {
-        fun onAddCart(cartReq: AddCartReq)
-    }
-
-    fun setOnAddCartListener(listener: OnAddCartListener) {
-        this.listener = listener
     }
 }

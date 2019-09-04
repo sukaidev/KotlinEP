@@ -1,29 +1,33 @@
-package com.sukaidev.index.ui.fragment
+package com.sukaidev.index.ui.adapter
 
 import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.common.GoodsConstant
+import com.sukaidev.core.event.SearchGoodsEvent
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setVisible
+import com.sukaidev.core.ext.startWithNewBundle
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.utils.AppPrefsUtils
-import com.sukaidev.index.ui.adapter.SearchHistoryAdapter
-import kotlinx.android.synthetic.main.delegate_search.*
+import com.sukaidev.index.R
+import com.sukaidev.index.ui.fragment.SearchHistoryAdapter
+import kotlinx.android.synthetic.main.delegate_search_goods.*
 import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/29.
  * 搜索页面.
  */
-class SearchDelegate : ProxyDelegate(), View.OnClickListener {
+class SearchGoodsDelegate : ProxyDelegate(), View.OnClickListener {
 
     private lateinit var mAdapter: SearchHistoryAdapter
 
     override fun setLayout(): Any {
-        return com.sukaidev.index.R.layout.delegate_search
+        return R.layout.delegate_search_goods
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
@@ -35,7 +39,7 @@ class SearchDelegate : ProxyDelegate(), View.OnClickListener {
         mSearchHistoryRv.layoutManager = LinearLayoutManager(context)
         mSearchHistoryRv.adapter = mAdapter
         // item点击事件
-        mAdapter.setOnItemClickListener { adapter, view, position ->
+        mAdapter.setOnItemClickListener { adapter, _, position ->
             enterGoodsList(adapter.getItem(position) as String)
         }
     }
@@ -79,11 +83,12 @@ class SearchDelegate : ProxyDelegate(), View.OnClickListener {
         value.let {
             context?.toast(value)
         }
-        //输入不为空，进入商品列表
+        // 输入不为空，进入商品列表
+        Bus.send(SearchGoodsEvent(value))
+
 //        startActivity<GoodsActivity>(
 //            GoodsConstant.KEY_SEARCH_GOODS_TYPE to GoodsConstant.SEARCH_GOODS_TYPE_KEYWORD,
-//            GoodsConstant.KEY_GOODS_KEYWORD to value
-//        )
+//            GoodsConstant.KEY_GOODS_KEYWORD to value)
     }
 
     override fun onClick(v: View?) {

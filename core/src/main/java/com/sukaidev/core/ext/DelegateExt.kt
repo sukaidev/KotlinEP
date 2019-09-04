@@ -148,7 +148,6 @@ fun View.onClick(method: () -> Unit) {
 /**
  * 扩展Fragmentation
  * 模仿了Anko中的startActivity,支持参数传递
- * 暂时只写了Int和String两种情况
  */
 inline fun <reified T : SupportFragment> SupportFragmentDelegate.startWithNewBundle(vararg params: Pair<String, Any?>) {
     val args = Bundle()
@@ -156,6 +155,7 @@ inline fun <reified T : SupportFragment> SupportFragmentDelegate.startWithNewBun
         when (val value = it.second) {
             is Int -> args.putInt(it.first, value)
             is String -> args.putString(it.first, value)
+            is Boolean -> args.putBoolean(it.first,value)
             else -> throw IllegalArgumentException("startWithNewBundle(${it.first}) has wrong type ${value?.javaClass?.name}")
         }
         return@forEach
@@ -192,17 +192,16 @@ fun NumberButton.getEditText(): EditText {
 }
 
 fun ImageView.loadUrl(url: String) {
-    Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).centerCrop()
-        .dontAnimate().into(this)
+    Glide.with(context).load(url).diskCacheStrategy(DiskCacheStrategy.ALL).into(this)
 }
 
 /**
  * 设置空布局
  */
-fun setViewStateEmpty(delegate: BaseDelegate, contentView: View, @IdRes layoutId: Int, @IdRes textViewId: Int, text: String) {
+fun setViewStateEmpty(delegate: BaseDelegate, contentView: View, @IdRes stubLayoutId: Int, @IdRes textViewId: Int, text: String) {
     if (contentView.visibility != View.GONE) {
         // ViewStub填充后会变为null 所以每次都需初始化
-        val mViewStub: ViewStub? = delegate.view?.findViewById(layoutId)
+        val mViewStub: ViewStub? = delegate.view?.findViewById(stubLayoutId)
         val stubView = mViewStub?.inflate()
         val tvShowEmpty = stubView?.find<AppCompatTextView>(textViewId)
         tvShowEmpty?.text = text

@@ -10,6 +10,7 @@ import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.common.GoodsConstant
+import com.sukaidev.core.common.afterLogin
 import com.sukaidev.core.ext.getEditText
 import com.sukaidev.core.ext.loadUrl
 import com.sukaidev.core.ext.onClick
@@ -19,7 +20,6 @@ import com.sukaidev.goods.R
 import com.sukaidev.goods.data.protocol.GoodsSku
 import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.event.SkuChangedEvent
-import com.sukaidev.goods.common.afterLogin
 import kotlinx.android.synthetic.main.layout_sku_pop.view.*
 
 /**
@@ -89,6 +89,13 @@ class GoodsSkuView(context: Activity) : PopupWindow(context), View.OnClickListen
      */
     fun setGoodsIcon(text: String) {
         mRootView.mGoodsIconIv.loadUrl(text)
+    }
+
+    /**
+     * 设置商品价格
+     */
+    fun setGoodsTitle(text: String) {
+        mRootView.mGoodsTitleTv.text = text
     }
 
     /**
