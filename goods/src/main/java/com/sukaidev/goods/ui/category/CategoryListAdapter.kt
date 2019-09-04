@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.item_category_list.view.*
  * Created by sukaidev on 2019/08/31.
  * 分类列表数据适配.
  */
-class CategoryListAdapter(layoutId: Int, data: MutableList<Category>) : BaseQuickAdapter<Category, BaseViewHolder>(layoutId, data) {
+class CategoryListAdapter(data: MutableList<Category>?) : BaseQuickAdapter<Category, BaseViewHolder>(R.layout.item_category_list, data) {
 
     var mPrePosition: Int = 0
 

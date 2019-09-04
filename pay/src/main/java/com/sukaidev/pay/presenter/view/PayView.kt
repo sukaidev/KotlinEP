@@ -6,7 +6,7 @@ import com.sukaidev.core.presenter.view.BaseView
  * Created by sukaidev on 2019/08/19.
  *
  */
-interface IPayView : BaseView {
+interface PayView : BaseView {
 
     fun onGetPaySignResult(result:String)
 

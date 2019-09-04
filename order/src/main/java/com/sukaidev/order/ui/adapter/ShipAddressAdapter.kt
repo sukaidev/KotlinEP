@@ -1,68 +1,54 @@
 package com.sukaidev.order.ui.adapter
 
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.recyclerview.widget.RecyclerView
-import com.sukaidev.common.ext.onClick
-import com.sukaidev.common.ui.adapter.BaseRecyclerViewAdapter
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.BaseViewHolder
+import com.sukaidev.core.ext.onClick
 import com.sukaidev.order.R
 import com.sukaidev.order.data.protocol.ShipAddress
-import kotlinx.android.synthetic.main.layout_address_item.view.*
+import kotlinx.android.synthetic.main.item_address.view.*
 
 /**
- * Created by sukaidev on 2019/08/18.
- * 收货地址数据适配.
+ * Created by sukaidev on 2019/09/04.
+ *
  */
-class ShipAddressAdapter(context: Context) : BaseRecyclerViewAdapter<ShipAddress, ShipAddressAdapter.ViewHolder>(context) {
+class ShipAddressAdapter(data: MutableList<ShipAddress>?) : BaseQuickAdapter<ShipAddress, BaseViewHolder>(R.layout.item_address, data) {
 
-    var mOptClickListener:OnOptClickListener? = null
+    private var mOptClickListener: OnOptClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(mContext)
-            .inflate(
-                R.layout.layout_address_item,
-                parent,
-                false)
-        return ViewHolder(view)
-    }
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        super.onBindViewHolder(holder, position)
-        val model = dataList[position]
-
-        holder.itemView.mSetDefaultTv.isSelected = (model.shipIsDefault == 0)
-        holder.itemView.mShipNameTv.text = model.shipUserName + "    " + model.shipUserMobile
-        holder.itemView.mShipAddressTv.text = model.shipAddress
+    override fun convert(holder: BaseViewHolder, item: ShipAddress) {
+        holder.itemView.mSetDefaultTv.isSelected = (item.shipIsDefault == 0)
+        holder.itemView.mShipNameTv.text = item.shipUserName
+        holder.itemView.mShipMobileTv.text = item.shipUserMobile
+        holder.itemView.mShipAddressTv.text = item.shipAddress
 
         holder.itemView.mSetDefaultTv.onClick {
             mOptClickListener?.let {
-                if (holder.itemView.mSetDefaultTv.isSelected){
+                if (holder.itemView.mSetDefaultTv.isSelected) {
                     return@onClick
                 }
-                model.shipIsDefault = 0
-                it.onSetDefault(model)
+                item.shipIsDefault = 0
+                it.onSetDefault(item)
             }
         }
 
         holder.itemView.mEditTv.onClick {
-            mOptClickListener?.onEdit(model)
+            mOptClickListener?.onEdit(item)
         }
         holder.itemView.mDeleteTv.onClick {
-            mOptClickListener?.onDelete(model)
+            mOptClickListener?.onDelete(item)
         }
-
     }
 
+    fun setOnOptClickListener(listener: OnOptClickListener) {
+        this.mOptClickListener = listener
+    }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view)
-
-
-    interface OnOptClickListener{
-        fun onSetDefault(address:ShipAddress)
-        fun onEdit(address:ShipAddress)
-        fun onDelete(address:ShipAddress)
+    /**
+     * 操作接口
+     */
+    interface OnOptClickListener {
+        fun onSetDefault(address: ShipAddress)
+        fun onEdit(address: ShipAddress)
+        fun onDelete(address: ShipAddress)
     }
 }

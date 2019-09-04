@@ -7,7 +7,7 @@ import rx.Observable
  * Created by sukaidev on 2019/08/17.
  * 收货人信息 业务接口.
  */
-interface IShipAddressService {
+interface ShipAddressService {
     /**
      * 添加收货地址
      */

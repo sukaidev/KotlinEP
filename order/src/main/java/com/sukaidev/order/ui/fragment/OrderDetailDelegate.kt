@@ -1,24 +1,25 @@
-package com.sukaidev.order.ui.activity
+package com.sukaidev.order.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.sukaidev.common.ui.activity.BaseMvpActivity
-import com.sukaidev.common.utils.MoneyConverter
+import com.sukaidev.core.ui.delegates.BaseMvpDelegate
+import com.sukaidev.core.utils.MoneyConverter
 import com.sukaidev.order.R
 import com.sukaidev.order.data.protocol.Order
 import com.sukaidev.order.injection.component.DaggerOrderComponent
 import com.sukaidev.order.injection.module.OrderModule
 import com.sukaidev.order.presenter.OrderDetailPresenter
-import com.sukaidev.order.presenter.view.IOrderDetailView
+import com.sukaidev.order.presenter.view.OrderDetailView
 import com.sukaidev.order.ui.adapter.OrderGoodsAdapter
 import com.sukaidev.provider.common.ProviderConstant
-import kotlinx.android.synthetic.main.activity_order_detail.*
+import kotlinx.android.synthetic.main.delegate_order_detail.*
 
 /**
- * Created by sukaidev on 2019/08/19.
+ * Created by sukaidev on 2019/08/23.
  * 订单详情页.
  */
-class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), IOrderDetailView {
+class OrderDetailDelegate : BaseMvpDelegate<OrderDetailPresenter>(), OrderDetailView {
 
     private lateinit var mAdapter: OrderGoodsAdapter
 
@@ -32,23 +33,29 @@ class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), IOrderDetai
         mPresenter.mView = this
     }
 
-    override fun setLayout(): Int {
-        return R.layout.activity_order_detail
+    override fun setLayout(): Any {
+        return R.layout.delegate_order_detail
     }
 
-    override fun onBindView(savedInstanceState: Bundle?) {
+    override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initView()
+    }
+
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
         loadData()
     }
 
     private fun initView() {
-        mOrderGoodsRv.layoutManager = LinearLayoutManager(this)
-        mAdapter = OrderGoodsAdapter(this)
+        mOrderGoodsRv.layoutManager = LinearLayoutManager(context)
+        mAdapter = OrderGoodsAdapter(null)
         mOrderGoodsRv.adapter = mAdapter
     }
 
     private fun loadData() {
-        mPresenter.getOrderById(intent.getIntExtra(ProviderConstant.KEY_ORDER_ID, -1))
+        arguments?.let {
+            mPresenter.getOrderById(it.getInt(ProviderConstant.KEY_ORDER_ID, -1))
+        }
     }
 
     override fun onGetOrderByIdResult(result: Order) {
@@ -57,6 +64,6 @@ class OrderDetailActivity : BaseMvpActivity<OrderDetailPresenter>(), IOrderDetai
         mShipAddressTv.setContentText(result.shipAddress!!.shipAddress)
         mTotalPriceTv.setContentText(MoneyConverter.changeF2YWithUnit(result.totalPrice))
 
-        mAdapter.setData(result.orderGoodsList)
+        mAdapter.setNewData(result.orderGoodsList)
     }
 }

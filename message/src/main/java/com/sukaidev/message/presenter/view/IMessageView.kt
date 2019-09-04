@@ -1,6 +1,6 @@
 package com.sukaidev.message.presenter.view
 
-import com.sukaidev.common.presenter.view.BaseView
+import com.sukaidev.core.presenter.view.BaseView
 import com.sukaidev.message.data.protocol.Message
 
 /**

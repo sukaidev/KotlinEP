@@ -4,31 +4,29 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.sukaidev.order.common.OrderConstant
-import com.sukaidev.order.ui.fragment.OrderFragment
+import com.sukaidev.order.ui.fragment.OrderDelegate
 
 /**
- * Created by sukaidev on 2019/08/18.
- * 订单Tab对应ViewPager适配器.
+ * Created by sukaidev on 2019/09/04.
+ *
  */
-class OrderVpAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
-
-    private val titles = arrayOf("全部", "待付款", "待收货", "已完成", "已取消")
+class OrderVpAdapter(private val titles: Array<String>, fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
-        val fragment = OrderFragment()
+        val fragment = OrderDelegate()
         val bundle = Bundle()
         bundle.putInt(OrderConstant.KEY_ORDER_STATUS, position)
         fragment.arguments = bundle
         return fragment
-
     }
 
     override fun getCount(): Int {
         return titles.size
     }
 
-    override fun getPageTitle(position: Int): CharSequence {
+    override fun getPageTitle(position: Int): CharSequence? {
         return titles[position]
     }
 }

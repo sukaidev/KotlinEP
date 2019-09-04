@@ -1,42 +1,38 @@
 package com.sukaidev.order.ui.fragment
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
-import com.kennyc.view.MultiStateView
-import com.sukaidev.common.ui.adapter.BaseRecyclerViewAdapter
-import com.sukaidev.common.ui.fragment.BaseMvpFragment
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.sukaidev.core.ext.startWithNewBundle
+import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.order.R
 import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.data.protocol.Order
 import com.sukaidev.order.injection.component.DaggerOrderComponent
 import com.sukaidev.order.injection.module.OrderModule
 import com.sukaidev.order.presenter.OrderListPresenter
-import com.sukaidev.order.presenter.view.IOrderListView
-import com.sukaidev.order.ui.activity.OrderDetailActivity
+import com.sukaidev.order.presenter.view.OrderListView
 import com.sukaidev.order.ui.adapter.OrderAdapter
 import com.sukaidev.provider.common.ProviderConstant
-import com.sukaidev.provider.router.RouterPath
-import kotlinx.android.synthetic.main.fragment_order.*
-import org.jetbrains.anko.startActivity
+import kotlinx.android.synthetic.main.delegate_order.*
 import org.jetbrains.anko.toast
 
 /**
- * Created by sukaidev on 2019/08/18.
- *
+ * Created by sukaidev on 2019/09/04.
+ * 订单列表页面.
  */
-class OrderFragment : BaseMvpFragment<OrderListPresenter>(), IOrderListView {
+class OrderDelegate : BaseMvpDelegate<OrderListPresenter>(), OrderListView {
 
     private lateinit var mAdapter: OrderAdapter
 
     override fun injectComponent() {
         DaggerOrderComponent
             .builder()
-            .activityComponent(activityComponent)
+            .activityComponent(mActivityComponent)
             .orderModule(OrderModule())
             .build()
             .inject(this)
@@ -44,32 +40,34 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), IOrderListView {
     }
 
     override fun setLayout(): Any {
-        return R.layout.fragment_order
+        return R.layout.delegate_order
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initView()
-        loadData()
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
         loadData()
     }
 
     private fun initView() {
         mOrderRv.layoutManager = LinearLayoutManager(activity)
-        mAdapter = OrderAdapter(activity as Context)
+        mAdapter = OrderAdapter(null)
         mOrderRv.adapter = mAdapter
 
+        /**
+         * 订单对应操作
+         */
         mAdapter.listener = object : OrderAdapter.OnOptClickListener {
             override fun onOptClick(optType: Int, order: Order) {
                 when (optType) {
                     OrderConstant.OPT_ORDER_PAY -> {
-                        ARouter.getInstance().build(RouterPath.Pay.PATH_PAY)
+/*                        ARouter.getInstance().build(RouterPath.PaySDK.PATH_PAY)
                             .withInt(ProviderConstant.KEY_ORDER_ID, order.id)
                             .withLong(ProviderConstant.KEY_ORDER_PRICE, order.totalPrice)
-                            .navigation()
+                            .navigation()*/
                     }
                     OrderConstant.OPT_ORDER_CONFIRM -> {
                         mPresenter.confirmOrder(order.id)
@@ -81,12 +79,11 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), IOrderListView {
             }
         }
 
-        mAdapter.setOnItemClickListener(object :
-            BaseRecyclerViewAdapter.OnItemClickListener<Order> {
-            override fun onItemClick(item: Order, position: Int) {
-                context?.startActivity<OrderDetailActivity>(ProviderConstant.KEY_ORDER_ID to item.id)
-            }
-        })
+        mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+            // 进入订单详情页
+            val itemId = (adapter.getItem(position) as Order).id
+            supportDelegate.startWithNewBundle<OrderDetailDelegate>(ProviderConstant.KEY_ORDER_ID to itemId)
+        }
     }
 
     private fun loadData() {
@@ -106,16 +103,12 @@ class OrderFragment : BaseMvpFragment<OrderListPresenter>(), IOrderListView {
                 if (position == 0) {
                     mPresenter.cancelOrder(order.id)
                 }
-
             }).show()
     }
 
     override fun onGetOrderListResult(result: MutableList<Order>?) {
-        if (result != null && result.size > 0) {
-            mAdapter.setData(result)
-            mMultiStateView.viewState = MultiStateView.ViewState.CONTENT
-        } else {
-            mMultiStateView.viewState = MultiStateView.ViewState.EMPTY
+        result?.let {
+            mAdapter.setNewData(result)
         }
     }
 

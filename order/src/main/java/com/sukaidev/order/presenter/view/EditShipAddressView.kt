@@ -1,12 +1,12 @@
 package com.sukaidev.order.presenter.view
 
-import com.sukaidev.common.presenter.view.BaseView
+import com.sukaidev.core.presenter.view.BaseView
 
 /**
  * Created by sukaidev on 2019/08/18.
  *
  */
-interface IEditShipAddressView : BaseView {
+interface EditShipAddressView : BaseView {
 
     fun onAddShipAddressResult(result: Boolean)
 

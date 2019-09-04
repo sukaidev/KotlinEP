@@ -1,21 +1,21 @@
 package com.sukaidev.order.presenter
 
-import com.sukaidev.common.ext.execute
-import com.sukaidev.common.presenter.BasePresenter
-import com.sukaidev.common.rx.BaseSubscriber
+import com.sukaidev.core.ext.execute
+import com.sukaidev.core.presenter.BasePresenter
+import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.order.data.protocol.ShipAddress
-import com.sukaidev.order.presenter.view.IEditShipAddressView
-import com.sukaidev.order.service.IShipAddressService
+import com.sukaidev.order.presenter.view.EditShipAddressView
+import com.sukaidev.order.service.ShipAddressService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/18.
  *
  */
-class EditShipAddressPresenter @Inject constructor() : BasePresenter<IEditShipAddressView>() {
+class EditShipAddressPresenter @Inject constructor() : BasePresenter<EditShipAddressView>() {
 
     @Inject
-    lateinit var service: IShipAddressService
+    lateinit var service: ShipAddressService
 
     /**
      * 添加收货地址
@@ -24,7 +24,6 @@ class EditShipAddressPresenter @Inject constructor() : BasePresenter<IEditShipAd
         if (!checkNetWork()) {
             return
         } else {
-            mView.showLoading()
             service.addShipAddress(shipUserName, shipUserMobile, shipAddress)
                 .execute(object : BaseSubscriber<Boolean>(mView) {
                     override fun onNext(t: Boolean) {
@@ -41,7 +40,6 @@ class EditShipAddressPresenter @Inject constructor() : BasePresenter<IEditShipAd
         if (!checkNetWork()) {
             return
         } else {
-            mView.showLoading()
             service.editShipAddress(address)
                 .execute(object : BaseSubscriber<Boolean>(mView) {
                     override fun onNext(t: Boolean) {

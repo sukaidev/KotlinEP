@@ -3,6 +3,7 @@ package com.sukaidev.core.ext
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.View
 import android.view.ViewStub
 import android.widget.Button
@@ -156,6 +157,7 @@ inline fun <reified T : SupportFragment> SupportFragmentDelegate.startWithNewBun
             is Int -> args.putInt(it.first, value)
             is String -> args.putString(it.first, value)
             is Boolean -> args.putBoolean(it.first,value)
+            is Parcelable -> args.putParcelable(it.first,value)
             else -> throw IllegalArgumentException("startWithNewBundle(${it.first}) has wrong type ${value?.javaClass?.name}")
         }
         return@forEach

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.event.LogoutEvent
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setVisible
 import com.sukaidev.core.ui.delegates.ProxyDelegate
@@ -43,7 +45,8 @@ class SettingsDelegate : ProxyDelegate() {
             mLogoutBtn.setVisible(true)
             mLogoutBtn.onClick {
                 UserPrefsUtils.putUserInfo(null)
-                pop()
+                Bus.send(LogoutEvent())
+                supportDelegate.pop()
             }
         }
     }

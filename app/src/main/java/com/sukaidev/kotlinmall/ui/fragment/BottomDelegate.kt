@@ -5,11 +5,8 @@ import android.view.View
 import com.ashokvarma.bottomnavigation.BottomNavigationBar
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
-import com.orhanobut.logger.Logger
 import com.sukaidev.core.common.GoodsConstant
-import com.sukaidev.core.event.GoodsClickedEvent
-import com.sukaidev.core.event.LoginEvent
-import com.sukaidev.core.event.SearchGoodsEvent
+import com.sukaidev.core.event.*
 import com.sukaidev.core.ext.startWithNewBundle
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.utils.AppPrefsUtils
@@ -23,6 +20,10 @@ import com.sukaidev.index.ui.fragment.IndexDelegate
 import com.sukaidev.kotlinmall.R
 import com.sukaidev.mine.ui.user.LoginDelegate
 import com.sukaidev.mine.ui.user.MineDelegate
+import com.sukaidev.order.common.OrderConstant
+import com.sukaidev.order.ui.fragment.OrderConfirmDelegate
+import com.sukaidev.order.ui.fragment.OrderManagerDelegate
+import com.sukaidev.order.ui.fragment.ShipAddressDelegate
 import kotlinx.android.synthetic.main.delegate_bottom.*
 import kotlin.collections.ArrayList
 
@@ -137,6 +138,24 @@ class BottomDelegate : ProxyDelegate() {
         Bus.observe<UpdateBottomCartSizeEvent>()
             .subscribe {
                 mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+            }
+            .registerInBus(this)
+        // 订阅提交购物车事件
+        Bus.observe<SubmitCartEvent>()
+            .subscribe {
+                supportDelegate.startWithNewBundle<OrderConfirmDelegate>(OrderConstant.ARG_ORDER_ID to it.orderId)
+            }
+            .registerInBus(this)
+        // 转到地址管理页面
+        Bus.observe<ToAddressDelegateEvent>()
+            .subscribe {
+                supportDelegate.start(ShipAddressDelegate())
+            }
+            .registerInBus(this)
+        // 转到订单页面
+        Bus.observe<ToOrderManagerDelegateEvent>()
+            .subscribe {
+                supportDelegate.startWithNewBundle<OrderManagerDelegate>(OrderConstant.KEY_ORDER_STATUS to it.orderStatus)
             }
             .registerInBus(this)
     }

@@ -4,21 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch.Vertical.Common">
 
-    <com.sukaidev.common.widget.HeaderBar
+    <com.sukaidev.core.widget.HeaderBar
         android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
         app:titleText="地址管理" />
 
-    <com.kennyc.view.MultiStateView
-        android:id="@+id/mMultiStateView"
-        style="@style/MultiStateStyle"
-        android:layout_above="@+id/mAddAddressBtn"
-        android:layout_below="@id/mHeaderBar">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mAddressRv"
-            style="@style/commonRecyclerView" />
-    </com.kennyc.view.MultiStateView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mAddressRv"
+        style="@style/commonRecyclerView"
+        android:layout_below="@id/mHeaderBar" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/mAddAddressBtn"

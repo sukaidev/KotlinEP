@@ -2,8 +2,8 @@ package com.sukaidev.order.data.repository
 
 import javax.inject.Inject
 import rx.Observable
-import com.sukaidev.common.data.net.RetrofitFactory
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.net.RetrofitFactory
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.order.data.api.ShipAddressApi
 import com.sukaidev.order.data.protocol.AddShipAddressReq
 import com.sukaidev.order.data.protocol.DeleteShipAddressReq

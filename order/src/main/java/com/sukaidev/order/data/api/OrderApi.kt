@@ -1,6 +1,6 @@
 package com.sukaidev.order.data.api
 
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.order.data.protocol.*
 import retrofit2.http.Body
 import retrofit2.http.POST

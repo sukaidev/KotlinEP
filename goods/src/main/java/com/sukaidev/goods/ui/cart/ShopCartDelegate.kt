@@ -7,6 +7,8 @@ import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.orhanobut.logger.Logger
 import com.sukaidev.core.common.GoodsConstant
+import com.sukaidev.core.event.LoginSuccessEvent
+import com.sukaidev.core.event.LogoutEvent
 import com.sukaidev.core.event.SubmitCartEvent
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setVisible
@@ -29,12 +31,9 @@ import org.jetbrains.anko.toast
  */
 class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
 
-    private var mAdapter: CartGoodsAdapter? = null
+    private lateinit var mAdapter: CartGoodsAdapter
 
     private var mTotalPrice: Long = 0
-
-    // 适配器是否已经初始化标记
-    private var hasInitAdapter: Boolean = false
 
     // 是否从GoodsDetail页面进入
     private var isStartedFromDetailDelegate: Boolean = false
@@ -68,6 +67,10 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
 
     private fun initView() {
 
+        mCartGoodsRv.layoutManager = LinearLayoutManager(context)
+        mAdapter = CartGoodsAdapter(null)
+        mCartGoodsRv.adapter = mAdapter
+
         if (isStartedFromDetailDelegate) {
             mHeaderBar.getLeftIv().visibility = View.VISIBLE
             mHeaderBar.getLeftIv().onClick {
@@ -81,11 +84,11 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
 
         // 全选按钮事件
         mAllCheckedCb.onClick {
-            if (mAdapter != null && mAdapter!!.data.isNotEmpty()) {
-                mAdapter!!.data.forEach {
+            if (mAdapter.data.isNotEmpty()) {
+                mAdapter.data.forEach {
                     it.isSelected = mAllCheckedCb.isChecked
                 }
-                mAdapter!!.notifyDataSetChanged()
+                mAdapter.notifyDataSetChanged()
                 updateTotalPrice()
             }
         }
@@ -93,8 +96,8 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
         // 删除按钮事件
         mDeleteBtn.onClick {
             val cartIdList: MutableList<Int> = arrayListOf()
-            mAdapter?.data?.filter { it.isSelected }
-                ?.mapTo(cartIdList) { it.id }
+            mAdapter.data.filter { it.isSelected }
+                .mapTo(cartIdList) { it.id }
             if (cartIdList.size == 0) {
                 context?.toast("请选择需要删除的数据")
             } else {
@@ -105,8 +108,8 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
         // 结算按钮事件
         mSettleAccountsBtn.onClick {
             val cartGoodsList: MutableList<CartGoods> = arrayListOf()
-            mAdapter?.data?.filter { it.isSelected }
-                ?.mapTo(cartGoodsList) { it }
+            mAdapter.data.filter { it.isSelected }
+                .mapTo(cartGoodsList) { it }
             if (cartGoodsList.size == 0) {
                 context?.toast("请选择需要提交的数据")
             } else {
@@ -149,6 +152,20 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
                 loadData()
             }
             .registerInBus(this)
+
+        Bus
+            .observe<LoginSuccessEvent>()
+            .subscribe {
+                loadData()
+            }
+            .registerInBus(this)
+
+        Bus
+            .observe<LogoutEvent>()
+            .subscribe {
+                loadData()
+            }
+            .registerInBus(this)
     }
 
     /**
@@ -168,7 +185,7 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
      */
     private fun updateTotalPrice() {
         mTotalPriceTv.setVisible(true)
-        mTotalPrice = mAdapter!!.data
+        mTotalPrice = mAdapter.data
             .filter { it.isSelected }
             .map { it.goodsCount * it.goodsPrice }
             .sum()
@@ -181,19 +198,12 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
                 mViewStub.visibility = View.GONE
                 mCartGoodsRv.visibility = View.VISIBLE
             }*/
-            if (!hasInitAdapter) {
-                mCartGoodsRv.layoutManager = LinearLayoutManager(context)
-                mAdapter = CartGoodsAdapter(R.layout.item_shop_cart, result)
-                mCartGoodsRv.adapter = mAdapter
-                hasInitAdapter = true
-            } else {
-                mAdapter!!.setNewData(result)
-            }
+            mAdapter.setNewData(result)
             mHeaderBar.getRightTv().setVisible(true)
             mAllCheckedCb.isChecked = false
         } else {
             // 清空当前Adapter中的数据
-            mAdapter?.data?.clear()
+            mAdapter.data.clear()
             mHeaderBar.getRightTv().setVisible(false)
             mAllCheckedCb.isChecked = false
             mTotalPriceTv.setVisible(false)

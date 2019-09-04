@@ -12,7 +12,7 @@
         android:scaleType="fitXY" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/mGoodsDescTv"
+        android:id="@+id/mGoodsTitle"
         style="@style/WrapWrap"
         android:layout_gravity="center_horizontal"
         android:layout_marginStart="@dimen/common_margin"
@@ -26,9 +26,9 @@
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mGoodsSkuTv"
         style="@style/WrapWrap"
-        android:layout_below="@id/mGoodsDescTv"
-        android:layout_alignStart="@id/mGoodsDescTv"
-        android:layout_alignLeft="@id/mGoodsDescTv"
+        android:layout_below="@id/mGoodsTitle"
+        android:layout_alignStart="@id/mGoodsTitle"
+        android:layout_alignLeft="@id/mGoodsTitle"
         android:layout_marginTop="@dimen/common_margin_small"
         android:textSize="@dimen/text_small_size" />
 

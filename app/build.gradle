@@ -31,11 +31,11 @@ dependencies {
     implementation project(':core')
     implementation project(':index')
     implementation project(':goods')
+    implementation project(':order')
     implementation project(':mine')
 
 //    implementation project(':message')
 //    implementation project(':goods')
-//    implementation project(':order')
 //    implementation project(':pay')
 //    implementation project(':provider')
 //    if (isUserModule.toBoolean()) {

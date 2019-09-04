@@ -7,6 +7,7 @@ package com.sukaidev.order.data.protocol
 data class OrderGoods(
     val id: Int,
     var goodsId: Int,
+    var goodsTitle:String,
     val goodsDesc: String,
     val goodsIcon: String,
     val goodsPrice: Long,

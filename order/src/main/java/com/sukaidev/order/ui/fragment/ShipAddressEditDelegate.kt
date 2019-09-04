@@ -1,24 +1,27 @@
-package com.sukaidev.order.ui.activity
+package com.sukaidev.order.ui.fragment
 
 import android.os.Bundle
-import com.sukaidev.common.ext.enable
-import com.sukaidev.common.ext.onClick
-import com.sukaidev.common.ui.activity.BaseMvpActivity
+import android.view.View
+import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.ext.enable
+import com.sukaidev.core.ext.onClick
+import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.order.R
 import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.data.protocol.ShipAddress
+import com.sukaidev.order.event.EditAddressSuccessEvent
 import com.sukaidev.order.injection.component.DaggerShipAddressComponent
 import com.sukaidev.order.injection.module.ShipAddressModule
 import com.sukaidev.order.presenter.EditShipAddressPresenter
-import com.sukaidev.order.presenter.view.IEditShipAddressView
-import kotlinx.android.synthetic.main.activity_edit_address.*
+import com.sukaidev.order.presenter.view.EditShipAddressView
+import kotlinx.android.synthetic.main.delegate_edit_address.*
 import org.jetbrains.anko.toast
 
 /**
- * Created by sukaidev on 2019/08/17.
+ * Created by sukaidev on 2019/09/04.
  *
  */
-class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEditShipAddressView {
+class ShipAddressEditDelegate : BaseMvpDelegate<EditShipAddressPresenter>(), EditShipAddressView {
 
     private var mAddress: ShipAddress? = null
 
@@ -32,11 +35,11 @@ class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEd
         mPresenter.mView = this
     }
 
-    override fun setLayout(): Int {
-        return R.layout.activity_edit_address
+    override fun setLayout(): Any {
+        return R.layout.delegate_edit_address
     }
 
-    override fun onBindView(savedInstanceState: Bundle?) {
+    override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initData()
         initView()
     }
@@ -63,7 +66,9 @@ class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEd
     }
 
     private fun initData() {
-        mAddress = intent.getParcelableExtra<ShipAddress>(OrderConstant.KEY_SHIP_ADDRESS)
+        arguments?.let {
+            mAddress = arguments!!.getParcelable(OrderConstant.KEY_SHIP_ADDRESS)
+        }
         mAddress?.let {
             mShipNameEt.setText(it.shipUserName)
             mShipMobileEt.setText(it.shipUserMobile)
@@ -78,12 +83,14 @@ class ShipAddressEditActivity : BaseMvpActivity<EditShipAddressPresenter>(), IEd
     }
 
     override fun onAddShipAddressResult(result: Boolean) {
-        toast("添加地址成功！")
-        finish()
+        context?.toast("添加地址成功！")
+        Bus.send(EditAddressSuccessEvent())
+        supportDelegate.pop()
     }
 
     override fun onEditShipAddress(result: Boolean) {
-        toast("修改地址成功")
-        finish()
+        context?.toast("添加地址成功！")
+        Bus.send(EditAddressSuccessEvent())
+        supportDelegate.pop()
     }
 }

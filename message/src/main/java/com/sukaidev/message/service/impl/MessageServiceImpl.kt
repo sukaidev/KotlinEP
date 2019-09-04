@@ -1,6 +1,6 @@
 package com.sukaidev.message.service.impl
 
-import com.sukaidev.common.ext.convert
+import com.sukaidev.core.ext.convert
 import com.sukaidev.message.data.protocol.Message
 import com.sukaidev.message.data.repository.MessageRepository
 import com.sukaidev.message.service.IMessageService

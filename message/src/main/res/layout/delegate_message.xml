@@ -8,12 +8,8 @@
         app:isShowBack="false"
         app:titleText="消息" />
 
-    <com.kennyc.view.MultiStateView
-        android:id="@+id/mMultiStateView"
-        style="@style/MultiStateStyle">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mMessageRv"
+        style="@style/commonRecyclerView" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/mMessageRv"
-            style="@style/commonRecyclerView" />
-    </com.kennyc.view.MultiStateView>
 </androidx.appcompat.widget.LinearLayoutCompat>

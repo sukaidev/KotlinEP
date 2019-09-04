@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch.Common">
 
-    <com.sukaidev.common.widget.HeaderBar
+    <com.sukaidev.core.widget.HeaderBar
         android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
         app:titleText="订单确认" />
@@ -92,14 +92,14 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="30dp"
             android:layout_marginLeft="30dp"
-            android:textColor="@color/common_red" />
+            android:textColor="@color/app_main" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/mSubmitOrderBtn"
             style="@style/WrapWrap"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:background="@color/common_red"
+            android:background="@color/app_main"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:text="提交订单"

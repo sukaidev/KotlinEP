@@ -72,7 +72,7 @@
             android:layout_alignStart="@id/mGoodsDescTv"
             android:layout_alignLeft="@id/mGoodsDescTv"
             android:layout_marginTop="@dimen/common_margin_small"
-            android:textColor="@color/common_red" />
+            android:textColor="@color/app_main" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/mGoodsCountTv"
@@ -96,7 +96,7 @@
         android:id="@+id/mBottomView"
         style="@style/MatchWrap.Horizontal"
         android:background="@color/common_white"
-        android:gravity="right"
+        android:gravity="end"
         android:padding="@dimen/common_padding_small">
 
         <androidx.appcompat.widget.AppCompatButton
@@ -107,7 +107,7 @@
             android:layout_marginRight="@dimen/common_margin"
             android:background="@drawable/corner_blue_white_bg"
             android:text="确认收货"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/app_main"
             android:textSize="@dimen/text_small_size"
             tools:ignore="HardcodedText" />
 
@@ -119,7 +119,7 @@
             android:layout_marginRight="@dimen/common_margin"
             android:background="@drawable/corner_blue_white_bg"
             android:text="去支付"
-            android:textColor="@color/common_blue"
+            android:textColor="@color/app_main"
             android:textSize="@dimen/text_small_size"
             tools:ignore="HardcodedText" />
 
@@ -129,7 +129,7 @@
             android:layout_height="30.0dip"
             android:background="@drawable/corner_gray_white_bg"
             android:text="取消订单"
-            android:textColor="@color/text_light_dark"
+            android:textColor="@android:color/darker_gray"
             android:textSize="@dimen/text_small_size"
             tools:ignore="HardcodedText" />
     </androidx.appcompat.widget.LinearLayoutCompat>

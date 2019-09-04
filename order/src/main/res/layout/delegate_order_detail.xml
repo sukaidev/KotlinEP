@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchWrap.Vertical">
 
-    <com.sukaidev.common.widget.HeaderBar
+    <com.sukaidev.core.widget.HeaderBar
         android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
         app:titleText="订单详情" />
@@ -29,22 +29,22 @@
                 android:textColor="@color/text_light_dark"
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
-            <com.sukaidev.common.widget.LabelTextView
+            <com.sukaidev.core.widget.LabelTextView
                 android:id="@+id/mShipNameTv"
                 style="@style/MatchWrap"
                 app:labelText="收货人:" />
 
-            <com.sukaidev.common.widget.LabelTextView
+            <com.sukaidev.core.widget.LabelTextView
                 android:id="@+id/mShipMobileTv"
                 style="@style/MatchWrap"
                 app:labelText="收货电话:" />
 
-            <com.sukaidev.common.widget.LabelTextView
+            <com.sukaidev.core.widget.LabelTextView
                 android:id="@+id/mShipAddressTv"
                 style="@style/MatchWrap"
                 app:labelText="收货地址:" />
 
-            <com.sukaidev.common.widget.LabelTextView
+            <com.sukaidev.core.widget.LabelTextView
                 style="@style/MatchWrap"
                 app:contentText="快递运输"
                 app:labelText="配送方式:" />
@@ -60,17 +60,17 @@
                 android:textColor="@color/text_light_dark"
                 tools:ignore="HardcodedText,RtlSymmetry" />
 
-            <com.sukaidev.common.widget.LabelTextView
+            <com.sukaidev.core.widget.LabelTextView
                 style="@style/MatchWrap"
                 app:contentText="在线支付"
                 app:labelText="支付类型:" />
 
-            <com.sukaidev.common.widget.LabelTextView
+            <com.sukaidev.core.widget.LabelTextView
                 style="@style/MatchWrap"
                 app:contentText="支付宝支付"
                 app:labelText="支付方式:" />
 
-            <com.sukaidev.common.widget.LabelTextView
+            <com.sukaidev.core.widget.LabelTextView
                 android:id="@+id/mTotalPriceTv"
                 style="@style/MatchWrap"
                 app:labelText="实付费用:" />

@@ -1,21 +1,21 @@
 package com.sukaidev.order.presenter
 
-import com.sukaidev.common.ext.execute
-import com.sukaidev.common.presenter.BasePresenter
-import com.sukaidev.common.rx.BaseSubscriber
+import com.sukaidev.core.ext.execute
+import com.sukaidev.core.presenter.BasePresenter
+import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.order.data.protocol.ShipAddress
-import com.sukaidev.order.presenter.view.IShipAddressView
-import com.sukaidev.order.service.IShipAddressService
+import com.sukaidev.order.presenter.view.ShipAddressView
+import com.sukaidev.order.service.ShipAddressService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/18.
  *
  */
-class ShipAddressPresenter @Inject constructor() : BasePresenter<IShipAddressView>() {
+class ShipAddressPresenter @Inject constructor() : BasePresenter<ShipAddressView>() {
 
     @Inject
-    lateinit var service: IShipAddressService
+    lateinit var shipAddressService: ShipAddressService
 
     /**
      * 获取收货地址列表
@@ -24,8 +24,7 @@ class ShipAddressPresenter @Inject constructor() : BasePresenter<IShipAddressVie
         if (!checkNetWork()) {
             return
         } else {
-            mView.showLoading()
-            service.getShipAddressList()
+            shipAddressService.getShipAddressList()
                 .execute(object : BaseSubscriber<MutableList<ShipAddress>?>(mView) {
                     override fun onNext(t: MutableList<ShipAddress>?) {
                         mView.onGetShipAddressListResult(t)
@@ -41,7 +40,7 @@ class ShipAddressPresenter @Inject constructor() : BasePresenter<IShipAddressVie
         if (!checkNetWork()) {
             return
         }
-        service.editShipAddress(address).execute(object : BaseSubscriber<Boolean>(mView) {
+        shipAddressService.editShipAddress(address).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
                 mView.onSetDefaultResult(t)
             }
@@ -55,7 +54,7 @@ class ShipAddressPresenter @Inject constructor() : BasePresenter<IShipAddressVie
         if (!checkNetWork()) {
             return
         }
-        service.deleteShipAddress(addressId).execute(object : BaseSubscriber<Boolean>(mView) {
+        shipAddressService.deleteShipAddress(addressId).execute(object : BaseSubscriber<Boolean>(mView) {
             override fun onNext(t: Boolean) {
                 mView.onDeleteDefaultResult(t)
             }

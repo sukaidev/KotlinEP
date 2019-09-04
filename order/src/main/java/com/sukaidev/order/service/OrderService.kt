@@ -7,7 +7,7 @@ import rx.Observable
  * Created by sukaidev on 2019/08/17.
  *
  */
-interface IOrderService {
+interface OrderService {
 
     fun submitOrder(order: Order): Observable<String>
 

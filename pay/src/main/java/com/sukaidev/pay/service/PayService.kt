@@ -6,7 +6,7 @@ import rx.Observable
  * Created by sukaidev on 2019/08/19.
  * 支付  业务接口
  */
-interface IPayService {
+interface PayService {
 
     /**
      * 获取支付宝支付签名

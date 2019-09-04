@@ -3,18 +3,18 @@ package com.sukaidev.pay.presenter
 import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
-import com.sukaidev.pay.presenter.view.IPayView
-import com.sukaidev.pay.service.IPayService
+import com.sukaidev.pay.presenter.view.PayView
+import com.sukaidev.pay.service.PayService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/19.
  *
  */
-class PayPresenter @Inject constructor() : BasePresenter<IPayView>() {
+class PayPresenter @Inject constructor() : BasePresenter<PayView>() {
 
     @Inject
-    lateinit var service: IPayService
+    lateinit var service: PayService
 
     /**
      * 获取支付签名

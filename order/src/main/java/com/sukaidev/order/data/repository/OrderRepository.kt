@@ -1,7 +1,7 @@
 package com.sukaidev.order.data.repository
 
-import com.sukaidev.common.data.net.RetrofitFactory
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.net.RetrofitFactory
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.order.data.api.OrderApi
 import com.sukaidev.order.data.protocol.*
 import rx.Observable

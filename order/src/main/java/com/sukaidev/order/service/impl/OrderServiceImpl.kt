@@ -1,10 +1,10 @@
 package com.sukaidev.order.service.impl
 
-import com.sukaidev.common.ext.convert
-import com.sukaidev.common.ext.convertBoolean
+import com.sukaidev.core.ext.convert
+import com.sukaidev.core.ext.convertBoolean
 import com.sukaidev.order.data.protocol.Order
 import com.sukaidev.order.data.repository.OrderRepository
-import com.sukaidev.order.service.IOrderService
+import com.sukaidev.order.service.OrderService
 import rx.Observable
 import javax.inject.Inject
 
@@ -12,7 +12,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/17.
  * 订单业务实现.
  */
-class OrderServiceImpl @Inject constructor() : IOrderService {
+class OrderServiceImpl @Inject constructor() : OrderService {
 
     @Inject
     lateinit var repository: OrderRepository

@@ -1,32 +1,12 @@
 package com.sukaidev.pay.ui.activity
 
-import android.os.Bundle
-import android.view.View
-import com.alibaba.android.arouter.facade.annotation.Route
-import com.alipay.sdk.app.EnvUtils
-import com.alipay.sdk.app.PayTask
-import com.sukaidev.core.ext.onClick
-import com.sukaidev.core.ui.activities.BaseMvpActivity
-import com.sukaidev.core.ui.delegates.BaseDelegate
-import com.sukaidev.core.utils.MoneyConverter
-import com.sukaidev.pay.R
-import com.sukaidev.pay.injection.module.PayModule
-import com.sukaidev.pay.presenter.PayPresenter
-import com.sukaidev.pay.presenter.view.IPayView
-import com.sukaidev.provider.common.ProviderConstant
-import com.sukaidev.provider.router.RouterPath
-import kotlinx.android.synthetic.main.activity_cash_register.*
-import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.toast
-import org.jetbrains.anko.uiThread
-
 /**
  * Created by sukaidev on 2019/08/19.
  * 收银台界面.
  */
 //@Route(path = RouterPath.Pay.PATH_PAY)
 /*
-class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), IPayView, View.OnClickListener {
+class CashRegisterActivity : BaseMvpActivity<PayPresenter>(), PayView, View.OnClickListener {
 
     // 订单号
     var mOrderId: Int = 0

@@ -1,6 +1,6 @@
 package com.sukaidev.pay.injection.module
 
-import com.sukaidev.pay.service.IPayService
+import com.sukaidev.pay.service.PayService
 import com.sukaidev.pay.service.impl.PayServiceImpl
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,7 @@ import dagger.Provides
 class PayModule {
 
     @Provides
-    fun providesPayService(service: PayServiceImpl): IPayService {
+    fun providesPayService(service: PayServiceImpl): PayService {
         return service
     }
 }

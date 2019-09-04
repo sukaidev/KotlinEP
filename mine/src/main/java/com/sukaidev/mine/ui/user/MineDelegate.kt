@@ -1,8 +1,14 @@
 package com.sukaidev.mine.ui.user
 
-import android.content.res.Resources
 import android.os.Bundle
 import android.view.View
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
+import com.sukaidev.core.common.afterLogin
+import com.sukaidev.core.event.LoginSuccessEvent
+import com.sukaidev.core.event.LogoutEvent
+import com.sukaidev.core.event.ToAddressDelegateEvent
+import com.sukaidev.core.event.ToOrderManagerDelegateEvent
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.loadUrl
 import com.sukaidev.core.ui.delegates.BaseDelegate
@@ -29,10 +35,7 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initView()
-    }
-
-    override fun onStart() {
-        super.onStart()
+        initObserve()
         loadData()
     }
 
@@ -45,6 +48,26 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
         mAllOrderTv.onClick(this)
         mAddressTv.onClick(this)
         mSettingTv.onClick(this)
+    }
+
+    private fun initObserve() {
+
+        Bus.observe<LoginSuccessEvent>()
+            .subscribe{
+                val userIcon = AppPrefsUtils.getString(KEY_SP_USER_ICON)
+                if (userIcon!!.isNotEmpty()) {
+                    mUserIconIv.loadUrl(userIcon)
+                }
+                mUserNameTv.text = AppPrefsUtils.getString(ProviderConstant.KEY_SP_USER_NAME)
+            }
+            .registerInBus(this)
+
+        Bus.observe<LogoutEvent>()
+            .subscribe{
+                mUserIconIv.setImageResource(R.drawable.icon_default_user)
+                mUserNameTv.text = getString(R.string.un_login_text)
+            }
+            .registerInBus(this)
     }
 
     private fun loadData() {
@@ -70,22 +93,33 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
                 }
             }
             mWaitPayOrderTv -> {
+                Bus.send(ToOrderManagerDelegateEvent(1))
 //                context?.startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_PAY)
             }
             mWaitConfirmOrderTv -> {
+                Bus.send(ToOrderManagerDelegateEvent(2))
 //                context?.startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_WAIT_CONFIRM)
             }
             mCompleteOrderTv -> {
+                Bus.send(ToOrderManagerDelegateEvent(3))
 //                context?.startActivity<OrderActivity>(OrderConstant.KEY_ORDER_STATUS to OrderStatus.ORDER_COMPLETED)
             }
             mAllOrderTv -> {
-/*                afterLogin {
-                    context?.startActivity<OrderActivity>()
-                }*/
+                afterLogin {
+                    Bus.send(ToOrderManagerDelegateEvent())
+//                    context?.startActivity<OrderActivity>()
+                }
             }
-/*            mAddressTv -> afterLogin { context?.startActivity<ShipAddressActivity>() }*/
+            mAddressTv -> afterLogin {
+                Bus.send(ToAddressDelegateEvent())
+            }
             mSettingTv -> getParentDelegate<BaseDelegate>().supportDelegate.start(SettingsDelegate())
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 
     private val WAIT_TIME = 2000L

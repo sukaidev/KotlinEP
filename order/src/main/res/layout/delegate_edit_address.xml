@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchMatch.Common">
 
-    <com.sukaidev.common.widget.HeaderBar
+    <com.sukaidev.core.widget.HeaderBar
         android:id="@id/mHeaderBar"
         style="@style/MatchWrap"
         app:titleText="新建地址" />

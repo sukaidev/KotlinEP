@@ -45,13 +45,41 @@ class CategoryDelegate : ProxyMvpDelegate<CategoryPresenter>(), CategoryView {
     }
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
-        mListRv.layoutManager = LinearLayoutManager(context)
-        mContentRv.layoutManager = GridLayoutManager(context, 3)
+        initView()
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
         super.onLazyInitView(savedInstanceState)
         loadData()
+    }
+
+    private fun initView() {
+        mListRv.layoutManager = LinearLayoutManager(context)
+        mListAdapter = CategoryListAdapter(null)
+        mListRv.adapter = mListAdapter
+        mListAdapter.onItemClickListener =
+            BaseQuickAdapter.OnItemClickListener { adapter, _, position ->
+                if (position != (adapter as CategoryListAdapter).mPrePosition) {
+                    val itemId = (adapter.getItem(position) as Category).id
+                    for (category in adapter.data) {
+                        val categoryId = (category as Category).id
+                        category.isSelected = itemId == categoryId
+                    }
+                    adapter.notifyItemChanged(adapter.mPrePosition)
+                    adapter.notifyItemChanged(position)
+                    adapter.mPrePosition = position
+                    loadData(itemId)
+                }
+            }
+
+        mContentRv.layoutManager = GridLayoutManager(context, 3)
+        mContentAdapter = CategoryContentAdapter(null)
+        mContentRv.adapter = mContentAdapter
+        mContentAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+            val categoryId = (adapter.getItem(position) as Category).id
+            getParentDelegate<ProxyDelegate>()
+                .supportDelegate.startWithNewBundle<GoodsListDelegate>(GoodsConstant.KEY_CATEGORY_ID to categoryId)
+        }
     }
 
     /**
@@ -68,32 +96,10 @@ class CategoryDelegate : ProxyMvpDelegate<CategoryPresenter>(), CategoryView {
         data?.let {
             if (it[0].parentId == 0) {
                 it[0].isSelected = true
-                mListAdapter =
-                    CategoryListAdapter(R.layout.item_category_list, it)
-                mListRv.adapter = mListAdapter
-                mListAdapter.onItemClickListener =
-                    BaseQuickAdapter.OnItemClickListener { adapter, _, position ->
-                        if (position != (adapter as CategoryListAdapter).mPrePosition) {
-                            val itemId = (adapter.getItem(position) as Category).id
-                            for (category in adapter.data) {
-                                val categoryId = (category as Category).id
-                                category.isSelected = itemId == categoryId
-                            }
-                            adapter.notifyItemChanged(adapter.mPrePosition)
-                            adapter.notifyItemChanged(position)
-                            adapter.mPrePosition = position
-                            loadData(itemId)
-                        }
-                    }
+                mListAdapter.setNewData(it)
                 mPresenter.getCategory(it[0].id)
             } else {
-                mContentAdapter = CategoryContentAdapter(R.layout.item_category_content, it)
-                mContentRv.adapter = mContentAdapter
-                mContentAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-                    val categoryId = (adapter.getItem(position) as Category).id
-                    getParentDelegate<ProxyDelegate>()
-                        .supportDelegate.startWithNewBundle<GoodsListDelegate>(GoodsConstant.KEY_CATEGORY_ID to categoryId)
-                }
+                mContentAdapter.setNewData(it)
             }
         }
     }
@@ -110,7 +116,7 @@ class CategoryDelegate : ProxyMvpDelegate<CategoryPresenter>(), CategoryView {
                 }
                 mContentRv.visibility = View.GONE
             }*/
-            setViewStateEmpty(this,mContentRv,R.id.view_stub_empty,R.id.tv_stub_content_empty,"这里还没有商品")
+            setViewStateEmpty(this, mContentRv, R.id.view_stub_empty, R.id.tv_stub_content_empty, "这里还没有商品")
         } else {
             if (mContentRv.visibility == View.GONE) {
                 mContentRv.visibility = View.VISIBLE

@@ -3,7 +3,7 @@ package com.sukaidev.pay.service.impl
 import com.sukaidev.core.ext.convert
 import com.sukaidev.core.ext.convertBoolean
 import com.sukaidev.pay.data.repository.PayRepository
-import com.sukaidev.pay.service.IPayService
+import com.sukaidev.pay.service.PayService
 import rx.Observable
 import javax.inject.Inject
 
@@ -11,7 +11,7 @@ import javax.inject.Inject
  * Created by sukaidev on 2019/08/19.
  *
  */
-class PayServiceImpl @Inject constructor() : IPayService {
+class PayServiceImpl @Inject constructor() : PayService {
 
     @Inject
     lateinit var repository: PayRepository

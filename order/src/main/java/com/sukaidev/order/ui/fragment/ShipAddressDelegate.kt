@@ -1,32 +1,33 @@
-package com.sukaidev.order.ui.activity
+package com.sukaidev.order.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.eightbitlab.rxbus.Bus
-import com.kennyc.view.MultiStateView
-import com.sukaidev.common.ext.onClick
-import com.sukaidev.common.ui.activity.BaseMvpActivity
-import com.sukaidev.common.ui.adapter.BaseRecyclerViewAdapter
+import com.eightbitlab.rxbus.registerInBus
+import com.sukaidev.core.ext.onClick
+import com.sukaidev.core.ext.startWithNewBundle
+import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.order.R
 import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.data.protocol.ShipAddress
+import com.sukaidev.order.event.EditAddressSuccessEvent
 import com.sukaidev.order.event.SelectAddressEvent
 import com.sukaidev.order.injection.component.DaggerShipAddressComponent
 import com.sukaidev.order.injection.module.ShipAddressModule
 import com.sukaidev.order.presenter.ShipAddressPresenter
-import com.sukaidev.order.presenter.view.IShipAddressView
+import com.sukaidev.order.presenter.view.ShipAddressView
 import com.sukaidev.order.ui.adapter.ShipAddressAdapter
-import kotlinx.android.synthetic.main.activity_address.*
-import org.jetbrains.anko.startActivity
+import kotlinx.android.synthetic.main.delegate_ship_address.*
 import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/17.
- *
+ * 收货管理地址页面.
  */
-class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), IShipAddressView {
+class ShipAddressDelegate : BaseMvpDelegate<ShipAddressPresenter>(), ShipAddressView {
 
     private lateinit var mAdapter: ShipAddressAdapter
 
@@ -40,22 +41,39 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), IShipAddres
         mPresenter.mView = this
     }
 
-    override fun setLayout(): Int {
-        return R.layout.activity_address
+    override fun setLayout(): Any {
+        return R.layout.delegate_ship_address
     }
 
-    override fun onBindView(savedInstanceState: Bundle?) {
-        mAddressRv.layoutManager = LinearLayoutManager(this)
-        mAdapter = ShipAddressAdapter(this)
+    override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
+        initView()
+        initObserve()
+    }
+
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
+        loadData()
+    }
+
+    private fun initView() {
+
+        mHeaderBar.getLeftIv().onClick {
+            supportDelegate.pop()
+        }
+
+        mAddressRv.layoutManager = LinearLayoutManager(context)
+        mAdapter = ShipAddressAdapter(null)
         mAddressRv.adapter = mAdapter
 
-        mAdapter.mOptClickListener = object : ShipAddressAdapter.OnOptClickListener {
+        mAdapter.setOnOptClickListener(object : ShipAddressAdapter.OnOptClickListener {
+
             override fun onSetDefault(address: ShipAddress) {
                 mPresenter.setDefaultAddress(address)
             }
 
             override fun onEdit(address: ShipAddress) {
-                startActivity<ShipAddressEditActivity>(OrderConstant.KEY_SHIP_ADDRESS to address)
+                // 开启编辑界面
+                supportDelegate.startWithNewBundle<ShipAddressEditDelegate>(OrderConstant.KEY_SHIP_ADDRESS to address)
             }
 
             override fun onDelete(address: ShipAddress) {
@@ -65,7 +83,7 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), IShipAddres
                     "取消",
                     null,
                     arrayOf("确定"),
-                    this@ShipAddressActivity,
+                    context,
                     AlertView.Style.Alert,
                     OnItemClickListener { _, position ->
                         if (position == 0) {
@@ -74,47 +92,48 @@ class ShipAddressActivity : BaseMvpActivity<ShipAddressPresenter>(), IShipAddres
                     }
                 ).show()
             }
-        }
-
-        mAdapter.setOnItemClickListener(object :
-            BaseRecyclerViewAdapter.OnItemClickListener<ShipAddress> {
-            override fun onItemClick(item: ShipAddress, position: Int) {
-                Bus.send(SelectAddressEvent(item))
-                this@ShipAddressActivity.finish()
-            }
         })
 
+        mAdapter.setOnItemClickListener { adapter, _, position ->
+            Bus.send(SelectAddressEvent(adapter.getItem(position) as ShipAddress))
+            supportDelegate.pop()
+        }
+
         mAddAddressBtn.onClick {
-            startActivity<ShipAddressEditActivity>()
+            supportDelegate.start(ShipAddressEditDelegate())
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        loadData()
+    private fun initObserve() {
+        Bus.observe<EditAddressSuccessEvent>()
+            .subscribe {
+                loadData()
+            }
+            .registerInBus(this)
     }
 
     private fun loadData() {
         mPresenter.getShipAddressList()
     }
 
-
     override fun onGetShipAddressListResult(result: MutableList<ShipAddress>?) {
-        if (result != null && result.size > 0) {
-            mAdapter.setData(result)
-            mMultiStateView.viewState = MultiStateView.ViewState.CONTENT
-        } else {
-            mMultiStateView.viewState = MultiStateView.ViewState.EMPTY
+        result?.let {
+            mAdapter.setNewData(it)
         }
     }
 
     override fun onSetDefaultResult(result: Boolean) {
-        toast("设置默认成功")
+        context?.toast("设置默认成功")
         loadData()
     }
 
     override fun onDeleteDefaultResult(result: Boolean) {
-        toast("删除成功")
+        context?.toast("删除成功")
         loadData()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }

@@ -3,13 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     style="@style/MatchMatch.Vertical.Common">
 
-    <com.sukaidev.common.widget.HeaderBar
+    <com.sukaidev.core.widget.HeaderBar
+        android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
         app:titleText="我的订单" />
 
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/mOrderTab"
-        style="@style/TabsStyle.Order" />
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tabBackground="@drawable/border_bottom"
+        app:tabIndicatorColor="@color/common_white"
+        app:tabSelectedTextColor="@color/app_main"
+        app:tabTextColor="@color/text_normal" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/mOrderVp"

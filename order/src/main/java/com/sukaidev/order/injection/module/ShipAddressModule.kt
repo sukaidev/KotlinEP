@@ -1,6 +1,6 @@
 package com.sukaidev.order.injection.module
 
-import com.sukaidev.order.service.IShipAddressService
+import com.sukaidev.order.service.ShipAddressService
 import com.sukaidev.order.service.impl.ShipAddressServiceImpl
 import dagger.Module
 import dagger.Provides
@@ -13,7 +13,7 @@ import dagger.Provides
 class ShipAddressModule {
 
     @Provides
-    fun providesShipAddressService(service: ShipAddressServiceImpl): IShipAddressService {
+    fun providesShipAddressService(service: ShipAddressServiceImpl): ShipAddressService {
         return service
     }
 }

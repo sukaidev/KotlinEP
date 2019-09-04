@@ -1,6 +1,6 @@
 package com.sukaidev.message.data.api
 
-import com.sukaidev.common.data.protocol.BaseResp
+import com.sukaidev.core.data.protocol.BaseResp
 import com.sukaidev.message.data.protocol.Message
 import retrofit2.http.POST
 import rx.Observable
