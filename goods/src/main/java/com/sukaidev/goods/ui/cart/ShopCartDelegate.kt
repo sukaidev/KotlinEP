@@ -5,10 +5,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
-import com.orhanobut.logger.Logger
 import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.core.event.LoginSuccessEvent
 import com.sukaidev.core.event.LogoutEvent
+import com.sukaidev.core.event.PaySuccessEvent
 import com.sukaidev.core.event.SubmitCartEvent
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setVisible
@@ -166,6 +166,12 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
                 loadData()
             }
             .registerInBus(this)
+        Bus
+            .observe<PaySuccessEvent>()
+            .subscribe {
+                loadData()
+            }
+            .registerInBus(this)
     }
 
     /**
@@ -239,5 +245,22 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
     override fun onDestroy() {
         super.onDestroy()
         Bus.unregister(this)
+    }
+
+    private val WAIT_TIME = 2000L
+    private var TOUCH_TIME: Long = 0
+
+    override fun onBackPressedSupport(): Boolean {
+        return if (!isStartedFromDetailDelegate) {
+            if (System.currentTimeMillis() - TOUCH_TIME < WAIT_TIME) {
+                _mActivity.finish()
+            } else {
+                TOUCH_TIME = System.currentTimeMillis()
+                context?.toast("再次点击退出")
+            }
+            true
+        } else {
+            super.onBackPressedSupport()
+        }
     }
 }

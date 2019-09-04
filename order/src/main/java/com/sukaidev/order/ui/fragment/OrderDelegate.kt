@@ -3,10 +3,12 @@ package com.sukaidev.order.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.alibaba.android.arouter.launcher.ARouter
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.event.OrderPayEvent
+import com.sukaidev.core.event.ToOrderDetailEvent
 import com.sukaidev.core.ext.startWithNewBundle
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.order.R
@@ -45,10 +47,6 @@ class OrderDelegate : BaseMvpDelegate<OrderListPresenter>(), OrderListView {
 
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initView()
-    }
-
-    override fun onLazyInitView(savedInstanceState: Bundle?) {
-        super.onLazyInitView(savedInstanceState)
         loadData()
     }
 
@@ -68,6 +66,7 @@ class OrderDelegate : BaseMvpDelegate<OrderListPresenter>(), OrderListView {
                             .withInt(ProviderConstant.KEY_ORDER_ID, order.id)
                             .withLong(ProviderConstant.KEY_ORDER_PRICE, order.totalPrice)
                             .navigation()*/
+                        Bus.send(OrderPayEvent(order.id, order.totalPrice))
                     }
                     OrderConstant.OPT_ORDER_CONFIRM -> {
                         mPresenter.confirmOrder(order.id)
@@ -81,8 +80,9 @@ class OrderDelegate : BaseMvpDelegate<OrderListPresenter>(), OrderListView {
 
         mAdapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             // 进入订单详情页
-            val itemId = (adapter.getItem(position) as Order).id
-            supportDelegate.startWithNewBundle<OrderDetailDelegate>(ProviderConstant.KEY_ORDER_ID to itemId)
+            val itemId = (adapter.data[position] as Order).id
+            Bus.send(ToOrderDetailEvent(itemId))
+//            supportDelegate.startWithNewBundle<OrderDetailDelegate>(ProviderConstant.KEY_ORDER_ID to itemId)
         }
     }
 

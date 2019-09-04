@@ -6,8 +6,6 @@ package com.sukaidev.order.common
  */
 class OrderConstant {
     companion object {
-        // 订单ID
-        const val ARG_ORDER_ID = "order_id"
         //订单状态
         const val KEY_ORDER_STATUS = "order_status"
         //收货地址

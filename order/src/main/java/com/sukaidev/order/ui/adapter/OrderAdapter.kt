@@ -32,7 +32,8 @@ class OrderAdapter(data: MutableList<Order>?) : BaseQuickAdapter<Order, BaseView
             holder.itemView.mMultiGoodsView.setVisible(false)// 单个商品隐藏多个商品视图
             val orderGoods = item.orderGoodsList[0]
             holder.itemView.mGoodsIconIv.loadUrl(orderGoods.goodsIcon)// 商品图标
-            holder.itemView.mGoodsDescTv.text = orderGoods.goodsDesc// 商品描述
+            holder.itemView.mGoodsTitle.text = orderGoods.goodsTitle// 商品描述
+            holder.itemView.mGoodsSkuTv.text = orderGoods.goodsSku// 商品SKU
             holder.itemView.mGoodsPriceTv.text =
                 MoneyConverter.changeF2YWithUnit(orderGoods.goodsPrice)// 商品价格
             holder.itemView.mGoodsCountTv.text = "x${orderGoods.goodsCount}"// 商品数量

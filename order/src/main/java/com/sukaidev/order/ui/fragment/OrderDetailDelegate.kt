@@ -3,6 +3,7 @@ package com.sukaidev.order.ui.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.core.utils.MoneyConverter
 import com.sukaidev.order.R
@@ -47,6 +48,11 @@ class OrderDetailDelegate : BaseMvpDelegate<OrderDetailPresenter>(), OrderDetail
     }
 
     private fun initView() {
+
+        mHeaderBar.getLeftIv().onClick {
+            supportDelegate.pop()
+        }
+
         mOrderGoodsRv.layoutManager = LinearLayoutManager(context)
         mAdapter = OrderGoodsAdapter(null)
         mOrderGoodsRv.adapter = mAdapter

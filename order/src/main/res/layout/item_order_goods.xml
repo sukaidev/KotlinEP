@@ -39,7 +39,7 @@
         android:layout_alignStart="@id/mGoodsSkuTv"
         android:layout_alignLeft="@id/mGoodsSkuTv"
         android:layout_marginTop="@dimen/common_margin_small"
-        android:textColor="@color/common_red" />
+        android:textColor="@color/app_main" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/mGoodsCountTv"

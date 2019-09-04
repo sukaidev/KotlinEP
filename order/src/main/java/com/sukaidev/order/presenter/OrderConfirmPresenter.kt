@@ -42,6 +42,7 @@ class OrderConfirmPresenter @Inject constructor() : BasePresenter<OrderConfirmVi
             override fun onNext(t: String) {
                 mView.onSubmitOrderResult(t)
             }
+
         }, lifecycleProvider)
     }
 

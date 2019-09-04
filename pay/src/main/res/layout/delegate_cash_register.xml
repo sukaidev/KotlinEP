@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/MatchWrap.Vertical">
 
-    <com.sukaidev.common.widget.HeaderBar
+    <com.sukaidev.core.widget.HeaderBar
         android:id="@+id/mHeaderBar"
         style="@style/MatchWrap"
         app:titleText="收银台" />
@@ -47,7 +47,7 @@
         android:id="@+id/mPayBtn"
         style="@style/MatchWrap"
         android:layout_alignParentBottom="true"
-        android:background="@color/common_red"
+        android:background="@color/app_main"
         android:gravity="center"
         android:padding="@dimen/common_padding"
         android:text="立即支付"

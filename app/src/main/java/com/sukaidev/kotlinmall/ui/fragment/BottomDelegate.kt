@@ -22,8 +22,11 @@ import com.sukaidev.mine.ui.user.LoginDelegate
 import com.sukaidev.mine.ui.user.MineDelegate
 import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.ui.fragment.OrderConfirmDelegate
+import com.sukaidev.order.ui.fragment.OrderDetailDelegate
 import com.sukaidev.order.ui.fragment.OrderManagerDelegate
 import com.sukaidev.order.ui.fragment.ShipAddressDelegate
+import com.sukaidev.pay.ui.fragment.CashRegisterDelegate
+import com.sukaidev.provider.common.ProviderConstant
 import kotlinx.android.synthetic.main.delegate_bottom.*
 import kotlin.collections.ArrayList
 
@@ -143,7 +146,7 @@ class BottomDelegate : ProxyDelegate() {
         // 订阅提交购物车事件
         Bus.observe<SubmitCartEvent>()
             .subscribe {
-                supportDelegate.startWithNewBundle<OrderConfirmDelegate>(OrderConstant.ARG_ORDER_ID to it.orderId)
+                supportDelegate.startWithNewBundle<OrderConfirmDelegate>(ProviderConstant.KEY_ORDER_ID to it.orderId)
             }
             .registerInBus(this)
         // 转到地址管理页面
@@ -156,6 +159,20 @@ class BottomDelegate : ProxyDelegate() {
         Bus.observe<ToOrderManagerDelegateEvent>()
             .subscribe {
                 supportDelegate.startWithNewBundle<OrderManagerDelegate>(OrderConstant.KEY_ORDER_STATUS to it.orderStatus)
+            }
+            .registerInBus(this)
+        // 转到支付页面
+        Bus.observe<OrderPayEvent>()
+            .subscribe {
+                supportDelegate.startWithNewBundle<CashRegisterDelegate>(
+                    ProviderConstant.KEY_ORDER_ID to it.orderId,
+                    ProviderConstant.KEY_ORDER_PRICE to it.totalPrice
+                )
+            }
+        // 转到订单详情页
+        Bus.observe<ToOrderDetailEvent>()
+            .subscribe {
+                supportDelegate.startWithNewBundle<OrderDetailDelegate>(ProviderConstant.KEY_ORDER_ID to it.orderId)
             }
             .registerInBus(this)
     }

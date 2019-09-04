@@ -155,9 +155,10 @@ inline fun <reified T : SupportFragment> SupportFragmentDelegate.startWithNewBun
     params.forEach {
         when (val value = it.second) {
             is Int -> args.putInt(it.first, value)
+            is Long -> args.putLong(it.first, value)
             is String -> args.putString(it.first, value)
-            is Boolean -> args.putBoolean(it.first,value)
-            is Parcelable -> args.putParcelable(it.first,value)
+            is Boolean -> args.putBoolean(it.first, value)
+            is Parcelable -> args.putParcelable(it.first, value)
             else -> throw IllegalArgumentException("startWithNewBundle(${it.first}) has wrong type ${value?.javaClass?.name}")
         }
         return@forEach
