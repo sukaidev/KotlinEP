@@ -1,6 +1,5 @@
 package com.sukaidev.core.rx
 
-import com.sukaidev.common.rx.BaseException
 import com.sukaidev.core.presenter.view.BaseView
 import rx.Subscriber
 
@@ -13,11 +12,11 @@ open class BaseSubscriber<T>(private val baseView: BaseView) : Subscriber<T>() {
     }
 
     override fun onCompleted() {
-//        baseView.hideLoading()
+        baseView.stopLoading()
     }
 
     override fun onError(e: Throwable) {
-//        baseView.hideLoading()
+        baseView.stopLoading()
         if (e is BaseException) {
             baseView.onError(e.msg)
         }

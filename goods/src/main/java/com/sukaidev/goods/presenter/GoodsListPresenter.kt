@@ -24,7 +24,7 @@ class GoodsListPresenter @Inject constructor() : BasePresenter<GoodsListView>() 
         if (!checkNetWork()) {
             return
         }
-//        mView.showLoading()
+        mView.showLoading()
         goodsService.getGoodsList(categoryId, noPage)
             .execute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
                 override fun onNext(t: MutableList<Goods>?) {
@@ -37,7 +37,7 @@ class GoodsListPresenter @Inject constructor() : BasePresenter<GoodsListView>() 
         if (!checkNetWork()) {
             return
         }
-//        mView.showLoading()
+        mView.showLoading()
         goodsService.getGoodsListByKeyword(keyword, noPage)
             .execute(object : BaseSubscriber<MutableList<Goods>?>(mView) {
                 override fun onNext(t: MutableList<Goods>?) {

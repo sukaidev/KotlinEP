@@ -21,6 +21,7 @@ class GoodsDetailPresenter @Inject constructor() : BasePresenter<GoodsDetailView
         if (!checkNetWork()) {
             return
         }
+        mView.showLoading()
         goodsService.getGoodsDetail(goodsId).execute(object : BaseSubscriber<Goods>(mView) {
             override fun onNext(t: Goods) {
                 mView.onGetGoodsDetail(t)

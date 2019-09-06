@@ -3,6 +3,7 @@ package com.sukaidev.index.presenter
 import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
+import com.sukaidev.core.ui.loader.Loader
 import com.sukaidev.index.presenter.view.IndexView
 import com.sukaidev.index.service.IndexService
 import javax.inject.Inject
@@ -23,6 +24,7 @@ class IndexPresenter @Inject constructor() : BasePresenter<IndexView>() {
         if (!checkNetWork()) {
             return
         }
+        mView.showLoading()
         service.getIndexData().execute(object : BaseSubscriber<String>(mView) {
             override fun onNext(t: String) {
                 mView.onGetIndexDataResult(t)

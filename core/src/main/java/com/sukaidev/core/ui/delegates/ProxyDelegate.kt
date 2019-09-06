@@ -10,7 +10,7 @@ abstract class ProxyDelegate : BaseDelegate() {
     /**
      * 获取root fragment
      */
-    fun <T : BaseDelegate> getParentDelegate(): T {
+    fun <T : ProxyDelegate> getParentDelegate(): T {
         return parentFragment as T
     }
 }

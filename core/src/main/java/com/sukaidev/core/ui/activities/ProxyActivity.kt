@@ -6,12 +6,14 @@ import androidx.annotation.CallSuper
 import androidx.annotation.CheckResult
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.ContentFrameLayout
 import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.trello.rxlifecycle.LifecycleProvider
 import com.trello.rxlifecycle.android.ActivityEvent
 import me.yokeyword.fragmentation.*
 import com.sukaidev.core.R
+import com.sukaidev.core.ext.notNullSingleValue
 import com.trello.rxlifecycle.LifecycleTransformer
 import com.trello.rxlifecycle.RxLifecycle
 import com.trello.rxlifecycle.android.RxLifecycleAndroid
@@ -24,6 +26,10 @@ import rx.subjects.BehaviorSubject
  * 由于单继承的限制，手动实现了LifecycleProvider接口来支持RxLifecycle.
  */
 abstract class ProxyActivity : SupportActivity(), LifecycleProvider<ActivityEvent> {
+
+    companion object {
+        var instance: AppCompatActivity by notNullSingleValue()
+    }
 
     private val lifecycleSubject = BehaviorSubject.create<ActivityEvent>()
 
@@ -52,6 +58,7 @@ abstract class ProxyActivity : SupportActivity(), LifecycleProvider<ActivityEven
         super.onCreate(savedInstanceState)
         lifecycleSubject.onNext(ActivityEvent.CREATE)
         initContainer(savedInstanceState)
+        instance = this
     }
 
     @CallSuper

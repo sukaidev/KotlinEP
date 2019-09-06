@@ -9,7 +9,9 @@ import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.event.GoodsClickedEvent
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ui.delegates.BaseDelegate
+import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.ui.delegates.ProxyMvpDelegate
+import com.sukaidev.core.ui.loader.Loader
 import com.sukaidev.core.ui.recycler.BaseDecoration
 import com.sukaidev.core.ui.recycler.MultipleFields
 import com.sukaidev.core.ui.recycler.MultipleItemEntity
@@ -51,7 +53,11 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         initRecyclerView()
         mSearchTv.onClick {
-            getParentDelegate<BaseDelegate>().supportDelegate.start(SearchGoodsDelegate())
+            getParentDelegate<ProxyDelegate>().supportDelegate.start(SearchGoodsDelegate())
+        }
+
+        mScanIv.onClick {
+            getParentDelegate<ProxyDelegate>().supportDelegate.start(ScannerDelegate())
         }
     }
 

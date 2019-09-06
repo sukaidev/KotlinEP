@@ -87,9 +87,9 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
         when (v) {
             mUserIconIv, mUserNameTv -> {
                 if (isLogin()) {
-                    getParentDelegate<BaseDelegate>().supportDelegate.start(UserInfoDelegate())
+                    getParentDelegate<ProxyDelegate>().supportDelegate.start(UserInfoDelegate())
                 } else {
-                    getParentDelegate<BaseDelegate>().supportDelegate.start(LoginDelegate())
+                    getParentDelegate<ProxyDelegate>().supportDelegate.start(LoginDelegate())
                 }
             }
             mWaitPayOrderTv -> {
@@ -113,7 +113,7 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
             mAddressTv -> afterLogin {
                 Bus.send(ToAddressDelegateEvent())
             }
-            mSettingTv -> getParentDelegate<BaseDelegate>().supportDelegate.start(SettingsDelegate())
+            mSettingTv -> getParentDelegate<ProxyDelegate>().supportDelegate.start(SettingsDelegate())
         }
     }
 

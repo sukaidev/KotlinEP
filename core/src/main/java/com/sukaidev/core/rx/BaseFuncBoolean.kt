@@ -1,7 +1,6 @@
 package com.sukaidev.core.rx
 
 import com.sukaidev.core.data.protocol.BaseResp
-import com.sukaidev.common.rx.BaseException
 import rx.Observable
 import rx.functions.Func1
 

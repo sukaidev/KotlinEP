@@ -1,5 +1,8 @@
 package com.sukaidev.kotlinmall.ui.activity
 
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.sukaidev.core.ext.notNullSingleValue
 import com.sukaidev.core.ui.activities.ProxyActivity
 import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.kotlinmall.ui.fragment.BottomDelegate

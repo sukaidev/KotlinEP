@@ -3,6 +3,7 @@ package com.sukaidev.goods.presenter
 import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
+import com.sukaidev.core.ui.loader.Loader
 import com.sukaidev.goods.data.protocol.Category
 import com.sukaidev.goods.presenter.view.CategoryView
 import com.sukaidev.goods.service.CategoryService
@@ -21,6 +22,7 @@ class CategoryPresenter @Inject constructor() : BasePresenter<CategoryView>() {
         if (!checkNetWork()) {
             return
         }
+//        mView.showLoading()
         categoryService.getCategory(parentId)
             .execute(object : BaseSubscriber<MutableList<Category>?>(mView) {
                 override fun onNext(t: MutableList<Category>?) {
