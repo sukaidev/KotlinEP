@@ -115,7 +115,7 @@ class BottomDelegate : ProxyDelegate() {
         // 订阅登录事件
         Bus.observe<LoginEvent>()
             .subscribe {
-                supportDelegate.start(LoginDelegate())
+               supportDelegate.start(LoginDelegate())
             }
             .registerInBus(this)
         // 订阅搜索商品事件

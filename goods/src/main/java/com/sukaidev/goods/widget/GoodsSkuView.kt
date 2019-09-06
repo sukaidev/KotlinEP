@@ -9,8 +9,11 @@ import android.view.ViewGroup.LayoutParams
 import android.widget.PopupWindow
 import android.widget.RelativeLayout
 import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.common.BaseApplication
 import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.core.common.afterLogin
+import com.sukaidev.core.common.isLogin
+import com.sukaidev.core.event.LoginEvent
 import com.sukaidev.core.ext.getEditText
 import com.sukaidev.core.ext.loadUrl
 import com.sukaidev.core.ext.onClick
@@ -21,6 +24,7 @@ import com.sukaidev.goods.data.protocol.GoodsSku
 import com.sukaidev.goods.event.AddCartEvent
 import com.sukaidev.goods.event.SkuChangedEvent
 import kotlinx.android.synthetic.main.layout_sku_pop.view.*
+import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/16.
@@ -77,9 +81,17 @@ class GoodsSkuView(context: Activity) : PopupWindow(context), View.OnClickListen
         )
 
         mRootView.mAddCartBtn.onClick {
-            afterLogin {
-                Bus.send(AddCartEvent())
+            if (isLogin()) {
+                if (!checkSelectSku()) {
+                    mContext.toast("请选择配置！")
+                } else {
+                    Bus.send(AddCartEvent())
+                    dismiss()
+                }
+            } else {
+                BaseApplication.instance.toast("请先登录")
                 dismiss()
+                Bus.send(LoginEvent())
             }
         }
     }
@@ -133,7 +145,19 @@ class GoodsSkuView(context: Activity) : PopupWindow(context), View.OnClickListen
         for (skuView in mSkuViewList) {
             skuInfo += skuView.getSkuInfo().split(GoodsConstant.SKU_SEPARATOR)[1] + GoodsConstant.SKU_SEPARATOR
         }
-        return skuInfo.take(skuInfo.length - 1)//刪除最后一个分隔
+        return skuInfo.take(skuInfo.length - 1) //刪除最后一个分隔
+    }
+
+    /**
+     * 检测选择配置
+     */
+    fun checkSelectSku(): Boolean {
+        for (skuView in mSkuViewList) {
+            if (skuView.clickedPosition == -1) {
+                return false
+            }
+        }
+        return true
     }
 
     /**

@@ -25,6 +25,9 @@ class SkuView @JvmOverloads constructor(
 
     private lateinit var mGoodsSku: GoodsSku
 
+    // 当前选中的Tag
+    internal var clickedPosition: Int = -1
+
     init {
         View.inflate(context, R.layout.layout_sku_view, this)
     }
@@ -46,10 +49,17 @@ class SkuView @JvmOverloads constructor(
             }
         }
         mSkuContentView.adapter.setSelectedList(0)
+        clickedPosition = 0
 
-        mSkuContentView.setOnTagClickListener { _, _, _ ->
-            Bus.send(SkuChangedEvent())
-            true
+        mSkuContentView.setOnTagClickListener { _, position, _ ->
+            if (clickedPosition != position) {
+                clickedPosition = position
+                Bus.send(SkuChangedEvent())
+                true
+            } else {
+                clickedPosition = -1
+                true
+            }
         }
     }
 
@@ -57,6 +67,12 @@ class SkuView @JvmOverloads constructor(
      * 获取选中的SKU
      */
     fun getSkuInfo(): String {
+/*        if (mSkuContentView.selectedList.isEmpty()) {
+            return ""
+        }*/
+        if (clickedPosition == -1){
+            return mSkuTitleTv.text.toString() + GoodsConstant.SKU_SEPARATOR + "未选择"
+        }
         return mSkuTitleTv.text.toString() + GoodsConstant.SKU_SEPARATOR + mGoodsSku.skuContent[mSkuContentView.selectedList.first()]
     }
 }

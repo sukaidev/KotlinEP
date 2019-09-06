@@ -148,7 +148,11 @@ class GoodsInfoDelegate : BaseMvpDelegate<GoodsInfoPresenter>(), GoodsInfoView {
 
         Bus.observe<AddCartEvent>()
             .subscribe {
-                addCart()
+                if (mSkuPop.checkSelectSku()) {
+                    addCart()
+                }else {
+                    context?.toast("请选择配置！")
+                }
             }.registerInBus(this)
     }
 
