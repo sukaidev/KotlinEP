@@ -1,4 +1,4 @@
-package com.sukaidev.provider.event
+package com.sukaidev.core.event
 
 /**
  * Created by sukaidev on 2019/08/19.

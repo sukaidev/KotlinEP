@@ -4,22 +4,25 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eightbitlab.rxbus.Bus
-import com.kennyc.view.MultiStateView
+import com.eightbitlab.rxbus.registerInBus
+import com.sukaidev.core.event.LoginSuccessEvent
+import com.sukaidev.core.event.LogoutEvent
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.message.R
 import com.sukaidev.message.data.protocol.Message
+import com.sukaidev.message.injection.component.DaggerMessageComponent
 import com.sukaidev.message.injection.module.MessageModule
 import com.sukaidev.message.presenter.MessagePresenter
-import com.sukaidev.message.presenter.view.IMessageView
+import com.sukaidev.message.presenter.view.MessageView
 import com.sukaidev.message.ui.adatper.MessageAdapter
-import com.sukaidev.provider.event.MessageBadgeEvent
+import com.sukaidev.core.event.MessageBadgeEvent
 import kotlinx.android.synthetic.main.delegate_message.*
 
 /**
  * Created by sukaidev on 2019/08/19.
  * 消息中心页面.
  */
-class MessageDelegate : BaseMvpDelegate<MessagePresenter>(), IMessageView {
+class MessageDelegate : BaseMvpDelegate<MessagePresenter>(), MessageView {
 
     private lateinit var mAdapter: MessageAdapter
 
@@ -41,6 +44,19 @@ class MessageDelegate : BaseMvpDelegate<MessagePresenter>(), IMessageView {
         mMessageRv.layoutManager = LinearLayoutManager(context)
         mAdapter = MessageAdapter(null)
         mMessageRv.adapter = mAdapter
+
+        Bus.observe<LoginSuccessEvent>()
+            .subscribe {
+                loadData()
+            }
+            .registerInBus(this)
+        
+        Bus.observe<LogoutEvent>()
+            .subscribe {
+                mAdapter.data.clear()
+                mAdapter.notifyDataSetChanged()
+            }
+            .registerInBus(this)
     }
 
     override fun onStart() {
@@ -63,5 +79,10 @@ class MessageDelegate : BaseMvpDelegate<MessagePresenter>(), IMessageView {
         if (!hidden) {
             Bus.send(MessageBadgeEvent(false))
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }

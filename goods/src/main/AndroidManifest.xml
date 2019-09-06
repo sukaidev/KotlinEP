@@ -1,13 +1,3 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sukaidev.goods">
-
-    <application>
-        <activity android:name=".ui.activity.GoodsActivity" />
-        <activity
-            android:name=".ui.activity.GoodsDetailActivity"
-            android:theme="@style/AppTheme.Black" />
-        <activity android:name=".ui.activity.CartActivity" />
-    </application>
-
-</manifest>
+    package="com.sukaidev.goods"/>

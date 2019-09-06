@@ -18,6 +18,7 @@ import com.sukaidev.goods.ui.goods.GoodsDetailDelegate
 import com.sukaidev.goods.ui.goods.GoodsListDelegate
 import com.sukaidev.index.ui.fragment.IndexDelegate
 import com.sukaidev.kotlinmall.R
+import com.sukaidev.message.ui.fragment.MessageDelegate
 import com.sukaidev.mine.ui.user.LoginDelegate
 import com.sukaidev.mine.ui.user.MineDelegate
 import com.sukaidev.order.common.OrderConstant
@@ -26,7 +27,7 @@ import com.sukaidev.order.ui.fragment.OrderDetailDelegate
 import com.sukaidev.order.ui.fragment.OrderManagerDelegate
 import com.sukaidev.order.ui.fragment.ShipAddressDelegate
 import com.sukaidev.pay.ui.fragment.CashRegisterDelegate
-import com.sukaidev.provider.common.ProviderConstant
+import com.sukaidev.core.common.ProviderConstant
 import kotlinx.android.synthetic.main.delegate_bottom.*
 import kotlin.collections.ArrayList
 
@@ -42,7 +43,7 @@ class BottomDelegate : ProxyDelegate() {
     private val mDelegates = ArrayList<ProxyDelegate>()
     private val mHomeFragment by lazy { IndexDelegate() }
     private val mCategoryFragment by lazy { CategoryDelegate() }
-    private val mMsgFragment by lazy { EmptyDelegate() }
+    private val mMsgFragment by lazy { MessageDelegate() }
     private val mCartFragment by lazy { ShopCartDelegate() }
     private val mUserFragment by lazy { MineDelegate() }
 
@@ -90,6 +91,7 @@ class BottomDelegate : ProxyDelegate() {
     private fun initBottomNav() {
 
         mBottomNavBar.checkCartBadge(AppPrefsUtils.getInt(GoodsConstant.SP_CART_SIZE))
+        mBottomNavBar.checkMsgBadge(AppPrefsUtils.getString(ProviderConstant.KEY_SP_USER_NAME) != "")
 
         mBottomNavBar.setTabSelectedListener(object : BottomNavigationBar.OnTabSelectedListener {
             override fun onTabReselected(position: Int) {
@@ -175,6 +177,11 @@ class BottomDelegate : ProxyDelegate() {
                 supportDelegate.startWithNewBundle<OrderDetailDelegate>(ProviderConstant.KEY_ORDER_ID to it.orderId)
             }
             .registerInBus(this)
+        // 消息Badge
+        Bus.observe<MessageBadgeEvent>()
+            .subscribe {
+                mBottomNavBar.checkMsgBadge(it.isVisible)
+            }
     }
 
     override fun onDestroy() {

@@ -3,14 +3,13 @@ package com.sukaidev.mine.ui.user
 import android.os.Bundle
 import android.view.View
 import com.alibaba.android.arouter.facade.annotation.Autowired
-import com.alibaba.android.arouter.facade.annotation.Route
 import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.common.RouterPath
 import com.sukaidev.core.event.LoginSuccessEvent
 import com.sukaidev.core.ext.enable
 import com.sukaidev.core.ext.onClick
+import com.sukaidev.core.provider.IPushProvider
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
-import com.sukaidev.provider.IPushProvider
-import com.sukaidev.provider.router.RouterPath
 import com.sukaidev.mine.R
 import com.sukaidev.mine.data.protocol.UserInfo
 import com.sukaidev.mine.injection.component.DaggerUserComponent
@@ -26,7 +25,7 @@ import org.jetbrains.anko.toast
  * Created by sukaidev on 2019/08/30.
  * 登录页面.
  */
-@Route(path = RouterPath.User.PATH_LOGIN)
+//@Route(path = RouterPath.User.PATH_LOGIN)
 class LoginDelegate : BaseMvpDelegate<LoginPresenter>(), LoginView, View.OnClickListener {
 
     @Autowired(name = RouterPath.Message.PATH_MESSAGE_PUSH)

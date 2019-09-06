@@ -4,18 +4,18 @@ import com.sukaidev.core.ext.execute
 import com.sukaidev.core.presenter.BasePresenter
 import com.sukaidev.core.rx.BaseSubscriber
 import com.sukaidev.message.data.protocol.Message
-import com.sukaidev.message.presenter.view.IMessageView
-import com.sukaidev.message.service.IMessageService
+import com.sukaidev.message.presenter.view.MessageView
+import com.sukaidev.message.service.MessageService
 import javax.inject.Inject
 
 /**
  * Created by sukaidev on 2019/08/19.
  *
  */
-class MessagePresenter @Inject constructor() : BasePresenter<IMessageView>() {
+class MessagePresenter @Inject constructor() : BasePresenter<MessageView>() {
 
     @Inject
-    lateinit var messageService: IMessageService
+    lateinit var messageService: MessageService
 
     /*
         获取消息列表

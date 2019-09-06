@@ -23,7 +23,7 @@ import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.core.utils.AppPrefsUtils
 import com.sukaidev.core.utils.DateUtils
 import com.sukaidev.core.utils.GlideUtils
-import com.sukaidev.provider.common.ProviderConstant
+import com.sukaidev.core.common.ProviderConstant
 import com.sukaidev.mine.R
 import com.sukaidev.mine.data.protocol.UserInfo
 import com.sukaidev.mine.injection.component.DaggerUserComponent

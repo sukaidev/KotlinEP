@@ -1,0 +1,32 @@
+package com.sukaidev.core.common
+
+/**
+ * Created by sukaidev on 2019/08/16.
+ *
+ */
+object RouterPath {
+    class User {
+        companion object {
+            const val PATH_LOGIN = "/user/login"
+        }
+    }
+
+    class Order {
+        companion object {
+            const val PATH_ORDER_CONFIRM = "/order/confirm"
+        }
+    }
+
+    class Pay {
+        companion object {
+            const val PATH_PAY = "/pay/pay"
+        }
+    }
+
+    class Message {
+        companion object {
+            const val PATH_MESSAGE_PUSH = "/message/push"
+            const val PATH_MESSAGE_ORDER = "/message/order"
+        }
+    }
+}

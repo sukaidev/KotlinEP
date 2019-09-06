@@ -35,12 +35,11 @@ android {
 dependencies {
     api fileTree(dir: 'libs', include: ['*.jar'])
 
-    api project(':provider')
+    api project(':core')
 
     api (name: 'alipaySdk-15.6.5-20190718211159-noUtdid', ext: 'aar')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 
     implementation 'androidx.appcompat:appcompat:1.0.2'
     testImplementation 'junit:junit:4.12'

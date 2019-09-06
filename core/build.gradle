@@ -31,7 +31,7 @@ dependencies {
 
     // android support
     api 'androidx.appcompat:appcompat:1.0.2'
-    api 'androidx.recyclerview:recyclerview:1.1.0-beta03'
+    api 'androidx.recyclerview:recyclerview:1.1.0-beta04'
     api 'com.android.support:design:28.0.0'
     api 'androidx.cardview:cardview:1.0.0'
 
@@ -40,9 +40,11 @@ dependencies {
 
     // kotlin
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    api 'androidx.core:core-ktx:1.0.2'
+    api 'androidx.core:core-ktx:1.1.0'
     // Anko Commons
     api "org.jetbrains.anko:anko-commons:$anko_version"
+    // ARouter
+    api "com.alibaba:arouter-api:$arouter_api_version"
     // fragmentation
     api  "me.yokeyword:fragmentation:$fragmentation_version"
     api "me.yokeyword:fragmentation-swipeback:$fragmentation_version"
@@ -62,8 +64,6 @@ dependencies {
     // dagger
     api "com.google.dagger:dagger:$dagger_version"
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    // ARouter
-    api "com.alibaba:arouter-api:$arouter_api_version"
     // Glide
     api "com.github.bumptech.glide:glide:$glide_version"
     kapt "com.github.bumptech.glide:compiler:$glide_version"
@@ -82,10 +82,6 @@ dependencies {
     api 'com.youth.banner:banner:1.4.10'
     // 视图控件标签
     api 'com.github.shts:TriangleLabelView:1.1.2'
-    //
-    api 'com.github.crosswall:Android-Coverflow:release-v1.0.5'
-    // RecyclerView相关
-    api  'com.github.Kennyc1012:MultiStateView:2.1'
     // 下拉刷新
     api  'cn.bingoogolapple:bga-refreshlayout:1.1.8@aar'
     // FlowLayout

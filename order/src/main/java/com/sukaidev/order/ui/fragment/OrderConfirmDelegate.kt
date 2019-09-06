@@ -19,7 +19,7 @@ import com.sukaidev.order.injection.module.OrderModule
 import com.sukaidev.order.presenter.OrderConfirmPresenter
 import com.sukaidev.order.presenter.view.OrderConfirmView
 import com.sukaidev.order.ui.adapter.OrderGoodsAdapter
-import com.sukaidev.provider.common.ProviderConstant
+import com.sukaidev.core.common.ProviderConstant
 import kotlinx.android.synthetic.main.delegate_order_confirm.*
 import org.jetbrains.anko.toast
 

@@ -9,7 +9,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.event.OrderPayEvent
 import com.sukaidev.core.event.ToOrderDetailEvent
-import com.sukaidev.core.ext.startWithNewBundle
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.order.R
 import com.sukaidev.order.common.OrderConstant
@@ -19,7 +18,6 @@ import com.sukaidev.order.injection.module.OrderModule
 import com.sukaidev.order.presenter.OrderListPresenter
 import com.sukaidev.order.presenter.view.OrderListView
 import com.sukaidev.order.ui.adapter.OrderAdapter
-import com.sukaidev.provider.common.ProviderConstant
 import kotlinx.android.synthetic.main.delegate_order.*
 import org.jetbrains.anko.toast
 

@@ -7,7 +7,6 @@ import com.alipay.sdk.app.PayTask
 import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.event.PaySuccessEvent
 import com.sukaidev.core.ext.onClick
-import com.sukaidev.core.ui.activities.BaseMvpActivity
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.core.utils.MoneyConverter
 import com.sukaidev.pay.R
@@ -15,7 +14,7 @@ import com.sukaidev.pay.injection.component.DaggerPayComponent
 import com.sukaidev.pay.injection.module.PayModule
 import com.sukaidev.pay.presenter.PayPresenter
 import com.sukaidev.pay.presenter.view.PayView
-import com.sukaidev.provider.common.ProviderConstant
+import com.sukaidev.core.common.ProviderConstant
 import kotlinx.android.synthetic.main.delegate_cash_register.*
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.toast

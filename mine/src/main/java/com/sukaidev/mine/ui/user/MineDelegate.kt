@@ -14,9 +14,9 @@ import com.sukaidev.core.ext.loadUrl
 import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.utils.AppPrefsUtils
-import com.sukaidev.provider.common.ProviderConstant
-import com.sukaidev.provider.common.ProviderConstant.Companion.KEY_SP_USER_ICON
-import com.sukaidev.provider.common.isLogin
+import com.sukaidev.core.common.ProviderConstant
+import com.sukaidev.core.common.ProviderConstant.Companion.KEY_SP_USER_ICON
+import com.sukaidev.core.common.isLogin
 import com.sukaidev.mine.R
 import com.sukaidev.mine.ui.setttings.SettingsDelegate
 import kotlinx.android.synthetic.main.delegate_user_info.mUserIconIv

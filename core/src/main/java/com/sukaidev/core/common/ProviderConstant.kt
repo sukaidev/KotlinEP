@@ -1,4 +1,4 @@
-package com.sukaidev.provider.common
+package com.sukaidev.core.common
 
 /*
     业务常量

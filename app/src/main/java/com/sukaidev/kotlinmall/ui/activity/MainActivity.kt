@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall.ui.activitiy
+package com.sukaidev.kotlinmall.ui.activity
 
 import com.sukaidev.core.ui.activities.ProxyActivity
 import com.sukaidev.core.ui.delegates.BaseDelegate

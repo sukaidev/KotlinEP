@@ -6,10 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.sukaidev.core.common.GoodsConstant
-import com.sukaidev.core.event.LoginSuccessEvent
-import com.sukaidev.core.event.LogoutEvent
-import com.sukaidev.core.event.PaySuccessEvent
-import com.sukaidev.core.event.SubmitCartEvent
+import com.sukaidev.core.event.*
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setVisible
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
@@ -166,6 +163,13 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
                 loadData()
             }
             .registerInBus(this)
+
+        Bus
+            .observe<ToOrderManagerDelegateEvent>()
+            .subscribe {
+                loadData()
+            }
+
         Bus
             .observe<PaySuccessEvent>()
             .subscribe {

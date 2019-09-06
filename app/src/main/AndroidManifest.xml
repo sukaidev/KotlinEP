@@ -17,7 +17,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity
-            android:name=".ui.activitiy.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,10 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        <activity android:name=".ui.activitiy.SettingActivity" />
-        <activity
-            android:name=".ui.activitiy.SearchGoodsActivity"
-            android:windowSoftInputMode="adjustPan" />-->
     </application>
 
 </manifest>

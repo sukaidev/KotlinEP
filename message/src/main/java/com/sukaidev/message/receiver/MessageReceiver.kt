@@ -6,11 +6,8 @@ import android.content.Intent
 import android.util.Log
 import android.widget.Toast
 import cn.jpush.android.api.JPushInterface
-import com.alibaba.android.arouter.launcher.ARouter
 import com.eightbitlab.rxbus.Bus
-import com.sukaidev.provider.common.ProviderConstant
-import com.sukaidev.provider.event.MessageBadgeEvent
-import com.sukaidev.provider.router.RouterPath
+import com.sukaidev.core.event.MessageBadgeEvent
 import org.json.JSONObject
 
 class MessageReceiver : BroadcastReceiver() {
@@ -33,9 +30,9 @@ class MessageReceiver : BroadcastReceiver() {
                 val extra = bundle?.getString(JPushInterface.EXTRA_EXTRA)
                 val json = JSONObject(extra)
                 val orderId = json.getInt("orderId")
-                ARouter.getInstance().build(RouterPath.Message.PATH_MESSAGE_ORDER)
+/*                ARouter.getInstance().build(RouterPath.Message.PATH_MESSAGE_ORDER)
                     .withInt(ProviderConstant.KEY_ORDER_ID, orderId)
-                    .navigation()
+                    .navigation()*/
             }
             else -> Log.d(TAG, "Unhandled intent - " + intent.action)
         }

@@ -15,7 +15,7 @@ import com.orhanobut.logger.Logger.addLogAdapter
  */
 open class BaseApplication : Application() {
 
-    private var isDebug: Boolean = true
+    protected var isDebug: Boolean = true
 
     lateinit var appComponent: AppComponent
 

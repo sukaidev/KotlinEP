@@ -3,8 +3,8 @@ package com.sukaidev.message.provider
 import android.content.Context
 import cn.jpush.android.api.JPushInterface
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.sukaidev.provider.IPushProvider
-import com.sukaidev.provider.router.RouterPath
+import com.sukaidev.core.common.RouterPath
+import com.sukaidev.core.provider.IPushProvider
 
 /**
  * Created by sukaidev on 2019/08/19.

@@ -3,11 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-kapt {
+/*kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
     }
-}
+}*/
 
 androidExtensions {
     experimental = true
@@ -41,7 +41,6 @@ dependencies {
     api project(':pay')
 
     kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    kapt "com.alibaba:arouter-compiler:$arouter_compiler_version"
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

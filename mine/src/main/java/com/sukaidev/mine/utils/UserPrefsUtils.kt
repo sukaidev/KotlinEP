@@ -2,7 +2,7 @@ package com.sukaidev.mine.utils
 
 import com.sukaidev.core.common.BaseConstant
 import com.sukaidev.core.utils.AppPrefsUtils
-import com.sukaidev.provider.common.ProviderConstant
+import com.sukaidev.core.common.ProviderConstant
 import com.sukaidev.mine.data.protocol.UserInfo
 
 /*

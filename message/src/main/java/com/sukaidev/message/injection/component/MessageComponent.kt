@@ -13,5 +13,5 @@ import dagger.Component
 @PerComponentScope
 @Component(dependencies = [ActivityComponent::class], modules = [MessageModule::class])
 interface MessageComponent {
-    fun inject(fragment: MessageDelegate)
+    fun inject(delegate: MessageDelegate)
 }
