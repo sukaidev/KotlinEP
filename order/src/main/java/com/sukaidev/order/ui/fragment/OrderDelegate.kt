@@ -29,6 +29,16 @@ class OrderDelegate : BaseMvpDelegate<OrderListPresenter>(), OrderListView {
 
     private lateinit var mAdapter: OrderAdapter
 
+    companion object {
+        fun create(position: Int): OrderDelegate {
+            val delegate = OrderDelegate()
+            val bundle = Bundle()
+            bundle.putInt(OrderConstant.KEY_ORDER_STATUS, position)
+            delegate.arguments = bundle
+            return delegate
+        }
+    }
+
     override fun injectComponent() {
         DaggerOrderComponent
             .builder()

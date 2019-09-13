@@ -2,11 +2,10 @@ package com.sukaidev.order.ui.fragment
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.FragmentManager
-import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ui.delegates.ProxyDelegate
+import com.sukaidev.core.ui.delegates.SupportDelegate
 import com.sukaidev.order.R
 import com.sukaidev.order.common.OrderConstant
 import com.sukaidev.order.common.OrderStatus
@@ -22,7 +21,7 @@ import kotlin.collections.ArrayList
 class OrderManagerDelegate : ProxyDelegate() {
 
     // OrderDelegate
-    private val mFragments = ArrayList<OrderDelegate>()
+    private var mFragmentList = ArrayList<OrderDelegate>()
     private val orderAll: OrderDelegate by lazy { initFragment(OrderStatus.ORDER_ALL) }
     private val orderWaitPay: OrderDelegate by lazy { initFragment(OrderStatus.ORDER_WAIT_PAY) }
     private val orderWaitConfirm: OrderDelegate by lazy { initFragment(OrderStatus.ORDER_WAIT_CONFIRM) }
@@ -43,14 +42,14 @@ class OrderManagerDelegate : ProxyDelegate() {
             supportDelegate.pop()
         }
 
-        mFragments.add(orderAll)
-        mFragments.add(orderWaitPay)
-        mFragments.add(orderWaitConfirm)
-        mFragments.add(orderCompleted)
-        mFragments.add(orderCanceled)
+        mFragmentList.add(orderAll)
+        mFragmentList.add(orderWaitPay)
+        mFragmentList.add(orderWaitConfirm)
+        mFragmentList.add(orderCompleted)
+        mFragmentList.add(orderCanceled)
 
         mOrderTab.tabMode = TabLayout.MODE_FIXED
-        mOrderVp.adapter = OrderVpAdapter(arrayOf("全部", "待付款", "待收货", "已完成", "已取消"), mFragments, fragmentManager!!)
+        mOrderVp.adapter = OrderVpAdapter(arrayOf("全部", "待付款", "待收货", "已完成", "已取消"), mFragmentList, fragmentManager!!)
         mOrderTab.setupWithViewPager(mOrderVp)
 
         // 根据订单状态来设置当前页面

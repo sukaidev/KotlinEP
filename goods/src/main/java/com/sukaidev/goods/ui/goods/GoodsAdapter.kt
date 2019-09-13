@@ -17,6 +17,8 @@ class GoodsAdapter(layoutId: Int, data: MutableList<Goods>) : BaseQuickAdapter<G
         // 商品图标
         holder.itemView.mGoodsIconIv.loadUrl(item.goodsDefaultIcon)
         // 商品描述
+        holder.itemView.mGoodsTitleTv.text = item.goodsTitle
+        // 商品描述
         holder.itemView.mGoodsDescTv.text = item.goodsDesc
         //商品价格
         holder.itemView.mGoodsPriceTv.text =

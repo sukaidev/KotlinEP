@@ -180,7 +180,7 @@ class BottomDelegate : ProxyDelegate() {
         // 消息Badge
         Bus.observe<MessageBadgeEvent>()
             .subscribe {
-                mBottomNavBar.checkMsgBadge(it.isVisible)
+                mBottomNavBar?.checkMsgBadge(it.isVisible)
             }
     }
 

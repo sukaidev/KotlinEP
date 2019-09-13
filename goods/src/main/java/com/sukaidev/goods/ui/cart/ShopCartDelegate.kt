@@ -1,6 +1,7 @@
 package com.sukaidev.goods.ui.cart
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eightbitlab.rxbus.Bus
@@ -9,6 +10,7 @@ import com.sukaidev.core.common.GoodsConstant
 import com.sukaidev.core.event.*
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ext.setVisible
+import com.sukaidev.core.ext.toast
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.core.utils.AppPrefsUtils
 import com.sukaidev.core.utils.MoneyConverter
@@ -54,7 +56,9 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
             isStartedFromDetailDelegate = it.getBoolean(GoodsConstant.ARG_STARTED_FROM_DETAIL)
         }
         initView()
-        initObserve()
+        if (!isStartedFromDetailDelegate) {
+            initObserve()
+        }
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -234,7 +238,7 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
     }
 
     override fun onDeleteCartListResult(result: Boolean) {
-        context?.toast("删除成功")
+        toast("删除成功")
         refreshEditStatus()
         loadData()
     }
@@ -260,7 +264,7 @@ class ShopCartDelegate : BaseMvpDelegate<ShopCartPresenter>(), ShopCartView {
                 _mActivity.finish()
             } else {
                 TOUCH_TIME = System.currentTimeMillis()
-                context?.toast("再次点击退出")
+                toast("再次点击退出")
             }
             true
         } else {

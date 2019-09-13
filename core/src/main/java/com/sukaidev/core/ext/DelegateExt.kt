@@ -10,11 +10,8 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.annotation.IdRes
-import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.sukaidev.core.data.protocol.BaseResp
@@ -30,6 +27,7 @@ import me.yokeyword.fragmentation.ISupportFragment
 import me.yokeyword.fragmentation.SupportFragment
 import me.yokeyword.fragmentation.SupportFragmentDelegate
 import org.jetbrains.anko.find
+import org.jetbrains.anko.toast
 import ren.qinc.numberbutton.NumberButton
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
@@ -211,3 +209,8 @@ fun setViewStateEmpty(delegate: BaseDelegate, contentView: View, @IdRes stubLayo
         contentView.visibility = View.GONE
     }
 }
+
+/**
+ * 扩展Delegate  toast方法
+ */
+fun BaseDelegate.toast(message: CharSequence) = activity?.toast(message)

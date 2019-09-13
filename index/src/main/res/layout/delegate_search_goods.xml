@@ -16,6 +16,9 @@
             android:id="@+id/mKeywordEt"
             style="@style/SearchHeaderEtStyle"
             android:hint="搜索商品/品类"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
             tools:ignore="HardcodedText" />
 
         <androidx.appcompat.widget.AppCompatTextView

@@ -4,13 +4,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.PagerAdapter
+import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.order.ui.fragment.OrderDelegate
 
 /**
  * Created by sukaidev on 2019/09/04.
  *
  */
-class OrderVpAdapter(private val titles: Array<String>, private val fragments: ArrayList<OrderDelegate>, fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class OrderVpAdapter(private val titles: Array<String>, private var fragments: ArrayList<OrderDelegate>, fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
     private val mCount: Int = fragments.size
 

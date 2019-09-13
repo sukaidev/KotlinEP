@@ -69,6 +69,101 @@
                         android:paddingTop="16dp"
                         android:paddingRight="5dp"
                         android:paddingBottom="0dp"
+                        android:text="@string/about_author"
+                        android:textColor="@color/colorPrimaryTextSecond"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="blog: "
+                            android:textColor="@color/colorPrimaryTextSecond"
+                            android:textSize="14sp"
+                            tools:ignore="HardcodedText,RtlSymmetry" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoLink="web"
+                            android:paddingStart="5dp"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/blogUrl"
+                            android:textColor="@color/colorPrimaryTextSecond"
+                            android:textColorLink="@color/common_blue"
+                            android:textSize="14sp"
+                            tools:ignore="RtlSymmetry" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:text="github: "
+                            android:textColor="@color/colorPrimaryTextSecond"
+                            android:textSize="14sp"
+                            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autoLink="web"
+                            android:paddingStart="5dp"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="10dp"
+                            android:text="@string/githubUrl"
+                            android:textColor="@color/colorPrimaryTextSecond"
+                            android:textColorLink="@color/common_blue"
+                            android:textSize="14sp"
+                            tools:ignore="RtlSymmetry" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="5dp"
+                app:cardCornerRadius="1dp"
+                app:cardElevation="0.5dp">
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLines="1"
+                        android:paddingLeft="5dp"
+                        android:paddingTop="16dp"
+                        android:paddingRight="5dp"
+                        android:paddingBottom="0dp"
                         android:text="@string/about_app"
                         android:textColor="@color/colorPrimaryTextSecond"
                         android:textSize="16sp"
@@ -173,101 +268,6 @@
                         android:textSize="14sp"
                         tools:ignore="RtlSymmetry" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="5dp"
-                app:cardCornerRadius="1dp"
-                app:cardElevation="0.5dp">
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <androidx.appcompat.widget.AppCompatTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:maxLines="1"
-                        android:paddingLeft="5dp"
-                        android:paddingTop="16dp"
-                        android:paddingRight="5dp"
-                        android:paddingBottom="0dp"
-                        android:text="@string/about_author"
-                        android:textColor="@color/colorPrimaryTextSecond"
-                        android:textSize="16sp"
-                        android:textStyle="bold" />
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="20dp"
-                            android:paddingLeft="20dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:text="blog: "
-                            android:textColor="@color/colorPrimaryTextSecond"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,RtlSymmetry" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="web"
-                            android:paddingStart="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingTop="10dp"
-                            android:paddingBottom="10dp"
-                            android:text="@string/blogUrl"
-                            android:textColor="@color/colorPrimaryTextSecond"
-                            android:textColorLink="@color/common_blue"
-                            android:textSize="14sp"
-                            tools:ignore="RtlSymmetry" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                    <androidx.appcompat.widget.LinearLayoutCompat
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="20dp"
-                            android:paddingLeft="20dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:text="github: "
-                            android:textColor="@color/colorPrimaryTextSecond"
-                            android:textSize="14sp"
-                            tools:ignore="HardcodedText,RtlHardcoded,RtlSymmetry" />
-
-                        <androidx.appcompat.widget.AppCompatTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:autoLink="web"
-                            android:paddingStart="5dp"
-                            android:paddingLeft="5dp"
-                            android:paddingTop="5dp"
-                            android:paddingBottom="10dp"
-                            android:text="@string/githubUrl"
-                            android:textColor="@color/colorPrimaryTextSecond"
-                            android:textColorLink="@color/common_blue"
-                            android:textSize="14sp"
-                            tools:ignore="RtlSymmetry" />
-                    </androidx.appcompat.widget.LinearLayoutCompat>
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView

@@ -59,8 +59,8 @@ class MessageDelegate : BaseMvpDelegate<MessagePresenter>(), MessageView {
             .registerInBus(this)
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onLazyInitView(savedInstanceState: Bundle?) {
+        super.onLazyInitView(savedInstanceState)
         loadData()
     }
 

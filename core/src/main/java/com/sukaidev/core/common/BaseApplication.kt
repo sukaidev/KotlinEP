@@ -2,7 +2,6 @@ package com.sukaidev.core.common
 
 import android.app.Application
 import com.alibaba.android.arouter.launcher.ARouter
-import com.sukaidev.core.ext.notNullSingleValue
 import com.sukaidev.core.injection.component.AppComponent
 import com.sukaidev.core.injection.component.DaggerAppComponent
 import com.sukaidev.core.injection.module.AppModule
@@ -20,7 +19,7 @@ open class BaseApplication : Application() {
     lateinit var appComponent: AppComponent
 
     companion object {
-        var instance: Application by notNullSingleValue()
+        lateinit var instance: Application
     }
 
     override fun onCreate() {

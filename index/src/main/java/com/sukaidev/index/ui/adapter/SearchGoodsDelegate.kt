@@ -2,7 +2,9 @@ package com.sukaidev.index.ui.adapter
 
 import android.content.Context
 import android.os.Bundle
+import android.view.KeyEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.eightbitlab.rxbus.Bus
@@ -33,6 +35,14 @@ class SearchGoodsDelegate : ProxyDelegate(), View.OnClickListener {
     override fun onBindView(savedInstanceState: Bundle?, rootView: View) {
         mLeftIv.onClick(this)
         mSearchTv.onClick(this)
+        mKeywordEt.setOnEditorActionListener { v, actionId, event ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                doSearch()
+                true
+            } else {
+                false
+            }
+        }
         mClearBtn.onClick(this)
         //RecyclerView适配器
         mAdapter = SearchHistoryAdapter()
@@ -72,6 +82,7 @@ class SearchGoodsDelegate : ProxyDelegate(), View.OnClickListener {
         } else {
             val inputValue = mKeywordEt.text.toString()
             AppPrefsUtils.putStringSet(GoodsConstant.SP_SEARCH_HISTORY, mutableSetOf(inputValue))
+            loadData()
             enterGoodsList(inputValue)
         }
     }

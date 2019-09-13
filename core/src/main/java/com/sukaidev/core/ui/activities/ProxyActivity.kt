@@ -13,7 +13,6 @@ import com.trello.rxlifecycle.LifecycleProvider
 import com.trello.rxlifecycle.android.ActivityEvent
 import me.yokeyword.fragmentation.*
 import com.sukaidev.core.R
-import com.sukaidev.core.ext.notNullSingleValue
 import com.trello.rxlifecycle.LifecycleTransformer
 import com.trello.rxlifecycle.RxLifecycle
 import com.trello.rxlifecycle.android.RxLifecycleAndroid
@@ -28,7 +27,7 @@ import rx.subjects.BehaviorSubject
 abstract class ProxyActivity : SupportActivity(), LifecycleProvider<ActivityEvent> {
 
     companion object {
-        var instance: AppCompatActivity by notNullSingleValue()
+        lateinit var instance: AppCompatActivity
     }
 
     private val lifecycleSubject = BehaviorSubject.create<ActivityEvent>()
@@ -59,6 +58,11 @@ abstract class ProxyActivity : SupportActivity(), LifecycleProvider<ActivityEven
         lifecycleSubject.onNext(ActivityEvent.CREATE)
         initContainer(savedInstanceState)
         instance = this
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelable("android:support:fragments", null)
     }
 
     @CallSuper
