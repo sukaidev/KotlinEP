@@ -9,8 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
+import com.sukaidev.core.common.PermissionConstant
 import com.sukaidev.core.event.GoodsClickedEvent
+import com.sukaidev.core.event.RequestPermissionSuccess
 import com.sukaidev.core.ext.onClick
+import com.sukaidev.core.ext.toast
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.ui.delegates.ProxyMvpDelegate
 import com.sukaidev.core.ui.recycler.BaseDecoration
@@ -61,6 +65,13 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
         mScanIv.onClick {
             checkPermission()
         }
+
+        Bus.observe<RequestPermissionSuccess>()
+            .subscribe{
+                if (it.requestCode == PermissionConstant.QRCODE_SCANNER_PERMISSION_REQUEST_CODE)
+                    getParentDelegate<ProxyDelegate>().supportDelegate.start(ScannerDelegate())
+            }
+            .registerInBus(this)
     }
 
     override fun onLazyInitView(savedInstanceState: Bundle?) {
@@ -104,26 +115,15 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.CAMERA
-                ), 1
+                ), PermissionConstant.QRCODE_SCANNER_PERMISSION_REQUEST_CODE
             )
         } else {
             getParentDelegate<ProxyDelegate>().supportDelegate.start(ScannerDelegate())
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            1 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getParentDelegate<ProxyDelegate>().supportDelegate.start(ScannerDelegate())
-                } else {
-                    context?.toast("权限被拒绝")
-                }
-            }
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }

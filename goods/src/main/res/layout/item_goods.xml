@@ -15,8 +15,11 @@
         android:id="@+id/mGoodsTitleTv"
         style="@style/MatchWrap"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
         android:textColor="@color/common_black"
-        android:layout_margin="5dp"
         android:textSize="@dimen/text_middle_size" />
 
     <androidx.appcompat.widget.AppCompatTextView

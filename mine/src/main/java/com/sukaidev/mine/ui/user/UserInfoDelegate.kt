@@ -12,18 +12,23 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.bigkoo.alertview.AlertView
 import com.bigkoo.alertview.OnItemClickListener
+import com.eightbitlab.rxbus.Bus
+import com.eightbitlab.rxbus.registerInBus
 import com.jph.takephoto.app.TakePhoto
 import com.jph.takephoto.app.TakePhotoImpl
 import com.jph.takephoto.compress.CompressConfig
 import com.jph.takephoto.model.TResult
 import com.qiniu.android.storage.UploadManager
 import com.sukaidev.core.common.BaseConstant
+import com.sukaidev.core.common.PermissionConstant
 import com.sukaidev.core.ext.onClick
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.core.utils.AppPrefsUtils
 import com.sukaidev.core.utils.DateUtils
 import com.sukaidev.core.utils.GlideUtils
 import com.sukaidev.core.common.ProviderConstant
+import com.sukaidev.core.event.RequestPermissionSuccess
+import com.sukaidev.core.ext.toast
 import com.sukaidev.mine.R
 import com.sukaidev.mine.data.protocol.UserInfo
 import com.sukaidev.mine.injection.component.DaggerUserComponent
@@ -81,6 +86,13 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
         initData()
         initView()
 
+        Bus
+            .observe<RequestPermissionSuccess>()
+            .subscribe {
+                if (it.requestCode == PermissionConstant.USER_PROFILE_PERMISSION_REQUEST_CODE)
+                    showAlertView()
+            }
+            .registerInBus(this)
     }
 
     /**
@@ -110,7 +122,7 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
         mUserMobileTv.text = mUserMobile
     }
 
-    private fun initView(){
+    private fun initView() {
         mUserIconView.onClick {
             checkPermission()
         }
@@ -202,22 +214,6 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
         }
     }
 
-    override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
-    ) {
-        when (requestCode) {
-            1 -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    showAlertView()
-                } else {
-                    context?.toast("权限被拒绝")
-                }
-            }
-        }
-    }
-
     override fun onGetUploadTokenResult(result: String) {
         // 将图片上传到七牛
         mUploadManager.put(
@@ -230,7 +226,12 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
     }
 
     override fun onEditUserResult(result: UserInfo) {
-        context?.toast("修改成功")
+        toast("修改成功")
         UserPrefsUtils.putUserInfo(result)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Bus.unregister(this)
     }
 }

@@ -9,6 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.event.OrderPayEvent
 import com.sukaidev.core.event.ToOrderDetailEvent
+import com.sukaidev.core.ext.toast
 import com.sukaidev.core.ui.delegates.BaseMvpDelegate
 import com.sukaidev.order.R
 import com.sukaidev.order.common.OrderConstant
@@ -28,6 +29,8 @@ import org.jetbrains.anko.toast
 class OrderDelegate : BaseMvpDelegate<OrderListPresenter>(), OrderListView {
 
     private lateinit var mAdapter: OrderAdapter
+
+    private var orderCount: Int = 0
 
     companion object {
         fun create(position: Int): OrderDelegate {
@@ -116,17 +119,28 @@ class OrderDelegate : BaseMvpDelegate<OrderListPresenter>(), OrderListView {
 
     override fun onGetOrderListResult(result: MutableList<Order>?) {
         result?.let {
+            orderCount = result.size
             mAdapter.setNewData(result)
         }
     }
 
     override fun onConfirmOrderResult(result: Boolean) {
         context?.toast("确认收货成功")
-        loadData()
+        if (orderCount == 1) {
+            mAdapter.setNewData(null)
+            orderCount = 0
+        } else {
+            loadData()
+        }
     }
 
     override fun onCancelOrderResult(result: Boolean) {
         context?.toast("取消订单成功")
-        loadData()
+        if (orderCount == 1) {
+            mAdapter.setNewData(null)
+            orderCount = 0
+        } else {
+            loadData()
+        }
     }
 }

@@ -2,6 +2,7 @@ package com.sukaidev.index.ui.fragment
 
 import android.os.Bundle
 import android.view.View
+import com.sukaidev.core.ext.toast
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.ui.scanner.ScanView
 import me.dm7.barcodescanner.zbar.Result
@@ -51,7 +52,7 @@ class ScannerDelegate : ProxyDelegate(), ZBarScannerView.ResultHandler {
     override fun handleResult(result: Result) {
 
         // 处理结果
-        context?.toast(result.contents)
+        toast(result.contents)
 
         // 出栈
         supportDelegate.pop()
