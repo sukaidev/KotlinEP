@@ -1,17 +1,18 @@
 package com.sukaidev.index.ui.fragment
 
+import android.Manifest
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.eightbitlab.rxbus.Bus
 import com.sukaidev.core.event.GoodsClickedEvent
 import com.sukaidev.core.ext.onClick
-import com.sukaidev.core.ui.delegates.BaseDelegate
 import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.ui.delegates.ProxyMvpDelegate
-import com.sukaidev.core.ui.loader.Loader
 import com.sukaidev.core.ui.recycler.BaseDecoration
 import com.sukaidev.core.ui.recycler.MultipleFields
 import com.sukaidev.core.ui.recycler.MultipleItemEntity
@@ -25,6 +26,7 @@ import com.sukaidev.index.ui.adapter.IndexDataConverter
 import com.sukaidev.index.ui.adapter.SearchGoodsDelegate
 import com.youth.banner.Banner
 import kotlinx.android.synthetic.main.delegate_index.*
+import org.jetbrains.anko.toast
 
 /**
  * Created by sukaidev on 2019/08/26.
@@ -57,7 +59,7 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
         }
 
         mScanIv.onClick {
-            getParentDelegate<ProxyDelegate>().supportDelegate.start(ScannerDelegate())
+            checkPermission()
         }
     }
 
@@ -93,5 +95,35 @@ class IndexDelegate : ProxyMvpDelegate<IndexPresenter>(), IndexView {
     override fun onPause() {
         super.onPause()
         mBanner?.stopAutoPlay()
+    }
+
+    private fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(context!!, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                activity!!, arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
+                ), 1
+            )
+        } else {
+            getParentDelegate<ProxyDelegate>().supportDelegate.start(ScannerDelegate())
+        }
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    getParentDelegate<ProxyDelegate>().supportDelegate.start(ScannerDelegate())
+                } else {
+                    context?.toast("权限被拒绝")
+                }
+            }
+        }
     }
 }
