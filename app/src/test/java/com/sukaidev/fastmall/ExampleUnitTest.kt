@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall
+package com.sukaidev.fastmall
 
 import org.junit.Test
 

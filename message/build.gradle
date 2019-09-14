@@ -28,8 +28,8 @@ android {
         }
 
         manifestPlaceholders = [
-                JPUSH_PKGNAME: "com.sukaidev.kotlinmall",
-                JPUSH_APPKEY : "3a382f23333240cdd530498c", //JPush 上注册的包名对应的 Appkey.
+                JPUSH_PKGNAME: "com.sukaidev.fastmall",
+                JPUSH_APPKEY : "7129309254eb22c12c07637a", //JPush 上注册的包名对应的 Appkey.
                 JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
 

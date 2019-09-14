@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall.common
+package com.sukaidev.fastmall.common
 
 
 /*

@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall.ui.activity
+package com.sukaidev.fastmall.ui.activity
 
 import android.content.pm.PackageManager
 import com.eightbitlab.rxbus.Bus
@@ -6,8 +6,8 @@ import com.sukaidev.core.common.PermissionConstant
 import com.sukaidev.core.event.RequestPermissionSuccess
 import com.sukaidev.core.ui.activities.ProxyActivity
 import com.sukaidev.core.ui.delegates.BaseDelegate
-import com.sukaidev.kotlinmall.ui.fragment.BottomDelegate
-import com.sukaidev.kotlinmall.ui.fragment.LauncherDelegate
+import com.sukaidev.fastmall.ui.fragment.BottomDelegate
+import com.sukaidev.fastmall.ui.fragment.LauncherDelegate
 import com.sukaidev.core.ui.launcher.ILauncherListener
 import org.jetbrains.anko.toast
 

@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall.common
+package com.sukaidev.fastmall.common
 
 import cn.jpush.android.api.JPushInterface
 import com.sukaidev.core.common.BaseApplication

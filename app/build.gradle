@@ -1,11 +1,12 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.sukaidev.kotlinmall"
+        applicationId "com.sukaidev.fastmall"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1

@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall
+package com.sukaidev.fastmall
 
 import androidx.test.InstrumentationRegistry
 import androidx.test.runner.AndroidJUnit4

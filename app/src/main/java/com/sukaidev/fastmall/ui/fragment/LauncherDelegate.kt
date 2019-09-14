@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall.ui.fragment
+package com.sukaidev.fastmall.ui.fragment
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -9,7 +9,7 @@ import com.sukaidev.core.ui.delegates.ProxyDelegate
 import com.sukaidev.core.ui.launcher.ILauncherListener
 import com.sukaidev.core.utils.timer.BaseTimeTask
 import com.sukaidev.core.utils.timer.ITimerListener
-import com.sukaidev.kotlinmall.R
+import com.sukaidev.fastmall.R
 import kotlinx.android.synthetic.main.delegate_launcher.*
 import java.util.*
 

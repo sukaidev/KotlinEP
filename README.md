@@ -34,3 +34,5 @@
 [zxing/zxing](https://github.com/zxing/zxing)
 
 [CymChad/BaseRecyclerViewAdapterHelper](https://github.com/CymChad/BaseRecyclerViewAdapterHelper)
+
+ShareSDK、极光推送、支付宝沙箱支付

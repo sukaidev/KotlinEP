@@ -1,4 +1,4 @@
-package com.sukaidev.kotlinmall.ui.fragment
+package com.sukaidev.fastmall.ui.fragment
 
 import android.os.Bundle
 import android.view.View
@@ -17,7 +17,7 @@ import com.sukaidev.goods.ui.category.CategoryDelegate
 import com.sukaidev.goods.ui.goods.GoodsDetailDelegate
 import com.sukaidev.goods.ui.goods.GoodsListDelegate
 import com.sukaidev.index.ui.fragment.IndexDelegate
-import com.sukaidev.kotlinmall.R
+import com.sukaidev.fastmall.R
 import com.sukaidev.message.ui.fragment.MessageDelegate
 import com.sukaidev.mine.ui.user.LoginDelegate
 import com.sukaidev.mine.ui.user.MineDelegate

@@ -1,9 +1,9 @@
-package com.sukaidev.kotlinmall.ui.fragment
+package com.sukaidev.fastmall.ui.fragment
 
 import android.os.Bundle
 import android.view.View
 import com.sukaidev.core.ui.delegates.ProxyDelegate
-import com.sukaidev.kotlinmall.R
+import com.sukaidev.fastmall.R
 
 /**
  * Created by sukaidev on 2019/08/29.

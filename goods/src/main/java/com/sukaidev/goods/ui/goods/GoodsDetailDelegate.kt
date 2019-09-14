@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.View
 import androidx.core.content.ContextCompat
+import cn.sharesdk.onekeyshare.OnekeyShare
 import com.eightbitlab.rxbus.Bus
 import com.eightbitlab.rxbus.registerInBus
 import com.google.android.material.appbar.AppBarLayout
@@ -92,6 +93,10 @@ class GoodsDetailDelegate : BaseMvpDelegate<GoodsDetailPresenter>(), AppBarLayou
             supportDelegate.pop()
         }
 
+        mShareTv.onClick {
+            showShare()
+        }
+
         mCartBadge = QBadgeView(context)
     }
 
@@ -151,6 +156,24 @@ class GoodsDetailDelegate : BaseMvpDelegate<GoodsDetailPresenter>(), AppBarLayou
         val goodsInfoDelegate = GoodsInfoDelegate.create(result)
         supportDelegate.loadRootFragment(R.id.goods_info_container, goodsInfoDelegate)
         supportDelegate.loadRootFragment(R.id.goods_image_container, GoodsImageDelegate.create(arrayOf(goodsDetailOne, goodsDetailTwo)))
+    }
+
+    // 显示分享信息
+    private fun showShare(){
+        val oks = OnekeyShare()
+        // title标题
+        oks.setTitle(getString(R.string.ssdk_oks_share))
+        // titleUrl
+        oks.setTitleUrl("http://sharesdk.cn")
+        // 分享文本
+        oks.text = "这件商品不错，快来看看吧~"
+        // imagePath是图片的本地路径，确保SDcard下面存在此张图片
+//        oks.setImagePath("/sdcard/test.jpg")
+        // url在微信、Facebook等平台中使用
+        oks.setUrl("http://sharesdk.cn")
+        // 启动分享GUI
+        oks.show(context)
+
     }
 
     override fun onDestroy() {
