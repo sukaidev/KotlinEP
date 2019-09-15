@@ -49,7 +49,7 @@ dependencies {
 //    }
 
     // debug时启用LeakCanary
-    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
+//    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.0-beta-3'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'

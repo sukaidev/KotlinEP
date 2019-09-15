@@ -31,6 +31,7 @@ import com.sukaidev.core.event.RequestPermissionSuccess
 import com.sukaidev.core.ext.toast
 import com.sukaidev.mine.R
 import com.sukaidev.mine.data.protocol.UserInfo
+import com.sukaidev.mine.event.EditUserSuccess
 import com.sukaidev.mine.injection.component.DaggerUserComponent
 import com.sukaidev.mine.injection.module.UserModule
 import com.sukaidev.mine.presenter.UserInfoPresenter
@@ -130,7 +131,6 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
             pop()
         }
         mHeaderBar.getRightTv().onClick {
-            context?.toast("点击了")
             mPresenter.editUser(
                 mRemoteFileUrl!!,
                 mUserNameEt.text?.toString() ?: "",
@@ -207,7 +207,7 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
                     Manifest.permission.READ_EXTERNAL_STORAGE,
                     Manifest.permission.WRITE_EXTERNAL_STORAGE,
                     Manifest.permission.CAMERA
-                ), 1
+                ), PermissionConstant.USER_PROFILE_PERMISSION_REQUEST_CODE
             )
         } else {
             showAlertView()
@@ -228,6 +228,8 @@ class UserInfoDelegate : BaseMvpDelegate<UserInfoPresenter>(), UserInfoView,
     override fun onEditUserResult(result: UserInfo) {
         toast("修改成功")
         UserPrefsUtils.putUserInfo(result)
+        Bus.send(EditUserSuccess())
+        supportDelegate.pop()
     }
 
     override fun onDestroy() {

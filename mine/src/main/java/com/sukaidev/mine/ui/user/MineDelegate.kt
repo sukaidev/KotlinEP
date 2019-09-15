@@ -17,7 +17,9 @@ import com.sukaidev.core.utils.AppPrefsUtils
 import com.sukaidev.core.common.ProviderConstant
 import com.sukaidev.core.common.ProviderConstant.Companion.KEY_SP_USER_ICON
 import com.sukaidev.core.common.isLogin
+import com.sukaidev.core.ext.toast
 import com.sukaidev.mine.R
+import com.sukaidev.mine.event.EditUserSuccess
 import com.sukaidev.mine.ui.setttings.SettingsDelegate
 import kotlinx.android.synthetic.main.delegate_user_info.mUserIconIv
 import kotlinx.android.synthetic.main.delegate_mine.*
@@ -53,7 +55,7 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
     private fun initObserve() {
 
         Bus.observe<LoginSuccessEvent>()
-            .subscribe{
+            .subscribe {
                 val userIcon = AppPrefsUtils.getString(KEY_SP_USER_ICON)
                 if (userIcon!!.isNotEmpty()) {
                     mUserIconIv.loadUrl(userIcon)
@@ -63,9 +65,15 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
             .registerInBus(this)
 
         Bus.observe<LogoutEvent>()
-            .subscribe{
+            .subscribe {
                 mUserIconIv.setImageResource(R.drawable.icon_default_user)
                 mUserNameTv.text = getString(R.string.un_login_text)
+            }
+            .registerInBus(this)
+
+        Bus.observe<EditUserSuccess>()
+            .subscribe{
+                loadData()
             }
             .registerInBus(this)
     }
@@ -87,7 +95,7 @@ class MineDelegate : ProxyDelegate(), View.OnClickListener {
         when (v) {
             mUserIconIv, mUserNameTv -> {
                 if (isLogin()) {
-                    getParentDelegate<ProxyDelegate>().supportDelegate.start(UserInfoDelegate())
+                    getParentDelegate<ProxyDelegate>().supportDelegate.startForResult(UserInfoDelegate(), 1)
                 } else {
                     getParentDelegate<ProxyDelegate>().supportDelegate.start(LoginDelegate())
                 }

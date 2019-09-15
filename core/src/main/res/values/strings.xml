@@ -8,6 +8,7 @@
     <string name="common_delete">删除</string>
     <string name="common_next">下一步</string>
     <string name="common_save">保存</string>
+    <string name="common_save_and_quit">保存并退出</string>
     <string name="no_data_tip">暂无数据~~~</string>
 
     <string name="nav_bar_home">主页</string>

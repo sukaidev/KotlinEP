@@ -7,7 +7,7 @@
     <com.sukaidev.core.widget.HeaderBar
         android:id="@id/mHeaderBar"
         style="@style/MatchWrap"
-        app:rightText="@string/common_save"
+        app:rightText="@string/common_save_and_quit"
         app:titleText="个人信息" />
 
     <RelativeLayout
