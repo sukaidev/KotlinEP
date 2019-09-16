@@ -21,7 +21,7 @@ import kotlin.collections.ArrayList
 class OrderManagerDelegate : ProxyDelegate() {
 
     // OrderDelegate
-    private var mFragmentList = ArrayList<OrderDelegate>()
+    private var mFragmentList : ArrayList<OrderDelegate>? = ArrayList()
     private val orderAll: OrderDelegate by lazy { initFragment(OrderStatus.ORDER_ALL) }
     private val orderWaitPay: OrderDelegate by lazy { initFragment(OrderStatus.ORDER_WAIT_PAY) }
     private val orderWaitConfirm: OrderDelegate by lazy { initFragment(OrderStatus.ORDER_WAIT_CONFIRM) }
@@ -42,11 +42,13 @@ class OrderManagerDelegate : ProxyDelegate() {
             supportDelegate.pop()
         }
 
-        mFragmentList.add(orderAll)
-        mFragmentList.add(orderWaitPay)
-        mFragmentList.add(orderWaitConfirm)
-        mFragmentList.add(orderCompleted)
-        mFragmentList.add(orderCanceled)
+        mFragmentList?.let {
+            it.add(orderAll)
+            it.add(orderWaitPay)
+            it.add(orderWaitConfirm)
+            it.add(orderCompleted)
+            it.add(orderCanceled)
+        }
 
         mOrderTab.tabMode = TabLayout.MODE_FIXED
         mOrderVp.adapter = OrderVpAdapter(arrayOf("全部", "待付款", "待收货", "已完成", "已取消"), mFragmentList, fragmentManager!!)
@@ -66,5 +68,11 @@ class OrderManagerDelegate : ProxyDelegate() {
         val delegate = OrderDelegate()
         delegate.arguments = args
         return delegate
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mFragmentList?.clear()
+        mFragmentList = null
     }
 }

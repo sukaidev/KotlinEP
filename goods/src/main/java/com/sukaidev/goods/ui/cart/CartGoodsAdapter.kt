@@ -3,6 +3,7 @@ package com.sukaidev.goods.ui.cart
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.eightbitlab.rxbus.Bus
+import com.sukaidev.core.event.GoodsClickedEvent
 import com.sukaidev.core.ext.getEditText
 import com.sukaidev.core.ext.loadUrl
 import com.sukaidev.core.ext.onClick
@@ -47,5 +48,9 @@ class CartGoodsAdapter(data: MutableList<CartGoods>?) : BaseQuickAdapter<CartGoo
                 Bus.send(UpdateTotalPriceEvent())
             }
         })
+
+        holder.itemView.mGoodsIconIv.onClick {
+            Bus.send(GoodsClickedEvent(item.goodsId))
+        }
     }
 }
