@@ -5,8 +5,18 @@
 2. 单Activity架构
 3. 模块化开发
 4. Mvp模式
-# Libraries
 
+# Pictures
+| 主页 | 分类 | 购物车 |
+| ------------ | ------------- | ------------- 
+| ![1](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-06-36-691_com.sukaidev.k.jpg) | ![2](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-06-46-242_com.sukaidev.k.jpg)  | ![3](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-07-15-158_com.sukaidev.k.jpg)  |
+
+| 商品 | 订单管理 | 付款 |
+| ------------ | ------------- | ------------- 
+| ![4](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-06-41-796_com.sukaidev.k.jpg) | ![5](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-08-44-465_com.sukaidev.k.jpg)  | ![6](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-08-26-788_com.sukaidev.k.jpg)  |
+
+[下载APK](https://github.com/sukaidev/KotlinEP/blob/master/sample/app-release.apk)
+# Libraries
 [Kotlin/anko](https://github.com/Kotlin/anko)
 
 [ReactiveX/RxKotlin](https://github.com/ReactiveX/RxKotlin)
