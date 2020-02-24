@@ -1,4 +1,4 @@
-# FastMall
+# KotlinEP
 此项目是本人为了熟练Kotlin写的一个个人项目，使用100%kotlin语言开发。
 # Feature
 1. 纯Kotlin语言开发
