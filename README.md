@@ -1,9 +1,9 @@
 # KotlinEP
-此项目是本人为了熟练Kotlin写的一个个人项目，使用100%kotlin语言开发。
+此项目是本人本科毕业的毕设，使用100%kotlin语言开发。
 # Feature
 1. 纯Kotlin语言开发
 2. 单Activity架构
-3. 模块化开发
+3. 组件化开发
 4. Mvp模式
 
 # Pictures
