@@ -15,6 +15,7 @@
 | ------------ | ------------- | ------------- 
 | ![4](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-06-41-796_com.sukaidev.k.jpg) | ![5](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-08-44-465_com.sukaidev.k.jpg)  | ![6](https://github.com/sukaidev/KotlinEP/blob/master/sample/Screenshot_2019-09-13-23-08-26-788_com.sukaidev.k.jpg)  |
 
+@Outdated
 [下载APK(右键另存为)](https://github.com/sukaidev/KotlinEP/blob/master/sample/app-release.apk)
 # Libraries
 [Kotlin/anko](https://github.com/Kotlin/anko)
